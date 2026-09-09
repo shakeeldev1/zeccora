@@ -44,8 +44,8 @@ const Team = () => {
           </div>
 
           <p className="mt-6 text-sm leading-7 text-gray-400 sm:text-base">
-            Meet the passionate individuals dedicated to bringing you the best
-            shopping experience.
+            Meet the people shaping a more thoughtful way to discover and
+            carry everyday luxury.
           </p>
         </div>
 

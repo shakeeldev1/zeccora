@@ -38,12 +38,12 @@ const HeroAbout = () => {
 
         {/* Small Heading */}
         <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-[#d6af35]">
-          About Urban Bazaar
+          The Urban Bazaar Edit
         </p>
 
         {/* Main Heading */}
         <h1 className="font-serif text-4xl font-bold text-white sm:text-5xl lg:text-6xl">
-          Our <span className="text-[#d6af35]">Story</span>
+          Made to Carry Your <span className="text-[#d6af35]">Story</span>
         </h1>
 
         {/* Decorative Line */}
@@ -57,8 +57,8 @@ const HeroAbout = () => {
 
         {/* Description */}
         <p className="mx-auto mt-7 max-w-3xl text-base leading-8 text-gray-200 sm:text-lg">
-          Urban Bazaar - Pakistan's most trusted online marketplace
-          where quality meets convenience.
+          A considered collection of premium handbags and shoulder bags,
+          selected for the way modern women live, work, and move.
         </p>
 
       </div>
