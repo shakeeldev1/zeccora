@@ -9,6 +9,7 @@ import {
 const SignatureCollection = () => {
   const [activeFilter, setActiveFilter] = useState("All Products");
   const [wishlist, setWishlist] = useState([]);
+  const [showAll, setShowAll] = useState(false);
 
   const filters = [
     "All Products",
@@ -28,6 +29,7 @@ const SignatureCollection = () => {
       category: "Best Sellers",
       badge: "Bestseller",
       discount: "-20%",
+      reviews: 12,
     },
     {
       id: 2,
@@ -39,6 +41,7 @@ const SignatureCollection = () => {
       category: "New Arrivals",
       badge: "New",
       discount: "-15%",
+      reviews: 28,
     },
     {
       id: 3,
@@ -50,6 +53,7 @@ const SignatureCollection = () => {
       category: "Best Sellers",
       badge: "Bestseller",
       discount: "-20%",
+      reviews: 45,
     },
     {
       id: 4,
@@ -61,6 +65,7 @@ const SignatureCollection = () => {
       category: "Limited Edition",
       badge: "Exclusive",
       discount: "-16%",
+      reviews: 19,
     },
     {
       id: 5,
@@ -72,6 +77,7 @@ const SignatureCollection = () => {
       category: "New Arrivals",
       badge: "New",
       discount: "-20%",
+      reviews: 36,
     },
     {
       id: 6,
@@ -83,6 +89,7 @@ const SignatureCollection = () => {
       category: "Best Sellers",
       badge: "Bestseller",
       discount: "-18%",
+      reviews: 8,
     },
     {
       id: 7,
@@ -94,6 +101,7 @@ const SignatureCollection = () => {
       category: "Limited Edition",
       badge: "Exclusive",
       discount: "-15%",
+      reviews: 42,
     },
     {
       id: 8,
@@ -105,6 +113,7 @@ const SignatureCollection = () => {
       category: "New Arrivals",
       badge: "New",
       discount: "-19%",
+      reviews: 25,
     },
     {
       id: 9,
@@ -116,6 +125,43 @@ const SignatureCollection = () => {
       category: "Best Sellers",
       badge: "Bestseller",
       discount: "-18%",
+      reviews: 50,
+    },
+    {
+      id: 10,
+      name: "Elegant Designer Handbag",
+      image:
+        "https://i.pinimg.com/736x/88/ee/3a/88ee3a7e6338f8c254d77c3a682ebe10.jpg",
+      price: "3,600 PKR",
+      oldPrice: "4,300 PKR",
+      category: "New Arrivals",
+      badge: "New",
+      discount: "-16%",
+      reviews: 31,
+    },
+    {
+      id: 11,
+      name: "Luxury Fashion Bag",
+      image:
+        "https://i.pinimg.com/736x/64/13/6f/64136fbea35135158ad1222981e95639.jpg",
+      price: "4,000 PKR",
+      oldPrice: "4,800 PKR",
+      category: "Limited Edition",
+      badge: "Exclusive",
+      discount: "-17%",
+      reviews: 17,
+    },
+    {
+      id: 12,
+      name: "Premium Style Handbag",
+      image:
+        "https://i.pinimg.com/736x/d3/78/e7/d378e7655c5ba29a7c73fba71ed7f963.jpg",
+      price: "3,200 PKR",
+      oldPrice: "3,900 PKR",
+      category: "Best Sellers",
+      badge: "Bestseller",
+      discount: "-18%",
+      reviews: 39,
     },
   ];
 
@@ -142,12 +188,22 @@ const SignatureCollection = () => {
     },
   ];
 
+  // ================= FILTER PRODUCTS =================
+
   const filteredProducts =
     activeFilter === "All Products"
       ? products
       : products.filter(
           (product) => product.category === activeFilter
         );
+
+  // ================= SHOW ONLY 8 INITIALLY =================
+
+  const visibleProducts = showAll
+    ? filteredProducts
+    : filteredProducts.slice(0, 8);
+
+  // ================= WISHLIST =================
 
   const toggleWishlist = (id) => {
     setWishlist((prev) =>
@@ -157,14 +213,21 @@ const SignatureCollection = () => {
     );
   };
 
+  // ================= FILTER CHANGE =================
+
+  const handleFilterChange = (filter) => {
+    setActiveFilter(filter);
+    setShowAll(false);
+  };
+
   return (
-    <section className="bg-[#1b1b1b] py-1 text-white">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <section className="bg-[#1b1b1b]  text-white">
+      {/* Main Container */}
+      <div className="mx-auto max-w-[1400px] px-3 sm:px-5 lg:px-6">
 
         {/* ================= HEADING ================= */}
 
         <div className="mb-12 text-center">
-
           <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-[#d4af37]/10 px-4 py-2">
             <Sparkles
               size={14}
@@ -187,18 +250,15 @@ const SignatureCollection = () => {
             Hand-selected premium products loved by our
             distinguished clients.
           </p>
-
         </div>
 
         {/* ================= FILTERS ================= */}
 
         <div className="mb-12 flex flex-wrap justify-center gap-3">
-
           {filters.map((filter) => (
-
             <button
               key={filter}
-              onClick={() => setActiveFilter(filter)}
+              onClick={() => handleFilterChange(filter)}
               className={`rounded-full border px-5 py-2.5 text-xs font-semibold transition-all duration-300 sm:text-sm
                 ${
                   activeFilter === filter
@@ -209,26 +269,20 @@ const SignatureCollection = () => {
             >
               {filter}
             </button>
-
           ))}
-
         </div>
 
         {/* ================= PRODUCTS ================= */}
 
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-
-          {filteredProducts.map((product) => (
-
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          {visibleProducts.map((product) => (
             <div
               key={product.id}
               className="group overflow-hidden rounded-2xl border border-white/10 bg-[#202020] transition-all duration-300 hover:-translate-y-2 hover:border-[#d4af37]/40 hover:shadow-2xl hover:shadow-black/40"
             >
-
               {/* Product Image */}
 
-              <div className="relative h-[230px] overflow-hidden">
-
+              <div className="relative h-[260px] overflow-hidden">
                 <img
                   src={product.image}
                   alt={product.name}
@@ -242,7 +296,6 @@ const SignatureCollection = () => {
                 {/* Badges */}
 
                 <div className="absolute left-3 top-3 flex gap-2">
-
                   <span className="rounded-md bg-[#e7a51b] px-2 py-1 text-[9px] font-bold text-white">
                     {product.badge}
                   </span>
@@ -250,15 +303,12 @@ const SignatureCollection = () => {
                   <span className="rounded-md bg-[#ef4444] px-2 py-1 text-[9px] font-bold text-white">
                     {product.discount}
                   </span>
-
                 </div>
 
                 {/* Wishlist */}
 
                 <button
-                  onClick={() =>
-                    toggleWishlist(product.id)
-                  }
+                  onClick={() => toggleWishlist(product.id)}
                   className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-md transition hover:bg-[#d4af37] hover:text-black"
                 >
                   <Heart
@@ -275,7 +325,6 @@ const SignatureCollection = () => {
                     }
                   />
                 </button>
-
               </div>
 
               {/* ================= PRODUCT DETAILS ================= */}
@@ -285,21 +334,17 @@ const SignatureCollection = () => {
                 {/* Rating */}
 
                 <div className="mb-3 flex items-center gap-1">
-
                   {[1, 2, 3, 4, 5].map((star) => (
-
                     <Star
                       key={star}
                       size={10}
                       className="fill-[#d4af37] text-[#d4af37]"
                     />
-
                   ))}
 
                   <span className="ml-1 text-[10px] text-gray-500">
-                    (12)
+                    ({product.reviews})
                   </span>
-
                 </div>
 
                 {/* Product Name */}
@@ -311,9 +356,7 @@ const SignatureCollection = () => {
                 {/* Price & Button */}
 
                 <div className="mt-4 flex items-end justify-between gap-2">
-
                   <div>
-
                     <p className="text-sm font-bold text-[#d4af37]">
                       {product.price}
                     </p>
@@ -321,77 +364,58 @@ const SignatureCollection = () => {
                     <p className="mt-1 text-[10px] text-gray-500 line-through">
                       {product.oldPrice}
                     </p>
-
                   </div>
 
                   {/* Add Button */}
 
                   <button className="flex items-center gap-1 rounded-lg bg-[#d4af37] px-3 py-2 text-xs font-bold text-[#1b1b1b] transition hover:bg-[#f0c84b]">
-
                     <ShoppingBag size={13} />
-
                     Add
-
                   </button>
-
                 </div>
-
               </div>
-
             </div>
-
           ))}
-
         </div>
 
-        {/* ================= VIEW ALL BUTTON ================= */}
+        {/* ================= VIEW MORE BUTTON ================= */}
 
-        <div className="mt-12 flex justify-center">
-
-          <button className="rounded-full border border-[#d4af37]/30 bg-black px-8 py-3 text-sm font-semibold text-white transition-all duration-300 hover:border-[#d4af37] hover:bg-[#d4af37] hover:text-black">
-            View All Products →
-          </button>
-
-        </div>
-
+        {filteredProducts.length > 8 && (
+          <div className="mt-8 flex justify-center">
+            <button
+              onClick={() => setShowAll(!showAll)}
+              className="rounded-full border border-[#d4af37]/30 bg-black px-8 py-3 text-sm font-semibold text-white transition-all duration-300 hover:border-[#d4af37] hover:bg-[#d4af37] hover:text-black"
+            >
+              {showAll
+                ? "Show Less ↑"
+                : "View More Products →"}
+            </button>
+          </div>
+        )}
 
         {/* ================= STATISTICS SECTION ================= */}
 
-        <div className="mt-20 rounded-[22px] border border-white/5 bg-[#202b3d] px-6 py-12 sm:px-10 lg:px-16 lg:py-14">
-
+        <div className="mt-10 rounded-[22px] border border-white/5 bg-[#202b3d] px-6 py-12 sm:px-10 lg:px-16 lg:py-14">
           <div className="grid grid-cols-2 gap-y-10 md:grid-cols-4 md:gap-6">
-
             {stats.map((stat, index) => (
-
               <div
                 key={index}
                 className="text-center"
               >
-
-                {/* Number */}
-
                 <h3 className="font-serif text-3xl font-bold text-white sm:text-4xl">
-
                   {stat.number}
 
                   <span className="ml-1 text-[#d4af37]">
                     {stat.symbol}
                   </span>
-
                 </h3>
-
-                {/* Label */}
 
                 <p className="mt-2 text-sm text-gray-300">
                   {stat.label}
                 </p>
-
               </div>
-
             ))}
-
           </div>
-
         </div>
 
       </div>

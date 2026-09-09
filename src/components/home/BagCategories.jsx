@@ -43,15 +43,22 @@ const BagCategories = () => {
         "https://i.pinimg.com/736x/db/64/97/db64977bd8d6a0b458e2e2bfc162bbec.jpg",
       products: "Exclusive",
     },
+    {
+      title: "Designer Bags",
+      description:
+        "Beautiful designer bags created to bring elegance and luxury to your style.",
+      image:
+        "https://i.pinimg.com/736x/a2/2d/d5/a22dd52e29962ca247b7b518dd69a8f9.jpg",
+      products: "Designer Collection",
+    },
   ];
 
   return (
     <section className="bg-[#1b1b1b] py-10 text-white">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
         {/* Heading */}
         <div className="mb-12 text-center">
-          
           <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-[#d4af37]/10 px-4 py-2">
             <Sparkles size={14} className="text-[#d4af37]" />
 
@@ -74,43 +81,44 @@ const BagCategories = () => {
         </div>
 
         {/* Categories Grid */}
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
 
           {categories.map((category) => (
             <a
               key={category.title}
               href="/products"
-              className="group relative h-[260px] overflow-hidden rounded-2xl border border-white/10"
+              className="group overflow-hidden rounded-2xl border border-white/10 bg-[#222222] transition duration-300 hover:-translate-y-2 hover:border-[#d4af37]/50"
             >
 
               {/* Image */}
-              <img
-                src={category.image}
-                alt={category.title}
-                className="h-full w-full object-cover transition duration-700 group-hover:scale-110"
-              />
+              <div className="relative h-[230px] overflow-hidden">
 
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+                <img
+                  src={category.image}
+                  alt={category.title}
+                  className="h-full w-full object-cover transition duration-700 group-hover:scale-110"
+                />
 
-              {/* Product Badge */}
-              <div className="absolute right-4 top-4 rounded-full bg-black/60 px-3 py-1.5 text-[10px] font-medium text-white backdrop-blur-md">
-                {category.products}
+                {/* Badge */}
+                <div className="absolute right-4 top-4 rounded-full bg-black/70 px-3 py-1.5 text-[10px] font-medium text-white backdrop-blur-md">
+                  {category.products}
+                </div>
+
               </div>
 
-              {/* Content */}
-              <div className="absolute bottom-0 left-0 w-full p-6">
+              {/* Text Content */}
+              <div className="p-6">
 
-                <h3 className="text-xl font-bold text-white">
+                <h3 className="text-xl font-bold text-white transition group-hover:text-[#d4af37]">
                   {category.title}
                 </h3>
 
-                <p className="mt-2 max-w-sm text-xs leading-5 text-gray-300">
+                <p className="mt-3 text-sm leading-6 text-gray-400">
                   {category.description}
                 </p>
 
                 {/* Explore */}
-                <div className="mt-4 flex items-center gap-2 text-sm font-semibold text-[#d4af37]">
+                <div className="mt-5 flex items-center gap-2 text-sm font-semibold text-[#d4af37]">
                   Explore Collection
 
                   <ArrowRight
@@ -127,10 +135,10 @@ const BagCategories = () => {
         </div>
 
         {/* Button */}
-        <div className="mt-12 flex justify-center">
+        <div className="mt-8 flex justify-center">
           <a
             href="/products"
-            className="group flex items-center gap-3 rounded-full border border-[#d4af37]/20 bg-black px-7 py-4 text-sm font-semibold text-white transition duration-300 hover:border-[#d4af37] hover:bg-[#d4af37] hover:text-black"
+            className="group flex items-center gap-3 rounded-full border border-[#d4af37]/30 bg-black px-7 py-4 text-sm font-semibold text-white transition duration-300 hover:border-[#d4af37] hover:bg-[#d4af37] hover:text-black"
           >
             View All Bags
 
@@ -146,4 +154,4 @@ const BagCategories = () => {
   );
 };
 
-export default BagCategories; 
+export default BagCategories;

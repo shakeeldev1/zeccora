@@ -1,9 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Menu, X, ShoppingBag } from "lucide-react";
 import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [cartCount, setCartCount] = useState(0);
+
+    useEffect(() => {
+        const updateCartCount = () => {
+            const cart = JSON.parse(localStorage.getItem("urban-bazaar-cart") || "[]");
+            setCartCount(cart.reduce((total, item) => total + item.quantity, 0));
+        };
+
+        updateCartCount();
+        window.addEventListener("cart-updated", updateCartCount);
+        window.addEventListener("storage", updateCartCount);
+
+        return () => {
+            window.removeEventListener("cart-updated", updateCartCount);
+            window.removeEventListener("storage", updateCartCount);
+        };
+    }, []);
 
     const navLinks = [
         { name: "Home", href: "/" },
@@ -64,7 +81,7 @@ const Navbar = () => {
                             className="transition-transform duration-300 group-hover:scale-110"
                         />
 
-                        Cart
+                        Cart {cartCount > 0 && `(${cartCount})`}
                     </NavLink>
                 </div>
 
@@ -74,9 +91,14 @@ const Navbar = () => {
                     {/* Cart Mobile */}
                     <NavLink
                         to="/cart"
-                        className="rounded-full border border-[#d4af37]/30 p-2 text-[#d4af37]"
+                        className="relative rounded-full border border-[#d4af37]/30 p-2 text-[#d4af37]"
                     >
                         <ShoppingBag size={20} />
+                        {cartCount > 0 && (
+                            <span className="absolute right-0 top-0 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#d4af37] px-1 text-[9px] font-bold text-[#171717]">
+                                {cartCount}
+                            </span>
+                        )}
                     </NavLink>
 
                     {/* Mobile Menu Button */}
