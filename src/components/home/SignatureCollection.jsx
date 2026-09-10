@@ -5,6 +5,24 @@ import {
   Sparkles,
   Star,
 } from "lucide-react";
+import image7 from "../../assets/img7 (4).jpeg";
+import image8 from "../../assets/img 8.jpeg";
+import image9 from "../../assets/img 9.jpeg";
+import image10 from "../../assets/img 10.jpeg";
+import image11 from "../../assets/img 11.jpeg";
+import image12 from "../../assets/img 12.jpeg";
+import image13 from "../../assets/img 13.jpeg";
+import image14 from "../../assets/img 14.jpeg";
+import image15 from "../../assets/img 15.jpeg";
+import image16 from "../../assets/img 16.jpeg";
+import image17 from "../../assets/img17.jpeg";
+import image18 from "../../assets/img18.png";
+import image19 from "../../assets/img19.png";
+import image20 from "../../assets/img20.png";
+import image21 from "../../assets/img 21.png";
+import image22 from "../../assets/img 22.png";
+import image23 from "../../assets/img 23.png";
+import image24 from "../../assets/img 24.png";
 
 const SignatureCollection = () => {
   const [activeFilter, setActiveFilter] = useState("All Products");
@@ -22,10 +40,9 @@ const SignatureCollection = () => {
     {
       id: 1,
       name: "Elegant Premium Collection",
-      image:
-        "https://i.pinimg.com/736x/57/24/0d/57240d170e51084f532c50078ea5545f.jpg",
-      price: "2,500 PKR",
-      oldPrice: "3,200 PKR",
+      image: image7,
+      price: "2,200 PKR",
+      oldPrice: "3,000 PKR",
       category: "Best Sellers",
       badge: "Bestseller",
       discount: "-20%",
@@ -34,10 +51,9 @@ const SignatureCollection = () => {
     {
       id: 2,
       name: "Luxury Everyday Essential",
-      image:
-        "https://i.pinimg.com/736x/94/45/ca/9445cabb9d13a5509b69ad91d13e043c.jpg",
-      price: "3,500 PKR",
-      oldPrice: "4,000 PKR",
+      image: image8,
+      price: "2,200 PKR",
+      oldPrice: "3,000 PKR",
       category: "New Arrivals",
       badge: "New",
       discount: "-15%",
@@ -46,10 +62,9 @@ const SignatureCollection = () => {
     {
       id: 3,
       name: "Premium Modern Collection",
-      image:
-        "https://i.pinimg.com/736x/1f/03/aa/1f03aac3946fe68ed7874d5e279cf0f8.jpg",
-      price: "2,800 PKR",
-      oldPrice: "3,500 PKR",
+      image: image9,
+      price: "2,200 PKR",
+      oldPrice: "3,000 PKR",
       category: "Best Sellers",
       badge: "Bestseller",
       discount: "-20%",
@@ -58,10 +73,9 @@ const SignatureCollection = () => {
     {
       id: 4,
       name: "Exclusive Luxury Essential",
-      image:
-        "https://i.pinimg.com/736x/84/bb/98/84bb984d12cc9ee1919d3ffc04bdb466.jpg",
-      price: "4,200 PKR",
-      oldPrice: "5,000 PKR",
+      image: image10,
+      price: "2,200 PKR",
+      oldPrice: "3,000 PKR",
       category: "Limited Edition",
       badge: "Exclusive",
       discount: "-16%",
@@ -70,10 +84,9 @@ const SignatureCollection = () => {
     {
       id: 5,
       name: "Signature Premium Product",
-      image:
-        "https://i.pinimg.com/1200x/05/ec/f5/05ecf537305ef3c09141756ed949031e.jpg",
-      price: "3,000 PKR",
-      oldPrice: "3,800 PKR",
+      image: image11,
+      price: "2,200 PKR",
+      oldPrice: "3,000 PKR",
       category: "New Arrivals",
       badge: "New",
       discount: "-20%",
@@ -82,10 +95,9 @@ const SignatureCollection = () => {
     {
       id: 6,
       name: "Luxury Collection Special",
-      image:
-        "https://i.pinimg.com/736x/35/88/e1/3588e1b2673842fb57438be48bf2b670.jpg",
-      price: "2,700 PKR",
-      oldPrice: "3,400 PKR",
+      image: image12,
+      price: "2,200 PKR",
+      oldPrice: "3,000 PKR",
       category: "Best Sellers",
       badge: "Bestseller",
       discount: "-18%",
@@ -94,10 +106,9 @@ const SignatureCollection = () => {
     {
       id: 7,
       name: "Premium Exclusive Product",
-      image:
-        "https://i.pinimg.com/736x/c0/6c/a6/c06ca61ce59dc9dd0b134c430c121f01.jpg",
-      price: "3,800 PKR",
-      oldPrice: "4,500 PKR",
+      image: image13,
+      price: "2,200 PKR",
+      oldPrice: "3,000 PKR",
       category: "Limited Edition",
       badge: "Exclusive",
       discount: "-15%",
@@ -106,10 +117,9 @@ const SignatureCollection = () => {
     {
       id: 8,
       name: "Modern Luxury Collection",
-      image:
-        "https://i.pinimg.com/736x/94/7c/db/947cdb97223ac77de90276536b686b5c.jpg",
-      price: "2,900 PKR",
-      oldPrice: "3,600 PKR",
+      image: image14,
+      price: "2,200 PKR",
+      oldPrice: "3,000 PKR",
       category: "New Arrivals",
       badge: "New",
       discount: "-19%",
@@ -118,10 +128,9 @@ const SignatureCollection = () => {
     {
       id: 9,
       name: "Ultimate Signature Collection",
-      image:
-        "https://i.pinimg.com/736x/e0/33/ae/e033ae3efb24a661b40493d9d1bf2455.jpg",
-      price: "4,500 PKR",
-      oldPrice: "5,500 PKR",
+      image: image15,
+      price: "2,200 PKR",
+      oldPrice: "3,000 PKR",
       category: "Best Sellers",
       badge: "Bestseller",
       discount: "-18%",
@@ -129,39 +138,102 @@ const SignatureCollection = () => {
     },
     {
       id: 10,
-      name: "Elegant Designer Handbag",
-      image:
-        "https://i.pinimg.com/736x/88/ee/3a/88ee3a7e6338f8c254d77c3a682ebe10.jpg",
-      price: "3,600 PKR",
-      oldPrice: "4,300 PKR",
+      name: "Monarch Classic Tote",
+      image: image16,
+      price: "2,200 PKR",
+      oldPrice: "3,000 PKR",
       category: "New Arrivals",
       badge: "New",
-      discount: "-16%",
-      reviews: 31,
+      discount: "-27%",
+      reviews: 24,
     },
     {
       id: 11,
-      name: "Luxury Fashion Bag",
-      image:
-        "https://i.pinimg.com/736x/64/13/6f/64136fbea35135158ad1222981e95639.jpg",
-      price: "4,000 PKR",
-      oldPrice: "4,800 PKR",
-      category: "Limited Edition",
-      badge: "Exclusive",
-      discount: "-17%",
-      reviews: 17,
+      name: "Elara Mini Bag",
+      image: image17,
+      price: "2,200 PKR",
+      oldPrice: "3,000 PKR",
+      category: "Best Sellers",
+      badge: "Bestseller",
+      discount: "-27%",
+      reviews: 18,
     },
     {
       id: 12,
-      name: "Premium Style Handbag",
-      image:
-        "https://i.pinimg.com/736x/d3/78/e7/d378e7655c5ba29a7c73fba71ed7f963.jpg",
-      price: "3,200 PKR",
-      oldPrice: "3,900 PKR",
+      name: "Marais Evening Bag",
+      image: image18,
+      price: "2,200 PKR",
+      oldPrice: "3,000 PKR",
+      category: "Limited Edition",
+      badge: "Exclusive",
+      discount: "-27%",
+      reviews: 22,
+    },
+    {
+      id: 13,
+      name: "Serena Quilted Bag",
+      image: image19,
+      price: "2,200 PKR",
+      oldPrice: "3,000 PKR",
+      category: "New Arrivals",
+      badge: "New",
+      discount: "-27%",
+      reviews: 16,
+    },
+    {
+      id: 14,
+      name: "Ophelia Top Handle",
+      image: image20,
+      price: "2,200 PKR",
+      oldPrice: "3,000 PKR",
       category: "Best Sellers",
       badge: "Bestseller",
-      discount: "-18%",
-      reviews: 39,
+      discount: "-27%",
+      reviews: 29,
+    },
+    {
+      id: 15,
+      name: "Soleil Chain Bag",
+      image: image21,
+      price: "2,200 PKR",
+      oldPrice: "3,000 PKR",
+      category: "Limited Edition",
+      badge: "Exclusive",
+      discount: "-27%",
+      reviews: 14,
+    },
+    {
+      id: 16,
+      name: "Camille Structured Bag",
+      image: image22,
+      price: "2,200 PKR",
+      oldPrice: "3,000 PKR",
+      category: "New Arrivals",
+      badge: "New",
+      discount: "-27%",
+      reviews: 21,
+    },
+    {
+      id: 17,
+      name: "Arden Everyday Bag",
+      image: image23,
+      price: "2,200 PKR",
+      oldPrice: "3,000 PKR",
+      category: "Best Sellers",
+      badge: "Bestseller",
+      discount: "-27%",
+      reviews: 33,
+    },
+    {
+      id: 18,
+      name: "Vivienne Luxe Bag",
+      image: image24,
+      price: "2,200 PKR",
+      oldPrice: "3,000 PKR",
+      category: "Limited Edition",
+      badge: "Exclusive",
+      discount: "-27%",
+      reviews: 27,
     },
   ];
 

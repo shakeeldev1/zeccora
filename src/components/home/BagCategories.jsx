@@ -1,5 +1,14 @@
 import React from "react";
 import { ArrowRight, Sparkles } from "lucide-react";
+import image7 from "../../assets/img7 (4).jpeg";
+import image8 from "../../assets/img 8.jpeg";
+import image9 from "../../assets/img 9.jpeg";
+import image10 from "../../assets/img 10.jpeg";
+import image11 from "../../assets/img 11.jpeg";
+import image12 from "../../assets/img 12.jpeg";
+import image13 from "../../assets/img 13.jpeg";
+import image14 from "../../assets/img 14.jpeg";
+import image15 from "../../assets/img 15.jpeg";
 
 const BagCategories = () => {
   const categories = [
@@ -7,8 +16,7 @@ const BagCategories = () => {
       title: "Handbags",
       description:
         "Elegant handcrafted handbags for everyday elegance and statement styling.",
-      image:
-        "https://i.pinimg.com/736x/c9/52/a9/c952a9e0c2b2a1e69beb0695257c6c38.jpg",
+      image: image7,
       products: "Premium Bags",
       href: "/products?category=Handbags",
     },
@@ -16,8 +24,7 @@ const BagCategories = () => {
       title: "Shoulder Bags",
       description:
         "Modern shoulder bags designed for effortless comfort and luxury appeal.",
-      image:
-        "https://i.pinimg.com/736x/d2/11/7a/d2117a0aadb0207d3d44af2c57aa9f9c.jpg",
+      image: image8,
       products: "New Collection",
       href: "/products?category=Shoulder%20Bags",
     },
@@ -25,8 +32,7 @@ const BagCategories = () => {
       title: "Handbags",
       description:
         "Sophisticated silhouettes crafted to elevate your everyday wardrobe.",
-      image:
-        "https://i.pinimg.com/736x/a3/17/83/a3178351ad9741a09cd6862bd1ec22d9.jpg",
+      image: image9,
       products: "Luxury Edit",
       href: "/products?category=Handbags",
     },
@@ -34,8 +40,7 @@ const BagCategories = () => {
       title: "Shoulder Bags",
       description:
         "Chic and practical shoulder bags made for modern luxury living.",
-      image:
-        "https://i.pinimg.com/736x/4e/bf/c1/4ebfc19ff153ac3722a5e473f76a6040.jpg",
+      image: image10,
       products: "Trending",
       href: "/products?category=Shoulder%20Bags",
     },
@@ -43,8 +48,7 @@ const BagCategories = () => {
       title: "Handbags",
       description:
         "Refined designs that blend premium craftsmanship with everyday comfort.",
-      image:
-        "https://i.pinimg.com/736x/71/bc/88/71bc880af7e9f299e7e23d5d9d267b67.jpg",
+      image: image11,
       products: "Exclusive",
       href: "/products?category=Handbags",
     },
@@ -52,8 +56,7 @@ const BagCategories = () => {
       title: "Shoulder Bags",
       description:
         "Statement-making shoulder bags that complement every occasion effortlessly.",
-      image:
-        "https://i.pinimg.com/736x/03/ed/d2/03edd2a337e41fe42626938b79076cba.jpg",
+      image: image12,
       products: "Designer Picks",
       href: "/products?category=Shoulder%20Bags",
     },
@@ -61,8 +64,7 @@ const BagCategories = () => {
       title: "Shoulder Bags",
       description:
         "Effortless elegance with a soft structured silhouette for daily styling.",
-      image:
-        "https://i.pinimg.com/1200x/d9/bb/66/d9bb661622e723d4e56bd9ef62fe4100.jpg",
+      image: image13,
       products: "Signature Style",
       href: "/products?category=Shoulder%20Bags",
     },
@@ -70,8 +72,7 @@ const BagCategories = () => {
       title: "Shoulder Bags",
       description:
         "Premium statement shoulder bags designed for polished daily carry.",
-      image:
-        "https://i.pinimg.com/736x/61/db/b0/61dbb05a4d3325be65b113bfd91440ac.jpg",
+      image: image14,
       products: "Luxury Pick",
       href: "/products?category=Shoulder%20Bags",
     },
@@ -79,36 +80,8 @@ const BagCategories = () => {
       title: "Shoulder Bags",
       description:
         "Minimal silhouettes with luxe texture and a refined premium finish.",
-      image:
-        "https://i.pinimg.com/736x/d0/ae/b1/d0aeb1c43c5192ebc7400c68929b8922.jpg",
+      image: image15,
       products: "Modern Edit",
-      href: "/products?category=Shoulder%20Bags",
-    },
-    {
-      title: "Shoulder Bags",
-      description:
-        "Elegant everyday essentials that bring sophistication to every outfit.",
-      image:
-        "https://i.pinimg.com/1200x/ac/ff/18/acff181097bb81e5a4eaf5922fcc089f.jpg",
-      products: "Daily Luxe",
-      href: "/products?category=Shoulder%20Bags",
-    },
-    {
-      title: "Shoulder Bags",
-      description:
-        "High-fashion detailing paired with functional everyday practicality.",
-      image:
-        "https://i.pinimg.com/736x/04/37/67/04376712ed5499b46fff0618f7e46ddc.jpg",
-      products: "Fashion Forward",
-      href: "/products?category=Shoulder%20Bags",
-    },
-    {
-      title: "Shoulder Bags",
-      description:
-        "Luxury-inspired forms with a sleek finish built for effortless style.",
-      image:
-        "https://i.pinimg.com/736x/4c/97/c3/4c97c3695224755c49c09897ff95159b.jpg",
-      products: "Elegant Wardrobe",
       href: "/products?category=Shoulder%20Bags",
     },
   ];
