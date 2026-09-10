@@ -1,6 +1,6 @@
 import React from "react";
 import { ArrowDown, Sparkles } from "lucide-react";
-import heroImage from "../../assets/image1.jpg";
+import heroImage from "../../assets/image4.png";
 
 const ProductHero = () => {
     return (
