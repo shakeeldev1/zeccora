@@ -3,18 +3,18 @@ import { Award, Package, Users, ShieldCheck } from "lucide-react";
 
 const stats = [
   {
-    number: "10K+",
-    label: "Product Varieties",
+    number: "25+",
+    label: "Curated Styles",
     icon: Package,
   },
   {
-    number: "50K+",
+    number: "5K+",
     label: "Happy Customers",
     icon: Users,
   },
   {
     number: "100%",
-    label: "Authentic Products",
+    label: "Quality Checked",
     icon: ShieldCheck,
   },
 ];
@@ -68,9 +68,9 @@ const Journey = () => {
 
             {/* Main Heading */}
             <h2 className="font-serif text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
-              Building Trust{" "}
+                  Defining Everyday{" "}
               <span className="text-[#d6af35]">
-                One Order at a Time
+                Luxury
               </span>
             </h2>
 
@@ -84,42 +84,37 @@ const Journey = () => {
             <div className="mt-7 space-y-4 text-sm leading-7 text-gray-300">
               
               <p>
-                Founded with a vision to revolutionize online shopping in
-                Pakistan, Urban Bazaar began its journey by focusing on
-                quality, reliability, and customer satisfaction.
+                Urban Bazaar began with a simple belief: the bag you carry
+                should feel as considered as the life you carry with it.
               </p>
 
               <p>
-                We believe in empowering customers with access to quality
-                products at competitive prices. Our mission is to make online
-                shopping safe, convenient, and enjoyable for every Pakistani
-                household.
+                Our collection brings together elegant handbags and versatile
+                shoulder bags for polished days, spontaneous plans, and every
+                chapter in between.
               </p>
 
               <p>
-                At Urban Bazaar, we carefully source and verify every product
-                to ensure authenticity and quality. We work with trusted
-                suppliers and partners to bring you the best selection across
-                all categories.
+                Each piece is selected for its silhouette, finish, and
+                everyday usefulness. We look for thoughtful details that make
+                a bag feel special long after the first look.
               </p>
 
               <p>
-                With a deep understanding of the Pakistani market and
-                commitment to excellence, Urban Bazaar delivers products that
-                meet the highest standards of quality and reliability.
+                From structured top handles to relaxed shoulder styles, we
+                keep the edit refined, wearable, and in step with your style.
               </p>
 
               <p>
-                We master the balance between affordability and quality—
-                providing genuine products at fair prices while maintaining
-                strict quality control standards.
+                We believe premium design should feel approachable, with
+                fair pricing and a shopping experience built around trust.
               </p>
 
               <p className="border-l-2 border-[#d6af35] pl-4 text-gray-200">
-                At Urban Bazaar, we focus not just on the products you buy,
-                but on the entire shopping experience you have with us.
+                At Urban Bazaar, we focus on more than the product. We care
+                about the feeling it brings to your everyday ritual.
                 <span className="ml-1 font-semibold text-[#d6af35]">
-                  Quality, Service, and Trust—redefined.
+                  Carry your elegance, your way.
                 </span>
               </p>
 

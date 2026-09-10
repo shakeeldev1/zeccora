@@ -1,21 +1,20 @@
 import React from "react";
 import { ArrowRight, Sparkles } from "lucide-react";
-import heroImage from "../../assets/image1.jpg";
 
 const OffersHero = () => {
     return (
         <section className="relative isolate overflow-hidden border-b border-white/10">
             <img
-                src={heroImage}
+                src="https://i.pinimg.com/1200x/25/66/78/25667880f4bade590e43b99f6152df4f.jpg"
                 alt="Exclusive offers from Urban Bazaar"
                 className="absolute inset-0 -z-20 h-full w-full object-cover"
             />
             <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(14,14,14,.97)_0%,rgba(14,14,14,.82)_46%,rgba(14,14,14,.28)_100%)]" />
             <div className="absolute inset-0 -z-10 bg-black/10" />
 
-            <div className="mx-auto flex min-h-107.5 max-w-7xl items-center px-4 py-16 sm:min-h-125 sm:px-6 lg:px-8">
-                <div className="max-w-2xl">
-                    <nav aria-label="Breadcrumb" className="mb-8 flex items-center gap-2 text-xs font-medium text-gray-300 sm:text-sm">
+            <div className="mx-auto flex min-h-107.5 max-w-7xl items-center justify-center px-4 py-16 text-center sm:min-h-125 sm:px-6 lg:px-8">
+                <div className="flex max-w-2xl flex-col items-center">
+                    <nav aria-label="Breadcrumb" className="mb-8 flex items-center justify-center gap-2 text-xs font-medium text-gray-300 sm:text-sm">
                         <a href="/" className="transition hover:text-[#f0c84b]">Home</a>
                         <span className="text-gray-500">/</span>
                         <span className="text-[#f0c84b]">Offers</span>
@@ -31,7 +30,7 @@ const OffersHero = () => {
                         Exclusive
                         <span className="block text-[#d4af37]">Offers</span>
                     </h1>
-                    <p className="mt-6 max-w-xl text-sm leading-7 text-gray-200 sm:text-base">
+                    <p className="mx-auto mt-6 max-w-xl text-sm leading-7 text-gray-200 sm:text-base">
                         Discover amazing deals on our premium products. Limited time offers you don&apos;t want to miss!
                     </p>
                     <a

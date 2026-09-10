@@ -11,25 +11,25 @@ const values = [
     icon: BadgeCheck,
     title: "Authenticity",
     description:
-      "Every product is verified from trusted suppliers with confirmed origin and authenticity.",
+      "Every piece is chosen with a close eye on finish, materials, and the details that make it feel special.",
   },
   {
     icon: Award,
     title: "Quality",
     description:
-      "We select only products that meet our rigorous quality standards and customer expectations.",
+      "We curate silhouettes that balance elevated design with the comfort and usefulness of everyday carry.",
   },
   {
     icon: HeartHandshake,
     title: "Responsibility",
     description:
-      "Committed to ethical practices and customer protection in all our operations.",
+      "We create a considered edit instead of endless choice, making every collection feel intentional.",
   },
   {
     icon: ShieldCheck,
     title: "Trust",
     description:
-      "Building lasting relationships with our customers through transparency and reliability.",
+      "From discovery to delivery, we make every interaction clear, dependable, and personal.",
   },
 ];
 
@@ -56,7 +56,7 @@ const Values = () => {
           </div>
 
           <p className="mt-6 text-sm leading-7 text-gray-400 sm:text-base">
-            The principles that guide everything we do
+            The details that guide our edit
           </p>
         </div>
 

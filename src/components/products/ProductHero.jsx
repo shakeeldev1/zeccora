@@ -13,8 +13,8 @@ const ProductHero = () => {
             <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(15,15,15,.96)_0%,rgba(15,15,15,.75)_48%,rgba(15,15,15,.22)_100%)]" />
             <div className="absolute inset-0 -z-10 bg-black/15" />
 
-            <div className="mx-auto flex min-h-107.5 max-w-7xl items-center px-4 py-16 sm:min-h-125 sm:px-6 lg:px-8">
-                <div className="max-w-2xl">
+            <div className="mx-auto flex min-h-107.5 max-w-7xl items-center justify-center px-4 py-16 text-center sm:min-h-125 sm:px-6 lg:px-8">
+                <div className="flex max-w-2xl flex-col items-center">
                     <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#d4af37]/30 bg-black/25 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#f0c84b] backdrop-blur-sm">
                         <Sparkles size={14} />
                         The Urban Edit
@@ -23,7 +23,7 @@ const ProductHero = () => {
                         Pieces that make
                         <span className="block text-[#d4af37]">everyday iconic.</span>
                     </h1>
-                    <p className="mt-6 max-w-lg text-sm leading-7 text-gray-200 sm:text-base">
+                    <p className="mx-auto mt-6 max-w-lg text-sm leading-7 text-gray-200 sm:text-base">
                         Discover a considered edit of premium bags, made for the moments
                         that deserve a little more style.
                     </p>

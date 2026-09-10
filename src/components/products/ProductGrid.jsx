@@ -1,12 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Check, Heart, ShoppingBag, SlidersHorizontal } from "lucide-react";
+import { useSearchParams } from "react-router-dom";
 
 const ProductGrid = ({ products, onAddToCart }) => {
+    const [searchParams, setSearchParams] = useSearchParams();
     const [activeFilter, setActiveFilter] = useState("All");
     const [wishlist, setWishlist] = useState([]);
     const [addedProduct, setAddedProduct] = useState(null);
 
-    const filters = ["All", "Handbags", "Shoulder Bags", "Travel Bags"];
+    const filters = ["All", "Handbags", "Shoulder Bags"];
+
+    useEffect(() => {
+        const selectedCategory = searchParams.get("category");
+
+        if (!selectedCategory) {
+            setActiveFilter("All");
+            return;
+        }
+
+        const validCategory = filters.includes(selectedCategory) ? selectedCategory : "All";
+        setActiveFilter(validCategory);
+    }, [searchParams]);
+
     const filteredProducts = activeFilter === "All"
         ? products
         : products.filter((product) => product.category === activeFilter);
@@ -45,7 +60,18 @@ const ProductGrid = ({ products, onAddToCart }) => {
                         <button
                             key={filter}
                             type="button"
-                            onClick={() => setActiveFilter(filter)}
+                            onClick={() => {
+                                setActiveFilter(filter);
+                                const nextParams = new URLSearchParams(searchParams);
+
+                                if (filter === "All") {
+                                    nextParams.delete("category");
+                                } else {
+                                    nextParams.set("category", filter);
+                                }
+
+                                setSearchParams(nextParams, { replace: true });
+                            }}
                             className={`rounded-full border px-4 py-2 text-xs font-semibold transition sm:text-sm ${activeFilter === filter
                                 ? "border-[#d4af37] bg-[#d4af37] text-[#171717]"
                                 : "border-white/15 text-gray-300 hover:border-[#d4af37]/60 hover:text-[#d4af37]"
