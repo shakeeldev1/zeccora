@@ -6,7 +6,7 @@ const OffersHero = () => {
         <section className="relative isolate overflow-hidden border-b border-white/10">
             <img
                 src="https://i.pinimg.com/1200x/25/66/78/25667880f4bade590e43b99f6152df4f.jpg"
-                alt="Exclusive offers from Urban Bazaar"
+                alt="Exclusive offers from Zeccora"
                 className="absolute inset-0 -z-20 h-full w-full object-cover"
             />
             <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(14,14,14,.97)_0%,rgba(14,14,14,.82)_46%,rgba(14,14,14,.28)_100%)]" />

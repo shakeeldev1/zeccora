@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Heart,
   ShoppingBag,
@@ -25,9 +26,11 @@ import image23 from "../../assets/img 23.png";
 import image24 from "../../assets/img 24.png";
 
 const SignatureCollection = () => {
+  const navigate = useNavigate();
   const [activeFilter, setActiveFilter] = useState("All Products");
   const [wishlist, setWishlist] = useState([]);
   const [showAll, setShowAll] = useState(false);
+  const [addedProduct, setAddedProduct] = useState(null);
 
   const filters = [
     "All Products",
@@ -91,17 +94,6 @@ const SignatureCollection = () => {
       badge: "New",
       discount: "-20%",
       reviews: 36,
-    },
-    {
-      id: 6,
-      name: "Luxury Collection Special",
-      image: image12,
-      price: "2,200 PKR",
-      oldPrice: "3,000 PKR",
-      category: "Best Sellers",
-      badge: "Bestseller",
-      discount: "-18%",
-      reviews: 8,
     },
     {
       id: 7,
@@ -292,6 +284,20 @@ const SignatureCollection = () => {
     setShowAll(false);
   };
 
+  const addToCart = (product) => {
+    const savedCart = JSON.parse(localStorage.getItem("urban-bazaar-cart") || "[]");
+    const existingProduct = savedCart.find((item) => item.id === product.id);
+    const nextCart = existingProduct
+      ? savedCart.map((item) => item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item)
+      : [...savedCart, { ...product, quantity: 1 }];
+
+    localStorage.setItem("urban-bazaar-cart", JSON.stringify(nextCart));
+    window.dispatchEvent(new Event("cart-updated"));
+    window.dispatchEvent(new Event("cart-open"));
+    setAddedProduct(product.id);
+    window.setTimeout(() => setAddedProduct(null), 1600);
+  };
+
   return (
     <section className="bg-[#1b1b1b]  text-white">
       {/* Main Container */}
@@ -354,7 +360,7 @@ const SignatureCollection = () => {
             >
               {/* Product Image */}
 
-              <div className="relative h-[260px] overflow-hidden">
+              <Link to={`/products/${product.id}`} className="relative block h-[260px] overflow-hidden">
                 <img
                   src={product.image}
                   alt={product.name}
@@ -397,7 +403,7 @@ const SignatureCollection = () => {
                     }
                   />
                 </button>
-              </div>
+              </Link>
 
               {/* ================= PRODUCT DETAILS ================= */}
 
@@ -421,9 +427,9 @@ const SignatureCollection = () => {
 
                 {/* Product Name */}
 
-                <h3 className="min-h-[42px] text-sm font-semibold leading-5 text-white">
+                <Link to={`/products/${product.id}`} className="block min-h-[42px] text-sm font-semibold leading-5 text-white transition hover:text-[#f0c84b]">
                   {product.name}
-                </h3>
+                </Link>
 
                 {/* Price & Button */}
 
@@ -440,9 +446,13 @@ const SignatureCollection = () => {
 
                   {/* Add Button */}
 
-                  <button className="flex items-center gap-1 rounded-lg bg-[#d4af37] px-3 py-2 text-xs font-bold text-[#1b1b1b] transition hover:bg-[#f0c84b]">
+                  <button
+                    type="button"
+                    onClick={() => addToCart(product)}
+                    className="flex items-center gap-1 rounded-lg bg-[#d4af37] px-3 py-2 text-xs font-bold text-[#1b1b1b] transition hover:bg-[#f0c84b]"
+                  >
                     <ShoppingBag size={13} />
-                    Add
+                    {addedProduct === product.id ? "Added" : "Add"}
                   </button>
                 </div>
               </div>
@@ -455,12 +465,10 @@ const SignatureCollection = () => {
         {filteredProducts.length > 8 && (
           <div className="mt-8 flex justify-center">
             <button
-              onClick={() => setShowAll(!showAll)}
+              onClick={() => navigate("/products")}
               className="rounded-full border border-[#d4af37]/30 bg-black px-8 py-3 text-sm font-semibold text-white transition-all duration-300 hover:border-[#d4af37] hover:bg-[#d4af37] hover:text-black"
             >
-              {showAll
-                ? "Show Less ↑"
-                : "View More Products →"}
+              View More Products →
             </button>
           </div>
         )}

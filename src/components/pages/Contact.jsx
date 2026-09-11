@@ -36,7 +36,7 @@ const Contact = () => {
               </div>
               <div>
                 <p className="text-lg text-white">Email</p>
-                <p className="mt-2 break-all text-lg text-white/90">info@urbanbazaaronline.store</p>
+                <p className="mt-2 break-all text-lg text-white/90">info@zeccora.store</p>
               </div>
             </div>
 

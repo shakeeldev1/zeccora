@@ -7,7 +7,7 @@ const ProductHero = () => {
         <section className="relative isolate min-h-107.5 overflow-hidden border-b border-white/10 sm:min-h-125">
             <img
                 src={heroImage}
-                alt="Premium collection at Urban Bazaar"
+                alt="Premium collection at Zeccora"
                 className="absolute inset-0 -z-20 h-full w-full object-cover"
             />
             <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(15,15,15,.96)_0%,rgba(15,15,15,.75)_48%,rgba(15,15,15,.22)_100%)]" />
@@ -17,7 +17,7 @@ const ProductHero = () => {
                 <div className="flex max-w-2xl flex-col items-center">
                     <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#d4af37]/30 bg-black/25 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#f0c84b] backdrop-blur-sm">
                         <Sparkles size={14} />
-                        The Urban Edit
+                        The Zeccora Edit
                     </div>
                     <h1 className="font-serif text-4xl font-bold leading-[1.08] text-white sm:text-6xl lg:text-7xl">
                         Pieces that make

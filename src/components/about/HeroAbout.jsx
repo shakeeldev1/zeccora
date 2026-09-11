@@ -38,7 +38,7 @@ const HeroAbout = () => {
 
         {/* Small Heading */}
         <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-[#d6af35]">
-          The Urban Bazaar Edit
+          The Zeccora Edit
         </p>
 
         {/* Main Heading */}

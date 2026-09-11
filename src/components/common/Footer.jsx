@@ -12,10 +12,10 @@ const Footer = () => {
           <div>
             <Link to="/" className="inline-flex items-center gap-3">
               <span className="flex h-12 w-14 flex-col items-center justify-center border border-[#c9a227]/30 bg-[#202020]">
-                <span className="font-serif text-xl font-bold tracking-[3px] text-[#d4af37]">UB</span>
-                <span className="mt-[-2px] text-[6px] tracking-[3px] text-gray-400">URBAN</span>
+                <span className="font-serif text-xl font-bold tracking-[3px] text-[#d4af37]">ZC</span>
+                <span className="mt-[-2px] text-[6px] tracking-[3px] text-gray-400">ZECCORA</span>
               </span>
-              <span className="text-lg font-semibold tracking-[0.2em] text-white">BOUTIQUE</span>
+              <span className="text-lg font-semibold tracking-[0.2em] text-white">ZECCORA</span>
             </Link>
             <p className="mt-6 max-w-sm text-sm leading-6 text-gray-400">
               Curated fashion for people who make their own statement. Discover timeless style with a modern edge.
@@ -48,9 +48,9 @@ const Footer = () => {
             <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-white">Customer care</h2>
             <div className="mt-5 flex flex-col gap-3 text-sm">
               <Link to="/cart" className="transition hover:text-[#d4af37]">Shopping bag</Link>
-              <a href="mailto:hello@urbanboutique.com" className="transition hover:text-[#d4af37]">Shipping & returns</a>
-              <a href="mailto:hello@urbanboutique.com" className="transition hover:text-[#d4af37]">Size guide</a>
-              <a href="mailto:hello@urbanboutique.com" className="transition hover:text-[#d4af37]">FAQs</a>
+              <a href="mailto:hello@zeccora.store" className="transition hover:text-[#d4af37]">Shipping & returns</a>
+              <a href="mailto:hello@zeccora.store" className="transition hover:text-[#d4af37]">Size guide</a>
+              <a href="mailto:hello@zeccora.store" className="transition hover:text-[#d4af37]">FAQs</a>
             </div>
           </div>
 
@@ -65,14 +65,15 @@ const Footer = () => {
               </button>
             </form>
             <div className="mt-6 space-y-2 text-xs text-gray-400">
-              <p className="flex items-center gap-2"><MapPin size={14} className="text-[#d4af37]" /> 24 Style Street, New York</p>
-              <p className="flex items-center gap-2"><Phone size={14} className="text-[#d4af37]" /> +1 (212) 555-0198</p>
+              <p className="flex items-center gap-2"><MapPin size={14} className="text-[#d4af37]" /> Bahawalpur , Pakistan </p>
+              <p className="flex items-center gap-2"><Phone size={14} className="text-[#d4af37]" />+92 312 626 3348 </p>
+              <a href="mailto:info@zeccora.com" className="flex items-center gap-2 transition hover:text-[#d4af37]"><Mail size={14} className="text-[#d4af37]" /> info@zeccora.com</a>
             </div>
           </div>
         </div>
 
         <div className="flex flex-col gap-3 pt-7 text-xs text-gray-500 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {year} Urban Boutique. All rights reserved.</p>
+          <p>© {year} Zeccora. All rights reserved.</p>
           <div className="flex gap-5">
             <a href="#privacy" className="transition hover:text-[#d4af37]">Privacy</a>
             <a href="#terms" className="transition hover:text-[#d4af37]">Terms</a>

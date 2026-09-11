@@ -39,13 +39,13 @@ const Quality = () => {
         <div className="mx-auto max-w-7xl px-6 py-16 text-center sm:px-8 lg:px-10 lg:py-20">
           
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-[#d6af35]">
-            Urban Bazaar
+            Zeccora
           </p>
 
           <h1 className="mx-auto max-w-4xl font-serif text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
             Shop Quality Products at{" "}
             <span className="text-[#d6af35]">
-              Urban Bazaar
+              Zeccora
             </span>
           </h1>
 
@@ -62,7 +62,7 @@ const Quality = () => {
           <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
             
             <a
-              href="https://urbanbazaaronline.store/shop"
+                      href="/products"
               className="group inline-flex items-center justify-center gap-2 rounded-lg bg-[#d6af35] px-7 py-3 text-sm font-semibold text-[#151515] transition-all duration-300 hover:scale-105 hover:bg-[#e5bd45]"
             >
               Shop Now
@@ -73,7 +73,7 @@ const Quality = () => {
             </a>
 
             <a
-              href="https://urbanbazaaronline.store/contact"
+                      href="/contact"
               className="group inline-flex items-center justify-center gap-2 rounded-lg border border-[#d6af35]/60 px-7 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#d6af35] hover:text-[#151515]"
             >
               <Phone size={17} />

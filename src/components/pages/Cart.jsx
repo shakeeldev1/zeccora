@@ -1,8 +1,12 @@
 import React, { useState } from "react";
-import { Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
+import { Minus, Plus, ShoppingBag, Trash2, X } from "lucide-react";
+import { useSearchParams } from "react-router-dom";
 
 const Cart = () => {
     const [cart, setCart] = useState(() => JSON.parse(localStorage.getItem("urban-bazaar-cart") || "[]"));
+    const [searchParams] = useSearchParams();
+    const [checkoutOpen, setCheckoutOpen] = useState(() => searchParams.get("checkout") === "1");
+    const [customer, setCustomer] = useState({ name: "", email: "", phone: "", address: "" });
 
     const updateCart = (nextCart) => {
         setCart(nextCart);
@@ -18,6 +22,34 @@ const Cart = () => {
     };
 
     const total = cart.reduce((sum, item) => sum + Number(item.price.replace(/[^0-9]/g, "")) * item.quantity, 0);
+
+    const handleCustomerChange = (event) => {
+        const { name, value } = event.target;
+        setCustomer((current) => ({ ...current, [name]: value }));
+    };
+
+    const handleOrderBook = (event) => {
+        event.preventDefault();
+        const orderItems = cart.map((item) => `${item.name} x${item.quantity} - ${item.price}`).join("\n");
+        const message = [
+            "New Zeccora Order",
+            "",
+            `Name: ${customer.name}`,
+            `Email: ${customer.email}`,
+            `Phone: ${customer.phone}`,
+            `Address: ${customer.address}`,
+            "Payment: Cash on Delivery",
+            "Note: Rs. 300 delivery charges must be paid first.",
+            "",
+            "Items:",
+            orderItems,
+            "",
+            `Product total: ${total.toLocaleString()} PKR`,
+        ].join("\n");
+
+        window.open(`https://wa.me/923126263348?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
+        setCheckoutOpen(false);
+    };
 
     return (
         <section className="min-h-[60vh] bg-[#1b1b1b] px-4 py-16 text-white sm:px-6 lg:px-8">
@@ -57,11 +89,62 @@ const Cart = () => {
                             <h2 className="font-serif text-2xl font-bold">Order summary</h2>
                             <div className="mt-6 flex justify-between border-b border-white/10 pb-4 text-sm text-gray-400"><span>Subtotal</span><span>{total.toLocaleString()} PKR</span></div>
                             <div className="mt-4 flex justify-between text-lg font-bold"><span>Total</span><span className="text-[#f0c84b]">{total.toLocaleString()} PKR</span></div>
-                            <button type="button" className="mt-6 w-full bg-[#d4af37] px-5 py-3.5 text-sm font-bold text-[#171717] transition hover:bg-[#f0c84b]">Proceed to checkout</button>
+                            <button type="button" onClick={() => setCheckoutOpen(true)} className="mt-6 w-full bg-[#d4af37] px-5 py-3.5 text-sm font-bold text-[#171717] transition hover:bg-[#f0c84b]">Proceed to checkout</button>
                         </aside>
                     </div>
                 )}
             </div>
+
+            {checkoutOpen && (
+                <div className="fixed inset-0 z-[60] flex items-start justify-center overflow-y-auto bg-black/75 px-4 py-8 sm:py-10">
+                    <div className="my-2 max-h-[calc(100vh-4rem)] w-full max-w-xl overflow-y-auto border border-[#d4af37]/30 bg-[#232323] p-6 shadow-2xl sm:my-0 sm:p-8">
+                        <div className="flex items-start justify-between gap-4">
+                            <div>
+                                <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#d4af37]">Complete your order</p>
+                                <h2 className="mt-2 font-serif text-3xl font-bold">Checkout details</h2>
+                            </div>
+                            <button type="button" aria-label="Close checkout" onClick={() => setCheckoutOpen(false)} className="text-gray-400 transition hover:text-white"><X size={22} /></button>
+                        </div>
+
+                        <form onSubmit={handleOrderBook} className="mt-7 space-y-5">
+                            <div className="grid gap-5 sm:grid-cols-2">
+                                <label className="text-sm text-gray-300">
+                                    Full name
+                                    <input required name="name" value={customer.name} onChange={handleCustomerChange} type="text" className="mt-2 w-full border border-white/15 bg-[#1b1b1b] px-3 py-3 text-white outline-none transition focus:border-[#d4af37]" placeholder="Your name" />
+                                </label>
+                                <label className="text-sm text-gray-300">
+                                    Email
+                                    <input required name="email" value={customer.email} onChange={handleCustomerChange} type="email" className="mt-2 w-full border border-white/15 bg-[#1b1b1b] px-3 py-3 text-white outline-none transition focus:border-[#d4af37]" placeholder="you@example.com" />
+                                </label>
+                            </div>
+                            <label className="block text-sm text-gray-300">
+                                Phone number
+                                <input required name="phone" value={customer.phone} onChange={handleCustomerChange} type="tel" className="mt-2 w-full border border-white/15 bg-[#1b1b1b] px-3 py-3 text-white outline-none transition focus:border-[#d4af37]" placeholder="03XX XXXXXXX" />
+                            </label>
+                            <label className="block text-sm text-gray-300">
+                                Delivery address
+                                <textarea required name="address" value={customer.address} onChange={handleCustomerChange} rows="3" className="mt-2 w-full resize-none border border-white/15 bg-[#1b1b1b] px-3 py-3 text-white outline-none transition focus:border-[#d4af37]" placeholder="House, street, city" />
+                            </label>
+
+                            <fieldset>
+                                <legend className="text-sm font-semibold text-white">Payment method</legend>
+                                <div className="mt-3 space-y-3">
+                                    <label className="flex items-start gap-3 border border-[#d4af37]/50 bg-[#1b1b1b] p-3 text-sm text-gray-300">
+                                        <input type="radio" name="payment" checked readOnly className="mt-1 accent-[#d4af37]" />
+                                        <span><strong className="block text-white">Cash on Delivery</strong><span className="text-xs text-gray-500">Pay when your order arrives.</span></span>
+                                    </label>
+                                    <div className="border border-[#d4af37]/25 bg-[#d4af37]/10 p-3 text-sm text-gray-300">
+                                        <strong className="block text-[#f0c84b]">Important delivery note</strong>
+                                        <span className="mt-1 block text-xs text-gray-400">Rs. 300 delivery charges must be paid first. The remaining product amount is paid on delivery.</span>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                            <button type="submit" className="flex w-full items-center justify-center gap-2 bg-[#d4af37] px-5 py-3.5 text-sm font-bold text-[#171717] transition hover:bg-[#f0c84b]">Order Book </button>
+                        </form>
+                    </div>
+                </div>
+            )}
         </section>
     );
 };

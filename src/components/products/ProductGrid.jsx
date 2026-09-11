@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Check, Heart, ShoppingBag, SlidersHorizontal } from "lucide-react";
+import { Check, Heart, Search, ShoppingBag, SlidersHorizontal, X } from "lucide-react";
 import { useSearchParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const ProductGrid = ({ products, onAddToCart }) => {
     const [searchParams, setSearchParams] = useSearchParams();
     const [activeFilter, setActiveFilter] = useState("All");
+    const [searchTerm, setSearchTerm] = useState("");
     const [wishlist, setWishlist] = useState([]);
     const [addedProduct, setAddedProduct] = useState(null);
 
@@ -22,9 +24,14 @@ const ProductGrid = ({ products, onAddToCart }) => {
         setActiveFilter(validCategory);
     }, [searchParams]);
 
-    const filteredProducts = activeFilter === "All"
+    const categoryProducts = activeFilter === "All"
         ? products
         : products.filter((product) => product.category === activeFilter);
+    const filteredProducts = categoryProducts.filter((product) => {
+        const searchValue = searchTerm.trim().toLowerCase();
+        return !searchValue || [product.name, product.category, product.badge]
+            .some((value) => value.toLowerCase().includes(searchValue));
+    });
 
     const addProduct = (product) => {
         onAddToCart(product);
@@ -55,40 +62,71 @@ const ProductGrid = ({ products, onAddToCart }) => {
                     </div>
                 </div>
 
-                <div className="mt-8 flex flex-wrap gap-2">
-                    {filters.map((filter) => (
+                <div className="mt-8 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+                    <div className="flex flex-wrap gap-2">
+                        {filters.map((filter) => (
+                            <button
+                                key={filter}
+                                type="button"
+                                onClick={() => {
+                                    setActiveFilter(filter);
+                                    const nextParams = new URLSearchParams(searchParams);
+
+                                    if (filter === "All") {
+                                        nextParams.delete("category");
+                                    } else {
+                                        nextParams.set("category", filter);
+                                    }
+
+                                    setSearchParams(nextParams, { replace: true });
+                                }}
+                                className={`rounded-full border px-4 py-2 text-xs font-semibold transition sm:text-sm ${activeFilter === filter
+                                    ? "border-[#d4af37] bg-[#d4af37] text-[#171717]"
+                                    : "border-white/15 text-gray-300 hover:border-[#d4af37]/60 hover:text-[#d4af37]"
+                                    }`}
+                            >
+                                {filter}
+                            </button>
+                        ))}
+                    </div>
+
+                <div className="relative w-full max-w-xl lg:ml-6 lg:flex-1">
+                    <Search size={17} className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[#d4af37]" />
+                    <input
+                        type="search"
+                        value={searchTerm}
+                        onChange={(event) => setSearchTerm(event.target.value)}
+                        placeholder="Search products..."
+                        aria-label="Search products"
+                        className="w-full rounded-xl border border-white/15 bg-[#232323] py-3 pl-11 pr-11 text-sm text-white outline-none transition placeholder:text-gray-500 focus:border-[#d4af37]"
+                    />
+                    {searchTerm && (
                         <button
-                            key={filter}
                             type="button"
-                            onClick={() => {
-                                setActiveFilter(filter);
-                                const nextParams = new URLSearchParams(searchParams);
-
-                                if (filter === "All") {
-                                    nextParams.delete("category");
-                                } else {
-                                    nextParams.set("category", filter);
-                                }
-
-                                setSearchParams(nextParams, { replace: true });
-                            }}
-                            className={`rounded-full border px-4 py-2 text-xs font-semibold transition sm:text-sm ${activeFilter === filter
-                                ? "border-[#d4af37] bg-[#d4af37] text-[#171717]"
-                                : "border-white/15 text-gray-300 hover:border-[#d4af37]/60 hover:text-[#d4af37]"
-                                }`}
+                            aria-label="Clear product search"
+                            onClick={() => setSearchTerm("")}
+                            className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-gray-400 transition hover:text-[#d4af37]"
                         >
-                            {filter}
+                            <X size={16} />
                         </button>
-                    ))}
+                    )}
+                </div>
                 </div>
 
-                <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-                    {filteredProducts.map((product) => (
+                {filteredProducts.length === 0 ? (
+                    <div className="mt-8 border border-dashed border-white/15 bg-[#232323] px-6 py-16 text-center">
+                        <Search size={28} className="mx-auto text-[#d4af37]" />
+                        <h3 className="mt-4 font-serif text-2xl font-bold text-white">Product not found</h3>
+                        <p className="mt-2 text-sm text-gray-400">Try another product name or category.</p>
+                    </div>
+                ) : (
+                    <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+                        {filteredProducts.map((product) => (
                         <article
                             key={product.id}
                             className="group overflow-hidden rounded-2xl border border-white/10 bg-[#232323] transition duration-300 hover:-translate-y-1 hover:border-[#d4af37]/50 hover:shadow-2xl hover:shadow-black/30"
                         >
-                            <div className="relative h-72 overflow-hidden bg-[#2c2c2c]">
+                            <Link to={`/products/${product.id}`} className="relative block h-72 overflow-hidden bg-[#2c2c2c]">
                                 <img
                                     src={product.image}
                                     alt={product.name}
@@ -106,11 +144,13 @@ const ProductGrid = ({ products, onAddToCart }) => {
                                 >
                                     <Heart size={16} fill={wishlist.includes(product.id) ? "currentColor" : "none"} />
                                 </button>
-                            </div>
+                            </Link>
 
                             <div className="p-5">
-                                <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-gray-500">{product.category}</p>
-                                <h3 className="mt-2 min-h-12 text-base font-bold text-white">{product.name}</h3>
+                                <Link to={`/products/${product.id}`} className="block">
+                                    <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-gray-500">{product.category}</p>
+                                    <h3 className="mt-2 min-h-12 text-base font-bold text-white transition hover:text-[#f0c84b]">{product.name}</h3>
+                                </Link>
                                 <div className="mt-4 flex items-end gap-2">
                                     <span className="text-lg font-bold text-[#f0c84b]">{product.price}</span>
                                     <span className="text-xs text-gray-500 line-through">{product.oldPrice}</span>
@@ -125,8 +165,9 @@ const ProductGrid = ({ products, onAddToCart }) => {
                                 </button>
                             </div>
                         </article>
-                    ))}
-                </div>
+                        ))}
+                    </div>
+                )}
             </div>
         </section>
     );

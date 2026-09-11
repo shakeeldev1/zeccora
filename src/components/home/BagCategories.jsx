@@ -2,13 +2,13 @@ import React from "react";
 import { ArrowRight, Sparkles } from "lucide-react";
 import image7 from "../../assets/img7 (4).jpeg";
 import image8 from "../../assets/img 8.jpeg";
-import image9 from "../../assets/img 9.jpeg";
+import imag21 from "../../assets/img 21.png"
 import image10 from "../../assets/img 10.jpeg";
-import image11 from "../../assets/img 11.jpeg";
-import image12 from "../../assets/img 12.jpeg";
-import image13 from "../../assets/img 13.jpeg";
-import image14 from "../../assets/img 14.jpeg";
-import image15 from "../../assets/img 15.jpeg";
+import image24 from "../../assets/img 24.png";
+import image18 from "../../assets/img18.png";
+
+
+
 
 const BagCategories = () => {
   const categories = [
@@ -32,7 +32,7 @@ const BagCategories = () => {
       title: "Handbags",
       description:
         "Sophisticated silhouettes crafted to elevate your everyday wardrobe.",
-      image: image9,
+      image: imag21,
       products: "Luxury Edit",
       href: "/products?category=Handbags",
     },
@@ -48,7 +48,7 @@ const BagCategories = () => {
       title: "Handbags",
       description:
         "Refined designs that blend premium craftsmanship with everyday comfort.",
-      image: image11,
+      image: image24,
       products: "Exclusive",
       href: "/products?category=Handbags",
     },
@@ -56,35 +56,12 @@ const BagCategories = () => {
       title: "Shoulder Bags",
       description:
         "Statement-making shoulder bags that complement every occasion effortlessly.",
-      image: image12,
+      image: image18,
       products: "Designer Picks",
       href: "/products?category=Shoulder%20Bags",
     },
-    {
-      title: "Shoulder Bags",
-      description:
-        "Effortless elegance with a soft structured silhouette for daily styling.",
-      image: image13,
-      products: "Signature Style",
-      href: "/products?category=Shoulder%20Bags",
-    },
-    {
-      title: "Shoulder Bags",
-      description:
-        "Premium statement shoulder bags designed for polished daily carry.",
-      image: image14,
-      products: "Luxury Pick",
-      href: "/products?category=Shoulder%20Bags",
-    },
-    {
-      title: "Shoulder Bags",
-      description:
-        "Minimal silhouettes with luxe texture and a refined premium finish.",
-      image: image15,
-      products: "Modern Edit",
-      href: "/products?category=Shoulder%20Bags",
-    },
-  ];
+  
+  ]
 
   return (
     <section className="bg-[#1b1b1b] py-10 text-white">

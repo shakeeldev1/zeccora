@@ -5,8 +5,8 @@ import image7 from "../../assets/img7 (4).jpeg";
 import image8 from "../../assets/img 8.jpeg";
 import image9 from "../../assets/img 9.jpeg";
 import image10 from "../../assets/img 10.jpeg";
-import image11 from "../../assets/img 11.jpeg";
-import image12 from "../../assets/img 12.jpeg";
+// import image11 from "../../assets/img 11.jpeg";
+// import image12 from "../../assets/img 12.jpeg";
 import image13 from "../../assets/img 13.jpeg";
 import image14 from "../../assets/img 14.jpeg";
 import image15 from "../../assets/img 15.jpeg";
@@ -20,7 +20,7 @@ import image22 from "../../assets/img 22.png";
 import image23 from "../../assets/img 23.png";
 import image24 from "../../assets/img 24.png";
 
-const products = [
+export const products = [
     {
         id: 1,
         name: "The Daily Edit",
@@ -64,7 +64,7 @@ const products = [
         badge: "New arrival",
         price: "2,200 PKR",
         oldPrice: "3,000 PKR",
-        image: image11,
+        image: "https://i.pinimg.com/736x/26/f6/03/26f6037c386f05eaff98b7d840766507.jpg",
     },
     {
         id: 6,
@@ -73,7 +73,7 @@ const products = [
         badge: "Bestseller",
         price: "2,200 PKR",
         oldPrice: "3,000 PKR",
-        image: image12,
+        image: "https://i.pinimg.com/1200x/38/19/5c/38195ca6adc5b96df9428605a9754088.jpg",
     },
     {
         id: 7,

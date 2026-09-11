@@ -36,7 +36,7 @@ const Journey = () => {
             <div className="relative overflow-hidden">
               <img
                 src="https://i.pinimg.com/736x/28/87/c7/2887c712f8ac7adc7dec2c3f6e889040.jpg"
-                alt="Urban Bazaar Journey"
+                alt="Zeccora Journey"
                 className="h-[480px] w-full object-cover transition-transform duration-700 hover:scale-105 sm:h-[550px]"
               />
 
@@ -84,7 +84,7 @@ const Journey = () => {
             <div className="mt-7 space-y-4 text-sm leading-7 text-gray-300">
               
               <p>
-                Urban Bazaar began with a simple belief: the bag you carry
+                Zeccora began with a simple belief: the bag you carry
                 should feel as considered as the life you carry with it.
               </p>
 
@@ -111,7 +111,7 @@ const Journey = () => {
               </p>
 
               <p className="border-l-2 border-[#d6af35] pl-4 text-gray-200">
-                At Urban Bazaar, we focus on more than the product. We care
+                At Zeccora, we focus on more than the product. We care
                 about the feeling it brings to your everyday ritual.
                 <span className="ml-1 font-semibold text-[#d6af35]">
                   Carry your elegance, your way.
