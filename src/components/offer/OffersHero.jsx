@@ -5,7 +5,7 @@ const OffersHero = () => {
     return (
         <section className="relative isolate overflow-hidden border-b border-white/10">
             <img
-                src="https://i.pinimg.com/1200x/25/66/78/25667880f4bade590e43b99f6152df4f.jpg"
+                src="https://i.pinimg.com/736x/8a/16/47/8a1647f900a974b524237331e9fc0cdb.jpg"
                 alt="Exclusive offers from Zeccora"
                 className="absolute inset-0 -z-20 h-full w-full object-cover"
             />
