@@ -26,7 +26,7 @@ function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <div className="min-h-screen bg-[#1b1b1b] text-white">
+      <div className="min-h-screen bg-gradient-to-b from-[#000000] via-[#120805] to-[#000000] text-white">
         <Navbar />
         <main>
           <Routes>

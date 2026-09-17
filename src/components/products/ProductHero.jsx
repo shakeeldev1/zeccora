@@ -15,13 +15,13 @@ const ProductHero = () => {
 
             <div className="mx-auto flex min-h-107.5 max-w-7xl items-center justify-center px-4 py-16 text-center sm:min-h-125 sm:px-6 lg:px-8">
                 <div className="flex max-w-2xl flex-col items-center">
-                    <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#d4af37]/30 bg-black/25 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#f0c84b] backdrop-blur-sm">
+                    <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#9F6324]/30 bg-black/25 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#FFFFC9] backdrop-blur-sm">
                         <Sparkles size={14} />
                         The Zeccora Edit
                     </div>
-                    <h1 className="font-serif text-4xl font-bold leading-[1.08] text-white sm:text-6xl lg:text-7xl">
+                    <h1 className=" text-4xl font-bold leading-[1.08] text-white sm:text-6xl lg:text-7xl">
                         Pieces that make
-                        <span className="block text-[#d4af37]">everyday iconic.</span>
+                        <span className="block text-[#9F6324]">everyday iconic.</span>
                     </h1>
                     <p className="mx-auto mt-6 max-w-lg text-sm leading-7 text-gray-200 sm:text-base">
                         Discover a considered edit of premium bags, made for the moments
@@ -29,7 +29,7 @@ const ProductHero = () => {
                     </p>
                     <a
                         href="#collection"
-                        className="mt-8 inline-flex items-center gap-3 rounded-full bg-[#d4af37] px-6 py-3.5 text-sm font-bold text-[#171717] transition hover:-translate-y-0.5 hover:bg-[#f0c84b]"
+                        className="mt-8 inline-flex items-center gap-3 rounded-full bg-[#9F6324] px-6 py-3.5 text-sm font-bold text-[#000000] transition hover:-translate-y-0.5 hover:bg-[#FFFFC9]"
                     >
                         Explore collection
                         <ArrowDown size={17} />

@@ -23,24 +23,24 @@ const teamMembers = [
 
 const Team = () => {
   return (
-    <section className="w-full bg-[#151515] py-16 sm:py-20 lg:py-24">
+    <section className="w-full bg-gradient-to-b from-[#000000] via-[#120805] to-[#000000] py-16 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
         
         {/* Section Heading */}
         <div className="mx-auto max-w-3xl text-center">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-[#d6af35]">
+          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-[#9F6324]">
             The People Behind
           </p>
 
-          <h2 className="font-serif text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
-            Our <span className="text-[#d6af35]">Team</span>
+          <h2 className=" text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
+            Our <span className="text-[#9F6324]">Team</span>
           </h2>
 
           {/* Decorative Line */}
           <div className="mx-auto mt-5 flex items-center justify-center gap-3">
-            <div className="h-px w-12 bg-[#d6af35]" />
-            <div className="h-2.5 w-2.5 rotate-45 border border-[#d6af35]" />
-            <div className="h-px w-12 bg-[#d6af35]" />
+            <div className="h-px w-12 bg-[#9F6324]" />
+            <div className="h-2.5 w-2.5 rotate-45 border border-[#9F6324]" />
+            <div className="h-px w-12 bg-[#9F6324]" />
           </div>
 
           <p className="mt-6 text-sm leading-7 text-gray-400 sm:text-base">
@@ -69,20 +69,20 @@ const Team = () => {
                 />
 
                 {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-[#151515]/20 transition-all duration-500 group-hover:bg-[#151515]/0" />
+                <div className="absolute inset-0 bg-gradient-to-b from-[#000000] via-[#120805] to-[#000000]/20 transition-all duration-500 group-hover:bg-gradient-to-b from-[#000000] via-[#120805] to-[#000000]/0" />
               </div>
 
               {/* Name */}
-              <h3 className="mt-6 font-serif text-xl font-semibold text-white sm:text-2xl">
+              <h3 className="mt-6  text-xl font-semibold text-white sm:text-2xl">
                 {member.name}
               </h3>
 
               {/* Role */}
-              <p className="mt-2 text-sm text-[#d6af35]">
+              <p className="mt-2 text-sm text-[#9F6324]">
                 {member.role}
               </p>
 
-              <div className="mx-auto mt-5 h-px w-10 bg-[#d6af35]/50 transition-all duration-300 group-hover:w-20" />
+              <div className="mx-auto mt-5 h-px w-10 bg-[#9F6324]/50 transition-all duration-300 group-hover:w-20" />
 
             </div>
           ))}

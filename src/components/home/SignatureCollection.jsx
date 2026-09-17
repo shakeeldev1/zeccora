@@ -1,17 +1,19 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
+  Check,
   Heart,
   ShoppingBag,
   Sparkles,
   Star,
+  ArrowRight,
 } from "lucide-react";
+
 import image7 from "../../assets/img7 (4).jpeg";
 import image8 from "../../assets/img 8.jpeg";
 import image9 from "../../assets/img 9.jpeg";
 import image10 from "../../assets/img 10.jpeg";
 import image11 from "../../assets/img 11.jpeg";
-import image12 from "../../assets/img 12.jpeg";
 import image13 from "../../assets/img 13.jpeg";
 import image14 from "../../assets/img 14.jpeg";
 import image15 from "../../assets/img 15.jpeg";
@@ -29,7 +31,6 @@ const SignatureCollection = () => {
   const navigate = useNavigate();
   const [activeFilter, setActiveFilter] = useState("All Products");
   const [wishlist, setWishlist] = useState([]);
-  const [showAll, setShowAll] = useState(false);
   const [addedProduct, setAddedProduct] = useState(null);
 
   const filters = [
@@ -230,65 +231,40 @@ const SignatureCollection = () => {
   ];
 
   const stats = [
-    {
-      number: "150",
-      symbol: "+",
-      label: "Premium Products",
-    },
-    {
-      number: "15K",
-      symbol: "+",
-      label: "Happy Customers",
-    },
-    {
-      number: "12",
-      symbol: "+",
-      label: "Countries Served",
-    },
-    {
-      number: "4.9",
-      symbol: "",
-      label: "Customer Rating",
-    },
+    { number: "150", symbol: "+", label: "Premium Products" },
+    { number: "15K", symbol: "+", label: "Happy Customers" },
+    { number: "12", symbol: "+", label: "Countries Served" },
+    { number: "4.9", symbol: "", label: "Customer Rating" },
   ];
-
-  // ================= FILTER PRODUCTS =================
 
   const filteredProducts =
     activeFilter === "All Products"
       ? products
-      : products.filter(
-          (product) => product.category === activeFilter
-        );
+      : products.filter((p) => p.category === activeFilter);
 
-  // ================= SHOW ONLY 8 INITIALLY =================
+  const visibleProducts = filteredProducts.slice(0, 6);
 
-  const visibleProducts = showAll
-    ? filteredProducts
-    : filteredProducts.slice(0, 8);
-
-  // ================= WISHLIST =================
-
-  const toggleWishlist = (id) => {
+  const toggleWishlist = (e, id) => {
+    e.preventDefault();
+    e.stopPropagation();
     setWishlist((prev) =>
-      prev.includes(id)
-        ? prev.filter((item) => item !== id)
-        : [...prev, id]
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
     );
   };
 
-  // ================= FILTER CHANGE =================
-
-  const handleFilterChange = (filter) => {
-    setActiveFilter(filter);
-    setShowAll(false);
-  };
-
-  const addToCart = (product) => {
-    const savedCart = JSON.parse(localStorage.getItem("urban-bazaar-cart") || "[]");
+  const addToCart = (e, product) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const savedCart = JSON.parse(
+      localStorage.getItem("urban-bazaar-cart") || "[]"
+    );
     const existingProduct = savedCart.find((item) => item.id === product.id);
     const nextCart = existingProduct
-      ? savedCart.map((item) => item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item)
+      ? savedCart.map((item) =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        )
       : [...savedCart, { ...product, quantity: 1 }];
 
     localStorage.setItem("urban-bazaar-cart", JSON.stringify(nextCart));
@@ -299,198 +275,187 @@ const SignatureCollection = () => {
   };
 
   return (
-    <section className="bg-[#1b1b1b]  text-white">
-      {/* Main Container */}
-      <div className="mx-auto max-w-[1400px] px-3 sm:px-5 lg:px-6">
-
-        {/* ================= HEADING ================= */}
-
-        <div className="mb-12 text-center">
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-[#d4af37]/10 px-4 py-2">
-            <Sparkles
-              size={14}
-              className="text-[#d4af37]"
-            />
-
-            <span className="text-xs font-semibold text-[#d4af37]">
+    <section className="bg-white pb-12 pt-4 text-gray-900">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        
+        {/* HEADING */}
+        <div className="mb-14 text-center">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#9F6324]/20 bg-[#9F6324]/10 px-4 py-2">
+            <Sparkles size={14} className="text-[#9F6324]" />
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#9F6324]">
               Our Signature Collection
             </span>
           </div>
 
-          <h2 className="text-3xl font-bold sm:text-4xl lg:text-5xl">
-            Our Signature{" "}
-            <span className="text-[#d4af37]">
-              Collection
-            </span>
+          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl">
+            Our Signature <span className="text-[#9F6324]">Collection</span>
           </h2>
 
-          <p className="mx-auto mt-4 max-w-xl text-sm text-gray-400 sm:text-base">
-            Hand-selected premium products loved by our
-            distinguished clients.
+          <p className="mx-auto mt-4 max-w-xl text-sm leading-6 text-gray-600 sm:text-base">
+            Hand-selected premium products crafted for everyday luxury.
           </p>
         </div>
 
-        {/* ================= FILTERS ================= */}
-
-        <div className="mb-12 flex flex-wrap justify-center gap-3">
-          {filters.map((filter) => (
-            <button
-              key={filter}
-              onClick={() => handleFilterChange(filter)}
-              className={`rounded-full border px-5 py-2.5 text-xs font-semibold transition-all duration-300 sm:text-sm
-                ${
-                  activeFilter === filter
-                    ? "border-[#d4af37] bg-[#d4af37] text-[#1b1b1b] shadow-lg shadow-[#d4af37]/20"
-                    : "border-white/15 bg-white/[0.02] text-gray-300 hover:border-[#d4af37]/60 hover:text-[#d4af37]"
-                }
-              `}
-            >
-              {filter}
-            </button>
-          ))}
+        {/* FILTERS */}
+        <div className="mb-14 flex flex-wrap justify-center gap-3">
+          {filters.map((filter) => {
+            const isActive = activeFilter === filter;
+            return (
+              <button
+                key={filter}
+                onClick={() => setActiveFilter(filter)}
+                className={`cursor-pointer rounded-full px-6 py-2.5 text-xs font-bold uppercase tracking-wider transition-all duration-300 sm:text-sm ${
+                  isActive
+                    ? "bg-[#9F6324] text-white shadow-lg shadow-[#9F6324]/30"
+                    : "border border-gray-200 bg-gray-50 text-gray-700 hover:border-[#9F6324]/50 hover:bg-[#9F6324]/5 hover:text-[#9F6324]"
+                }`}
+              >
+                {filter}
+              </button>
+            );
+          })}
         </div>
 
-        {/* ================= PRODUCTS ================= */}
+        {/* PRODUCTS GRID (3 CARDS PER ROW WITH ULTRA-CLEAR IMAGES) */}
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {visibleProducts.map((product) => {
+            const isAdded = addedProduct === product.id;
+            const isWishlisted = wishlist.includes(product.id);
 
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {visibleProducts.map((product) => (
-            <div
-              key={product.id}
-              className="group overflow-hidden rounded-2xl border border-white/10 bg-[#202020] transition-all duration-300 hover:-translate-y-2 hover:border-[#d4af37]/40 hover:shadow-2xl hover:shadow-black/40"
-            >
-              {/* Product Image */}
-
-              <Link to={`/products/${product.id}`} className="relative block h-[260px] overflow-hidden">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-
-                {/* Overlay */}
-
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-
-                {/* Badges */}
-
-                <div className="absolute left-3 top-3 flex gap-2">
-                  <span className="rounded-md bg-[#e7a51b] px-2 py-1 text-[9px] font-bold text-white">
-                    {product.badge}
-                  </span>
-
-                  <span className="rounded-md bg-[#ef4444] px-2 py-1 text-[9px] font-bold text-white">
-                    {product.discount}
-                  </span>
-                </div>
-
-                {/* Wishlist */}
-
-                <button
-                  onClick={() => toggleWishlist(product.id)}
-                  className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-md transition hover:bg-[#d4af37] hover:text-black"
-                >
-                  <Heart
-                    size={15}
-                    fill={
-                      wishlist.includes(product.id)
-                        ? "#d4af37"
-                        : "none"
-                    }
-                    className={
-                      wishlist.includes(product.id)
-                        ? "text-[#d4af37]"
-                        : ""
-                    }
-                  />
-                </button>
-              </Link>
-
-              {/* ================= PRODUCT DETAILS ================= */}
-
-              <div className="p-4">
-
-                {/* Rating */}
-
-                <div className="mb-3 flex items-center gap-1">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <Star
-                      key={star}
-                      size={10}
-                      className="fill-[#d4af37] text-[#d4af37]"
+            return (
+              <div
+                key={product.id}
+                onClick={() => navigate(`/products/${product.id}`)}
+                className="group flex flex-col justify-between overflow-hidden rounded-2xl border border-zinc-800/80 bg-gradient-to-br from-[#120805] via-[#1a0c07] to-[#000000] text-white shadow-xl transition-all duration-500 cursor-pointer hover:-translate-y-2 hover:border-[#9F6324] hover:shadow-[0_20px_40px_rgba(159,99,36,0.2)]"
+              >
+                <div>
+                  {/* High Clarity Image Container */}
+                  <div className="relative aspect-[4/4] w-full overflow-hidden bg-zinc-950 ">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      loading="lazy"
+                      decoding="async"
+                      className="h-full w-full rounded-xl object-cover transition-transform duration-700 group-hover:scale-105 [image-rendering:crisp-edges]"
                     />
-                  ))}
 
-                  <span className="ml-1 text-[10px] text-gray-500">
-                    ({product.reviews})
-                  </span>
-                </div>
+                    {/* Subtle Overlay Shadow */}
+                    <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-t from-black/40 via-transparent to-black/10 opacity-60" />
 
-                {/* Product Name */}
+                    {/* Badges */}
+                    <div className="absolute left-6 top-6 flex gap-2">
+                      <span className="rounded-full border border-white/10 bg-[#9F6324] px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-white shadow-md backdrop-blur-sm">
+                        {product.badge}
+                      </span>
+                      <span className="rounded-full border border-white/10 bg-red-600 px-3 py-1 text-[10px] font-bold tracking-widest text-white shadow-md backdrop-blur-sm">
+                        {product.discount}
+                      </span>
+                    </div>
 
-                <Link to={`/products/${product.id}`} className="block min-h-[42px] text-sm font-semibold leading-5 text-white transition hover:text-[#f0c84b]">
-                  {product.name}
-                </Link>
-
-                {/* Price & Button */}
-
-                <div className="mt-4 flex items-end justify-between gap-2">
-                  <div>
-                    <p className="text-sm font-bold text-[#d4af37]">
-                      {product.price}
-                    </p>
-
-                    <p className="mt-1 text-[10px] text-gray-500 line-through">
-                      {product.oldPrice}
-                    </p>
+                    {/* Wishlist Button */}
+                    <button
+                      type="button"
+                      onClick={(e) => toggleWishlist(e, product.id)}
+                      className="absolute right-6 top-6 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-white/10 bg-black/60 text-white backdrop-blur-md transition-all duration-300 hover:scale-110 hover:bg-[#9F6324]"
+                      aria-label="Add to Wishlist"
+                    >
+                      <Heart
+                        size={18}
+                        fill={isWishlisted ? "#9F6324" : "none"}
+                        className={isWishlisted ? "text-[#9F6324]" : "text-white"}
+                      />
+                    </button>
                   </div>
 
-                  {/* Add Button */}
+                  {/* Product Details */}
+                  <div className="p-6">
+                    {/* Rating */}
+                    <div className="mb-3 flex items-center gap-1">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          size={12}
+                          className="fill-[#9F6324] text-[#9F6324]"
+                        />
+                      ))}
+                      <span className="ml-1.5 text-xs font-medium text-gray-400">
+                        ({product.reviews} Reviews)
+                      </span>
+                    </div>
 
+                    {/* Title */}
+                    <h3 className="line-clamp-2 min-h-[48px] text-base font-bold leading-6 text-white transition-colors duration-300 group-hover:text-[#9F6324]">
+                      {product.name}
+                    </h3>
+
+                    {/* Price Tag */}
+                    <div className="mt-4 flex items-baseline gap-3">
+                      <span className="text-xl font-extrabold text-[#9F6324]">
+                        {product.price}
+                      </span>
+                      <span className="text-sm text-gray-400 line-through">
+                        {product.oldPrice}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Card Action Footer */}
+                <div className="p-6 pt-0">
                   <button
                     type="button"
-                    onClick={() => addToCart(product)}
-                    className="flex items-center gap-1 rounded-lg bg-[#d4af37] px-3 py-2 text-xs font-bold text-[#1b1b1b] transition hover:bg-[#f0c84b]"
+                    onClick={(e) => addToCart(e, product)}
+                    className={`group/btn flex w-full cursor-pointer items-center justify-center gap-2 rounded-full border py-3 text-xs font-bold uppercase tracking-widest transition-all duration-300 shadow-lg ${
+                      isAdded
+                        ? "border-emerald-500 bg-emerald-600 text-white"
+                        : "border-[#9F6324]/40 bg-[#9F6324]/10 text-[#FFFFC9] hover:border-[#9F6324] hover:bg-[#9F6324] hover:text-black"
+                    }`}
                   >
-                    <ShoppingBag size={13} />
-                    {addedProduct === product.id ? "Added" : "Add"}
+                    {isAdded ? (
+                      <>
+                        <Check size={16} className="animate-bounce" />
+                        Added to Cart
+                      </>
+                    ) : (
+                      <>
+                        <ShoppingBag
+                          size={15}
+                          className="transition-transform duration-300 group-hover/btn:-translate-y-0.5"
+                        />
+                        Add to Cart
+                      </>
+                    )}
                   </button>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
-        {/* ================= VIEW MORE BUTTON ================= */}
+        {/* VIEW ALL BUTTON */}
+        <div className="mt-14 flex justify-center">
+          <button
+            onClick={() => navigate("/products")}
+            className="group flex cursor-pointer items-center gap-3 rounded-full border border-[#9F6324]/40 bg-zinc-950 px-8 py-4 text-sm font-bold uppercase tracking-wider text-white shadow-xl transition duration-300 hover:border-[#9F6324] hover:bg-[#9F6324] hover:text-black hover:shadow-[0_10px_25px_rgba(159,99,36,0.3)]"
+          >
+            View More Products
+            <ArrowRight
+              size={17}
+              className="transition-transform duration-300 group-hover:translate-x-1"
+            />
+          </button>
+        </div>
 
-        {filteredProducts.length > 8 && (
-          <div className="mt-8 flex justify-center">
-            <button
-              onClick={() => navigate("/products")}
-              className="rounded-full border border-[#d4af37]/30 bg-black px-8 py-3 text-sm font-semibold text-white transition-all duration-300 hover:border-[#d4af37] hover:bg-[#d4af37] hover:text-black"
-            >
-              View More Products →
-            </button>
-          </div>
-        )}
-
-        {/* ================= STATISTICS SECTION ================= */}
-
-        <div className="mt-10 rounded-[22px] border border-white/5 bg-[#202b3d] px-6 py-12 sm:px-10 lg:px-16 lg:py-14">
+        {/* STATISTICS SECTION */}
+        <div className="mt-16 rounded-3xl border border-zinc-800 bg-gradient-to-br from-[#120805] via-[#1a0c07] to-[#000000] px-6 py-12 text-white shadow-2xl sm:px-10 lg:px-16 lg:py-14">
           <div className="grid grid-cols-2 gap-y-10 md:grid-cols-4 md:gap-6">
             {stats.map((stat, index) => (
-              <div
-                key={index}
-                className="text-center"
-              >
-                <h3 className="font-serif text-3xl font-bold text-white sm:text-4xl">
+              <div key={index} className="text-center">
+                <h3 className=" text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
                   {stat.number}
-
-                  <span className="ml-1 text-[#d4af37]">
-                    {stat.symbol}
-                  </span>
+                  <span className="ml-1 text-[#9F6324]">{stat.symbol}</span>
                 </h3>
-
-                <p className="mt-2 text-sm text-gray-300">
+                <p className="mt-2 text-xs font-medium uppercase tracking-widest text-gray-400 sm:text-sm">
                   {stat.label}
                 </p>
               </div>

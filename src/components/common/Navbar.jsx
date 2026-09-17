@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Menu, X, ShoppingBag, Minus, Plus, Trash2 } from "lucide-react";
 
 const Navbar = () => {
+    const navigate = useNavigate();
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [cartCount, setCartCount] = useState(0);
     const [cartOpen, setCartOpen] = useState(false);
@@ -12,7 +13,7 @@ const Navbar = () => {
         const updateCart = () => {
             const nextCart = JSON.parse(localStorage.getItem("urban-bazaar-cart") || "[]");
             setCart(nextCart);
-            setCartCount(nextCart.reduce((total, item) => total + item.quantity, 0));
+            setCartCount(nextCart.reduce((total, item) => total + (item.quantity || 0), 0));
         };
         const openCart = () => setCartOpen(true);
 
@@ -28,6 +29,18 @@ const Navbar = () => {
         };
     }, []);
 
+    // Prevent body scrolling when side-drawer is open
+    useEffect(() => {
+        if (cartOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "unset";
+        }
+        return () => {
+            document.body.style.overflow = "unset";
+        };
+    }, [cartOpen]);
+
     const updateCartStorage = (nextCart) => {
         setCart(nextCart);
         localStorage.setItem("urban-bazaar-cart", JSON.stringify(nextCart));
@@ -35,12 +48,17 @@ const Navbar = () => {
     };
 
     const changeQuantity = (id, amount) => {
-        updateCartStorage(cart
-            .map((item) => item.id === id ? { ...item, quantity: item.quantity + amount } : item)
-            .filter((item) => item.quantity > 0));
+        updateCartStorage(
+            cart
+                .map((item) => (item.id === id ? { ...item, quantity: item.quantity + amount } : item))
+                .filter((item) => item.quantity > 0)
+        );
     };
 
-    const total = cart.reduce((sum, item) => sum + Number(item.price.replace(/[^0-9]/g, "")) * item.quantity, 0);
+    const total = cart.reduce((sum, item) => {
+        const priceNum = Number(String(item.price || 0).replace(/[^0-9]/g, "")) || 0;
+        return sum + priceNum * item.quantity;
+    }, 0);
 
     const navLinks = [
         { name: "Home", href: "/" },
@@ -51,29 +69,26 @@ const Navbar = () => {
     ];
 
     return (
-        <nav className="sticky top-0 z-50 w-full border-b border-[#c9a227]/20 bg-[#1b1b1b] text-white shadow-lg">
-            <div className="mx-auto flex h-[78px] max-w-[1400px] items-center justify-between px-4 sm:px-6 lg:px-10">
+        <nav className="sticky top-0 z-50 w-full border-b border-[#9F6324]/25 bg-gradient-to-b from-[#000000] via-[#120805] to-[#000000] text-white shadow-[0_12px_35px_rgba(0,0,0,0.28)]">
+            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#9F6324] to-transparent opacity-80" />
+            <div className="mx-auto flex h-[86px] max-w-[1400px] items-center justify-between px-4 sm:px-6 lg:px-10">
 
                 {/* Logo */}
-                <NavLink to="/" className="flex items-center gap-3" onClick={() => setMobileMenuOpen(false)}>
-                    <div className="flex h-12 w-14 flex-col items-center justify-center border border-[#c9a227]/30 bg-[#202020]">
-                        <span className="font-serif text-xl font-bold tracking-[3px] text-[#d4af37]">
-                            ZC
-                        </span>
-
-                        <span className="mt-[-2px] text-[6px] tracking-[3px] text-gray-400">
-                            ZECCORA
-                        </span>
-                    </div>
+                <NavLink to="/" className="group flex items-center gap-3" onClick={() => setMobileMenuOpen(false)}>
+                    <img
+                        src="/hero/zeccora-logo.jpg"
+                        alt="Zeccora"
+                        className="h-16 w-[114px] rounded-sm object-contain brightness-110 contrast-110 ring-1 ring-[#9F6324]/20 transition duration-300 group-hover:scale-[1.03] group-hover:ring-[#9F6324]/60"
+                    />
                 </NavLink>
 
                 {/* Desktop Navigation */}
-                <div className="hidden items-center gap-8 lg:flex">
+                <div className="hidden items-center gap-1 rounded-full border border-white/10 bg-white/[0.035] p-1 lg:flex">
                     {navLinks.map((link) => (
                         <NavLink
                             key={link.name}
                             to={link.href}
-                            className={({ isActive }) => `group relative flex items-center gap-1 text-sm font-medium transition duration-300 hover:text-[#d4af37] ${isActive ? "text-[#d4af37]" : "text-gray-300"}`}
+                            className={({ isActive }) => `group relative flex items-center gap-1 rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] transition duration-300 hover:bg-white/[0.06] hover:text-[#FFFFC9] ${isActive ? "bg-[#9F6324]/12 text-[#FFFFC9] shadow-[inset_0_0_0_1px_rgba(159,99,36,0.18)]" : "text-gray-300"}`}
                         >
                             {link.name}
 
@@ -83,48 +98,45 @@ const Navbar = () => {
                                 </span>
                             )}
 
-                            {/* Hover Line */}
-                            <span className="absolute -bottom-2 left-0 h-[2px] w-0 bg-[#d4af37] transition-all duration-300 group-hover:w-full" />
+                            <span className="absolute bottom-1 left-1/2 h-px w-0 -translate-x-1/2 bg-[#9F6324] transition-all duration-300 group-hover:w-1/2" />
                         </NavLink>
                     ))}
                 </div>
 
                 {/* Desktop Right Side */}
                 <div className="hidden items-center gap-4 lg:flex">
-                    {/* Cart */}
-                    <NavLink
-                        to="/cart"
-                        className="group flex items-center gap-2 rounded-full border border-[#d4af37]/40 bg-[#4a2020] px-5 py-3 text-sm font-semibold text-[#d4af37] transition duration-300 hover:bg-[#d4af37] hover:text-[#1b1b1b]"
+                    <button
+                        type="button"
+                        onClick={() => setCartOpen(true)}
+                        className="group flex items-center gap-2 rounded-full border border-[#9F6324]/60 bg-gradient-to-r from-[#2a160b] to-[#120805] px-5 py-3 text-xs font-bold uppercase tracking-[0.12em] text-[#FFFFC9] shadow-[0_6px_20px_rgba(0,0,0,0.2)] transition duration-300 hover:border-[#FFFFC9] hover:bg-[#9F6324] hover:text-[#000000] hover:shadow-[0_8px_24px_rgba(159,99,36,0.2)]"
                     >
                         <ShoppingBag
                             size={18}
                             className="transition-transform duration-300 group-hover:scale-110"
                         />
-
                         Cart {cartCount > 0 && `(${cartCount})`}
-                    </NavLink>
+                    </button>
                 </div>
 
                 {/* Mobile Right */}
                 <div className="flex items-center gap-3 lg:hidden">
-
-                    {/* Cart Mobile */}
-                    <NavLink
-                        to="/cart"
-                        className="relative rounded-full border border-[#d4af37]/30 p-2 text-[#d4af37]"
+                    <button
+                        type="button"
+                        onClick={() => setCartOpen(true)}
+                        className="relative rounded-full border border-[#9F6324]/40 bg-white/[0.04] p-2 text-[#FFFFC9] transition hover:bg-[#9F6324] hover:text-[#000000]"
+                        aria-label="Open Cart"
                     >
                         <ShoppingBag size={20} />
                         {cartCount > 0 && (
-                            <span className="absolute right-0 top-0 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#d4af37] px-1 text-[9px] font-bold text-[#171717]">
+                            <span className="absolute right-0 top-0 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#9F6324] px-1 text-[9px] font-bold text-[#000000]">
                                 {cartCount}
                             </span>
                         )}
-                    </NavLink>
+                    </button>
 
-                    {/* Mobile Menu Button */}
                     <button
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                        className="text-gray-300 transition hover:text-[#d4af37]"
+                        className="rounded-full border border-white/10 bg-white/[0.04] p-2 text-gray-300 transition hover:border-[#9F6324]/50 hover:text-[#9F6324]"
                         aria-label="Menu"
                     >
                         {mobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
@@ -134,18 +146,16 @@ const Navbar = () => {
 
             {/* Mobile Menu */}
             {mobileMenuOpen && (
-                <div className="border-t border-white/10 bg-[#202020] px-6 py-6 lg:hidden">
+                <div className="border-t border-[#9F6324]/15 bg-gradient-to-b from-[#000000] via-[#120805] to-[#000000] px-6 py-6 shadow-2xl lg:hidden">
                     <div className="flex flex-col gap-5">
-
                         {navLinks.map((link) => (
                             <NavLink
                                 key={link.name}
                                 to={link.href}
                                 onClick={() => setMobileMenuOpen(false)}
-                                className="flex items-center justify-between text-sm font-medium text-gray-300 transition hover:text-[#d4af37]"
+                                className="flex items-center justify-between border-b border-white/[0.06] py-2 text-sm font-semibold uppercase tracking-[0.12em] text-gray-300 transition hover:text-[#9F6324]"
                             >
                                 {link.name}
-
                                 {link.badge && (
                                     <span className="rounded-full border border-[#f06a7d]/40 bg-[#d91f3c] px-1.5 py-0.5 text-[8px] font-medium uppercase tracking-wide leading-none text-white shadow-sm">
                                         Sale
@@ -153,10 +163,11 @@ const Navbar = () => {
                                 )}
                             </NavLink>
                         ))}
-
                     </div>
                 </div>
             )}
+
+            {/* Cart Drawer */}
             {cartOpen && (
                 <>
                     <button
@@ -165,21 +176,27 @@ const Navbar = () => {
                         onClick={() => setCartOpen(false)}
                         className="fixed inset-0 z-40 bg-black/60"
                     />
-                    <aside className="fixed right-0 top-0 z-50 flex h-full w-full max-w-[420px] flex-col bg-[#202020] text-white shadow-2xl">
+                    <aside className="fixed right-0 top-0 z-50 flex h-full w-full max-w-[420px] flex-col bg-gradient-to-br from-[#120805] to-[#000000] text-white shadow-2xl">
                         <div className="flex items-center justify-between border-b border-white/10 px-6 py-5">
                             <div>
-                                <h2 className="font-serif text-xl font-bold">Shopping Cart</h2>
+                                <h2 className=" text-xl font-bold">Shopping Cart</h2>
                                 <p className="text-xs text-gray-400">{cartCount} items</p>
                             </div>
-                            <button type="button" aria-label="Close shopping cart" onClick={() => setCartOpen(false)} className="text-gray-300 transition hover:text-[#d4af37]"><X size={22} /></button>
+                            <button type="button" aria-label="Close shopping cart" onClick={() => setCartOpen(false)} className="text-gray-300 transition hover:text-[#9F6324]"><X size={22} /></button>
                         </div>
 
                         {cart.length === 0 ? (
                             <div className="flex flex-1 flex-col items-center justify-center px-8 text-center">
                                 <ShoppingBag size={58} className="text-gray-200" />
-                                <h3 className="mt-6 font-serif text-xl font-bold">Your cart is empty</h3>
+                                <h3 className="mt-6  text-xl font-bold">Your cart is empty</h3>
                                 <p className="mt-2 text-sm text-gray-400">Explore our collection and add your favorites</p>
-                                <button type="button" onClick={() => { setCartOpen(false); window.location.href = "/products"; }} className="mt-9 font-serif text-base font-semibold text-white hover:text-[#d4af37]">Browse Products</button>
+                                <button
+                                    type="button"
+                                    onClick={() => { setCartOpen(false); navigate("/products"); }}
+                                    className="mt-9  text-base font-semibold text-white hover:text-[#9F6324]"
+                                >
+                                    Browse Products
+                                </button>
                             </div>
                         ) : (
                             <>
@@ -189,20 +206,20 @@ const Navbar = () => {
                                             <img src={item.image} alt={item.name} className="h-20 w-16 object-cover" />
                                             <div className="min-w-0 flex-1">
                                                 <h3 className="truncate text-sm font-semibold">{item.name}</h3>
-                                                <p className="mt-1 text-sm text-[#f0c84b]">{item.price}</p>
+                                                <p className="mt-1 text-sm text-[#FFFFC9]">{item.price}</p>
                                                 <div className="mt-2 flex items-center gap-2">
-                                                    <button type="button" aria-label="Decrease quantity" onClick={() => changeQuantity(item.id, -1)} className="border border-white/15 p-1 hover:text-[#d4af37]"><Minus size={13} /></button>
+                                                    <button type="button" aria-label="Decrease quantity" onClick={() => changeQuantity(item.id, -1)} className="border border-white/15 p-1 hover:text-[#9F6324]"><Minus size={13} /></button>
                                                     <span className="w-5 text-center text-xs">{item.quantity}</span>
-                                                    <button type="button" aria-label="Increase quantity" onClick={() => changeQuantity(item.id, 1)} className="border border-white/15 p-1 hover:text-[#d4af37]"><Plus size={13} /></button>
-                                                    <button type="button" aria-label={`Remove ${item.name}`} onClick={() => updateCart(cart.filter((cartItem) => cartItem.id !== item.id))} className="ml-auto text-gray-500 hover:text-red-400"><Trash2 size={15} /></button>
+                                                    <button type="button" aria-label="Increase quantity" onClick={() => changeQuantity(item.id, 1)} className="border border-white/15 p-1 hover:text-[#9F6324]"><Plus size={13} /></button>
+                                                    <button type="button" aria-label={`Remove ${item.name}`} onClick={() => updateCartStorage(cart.filter((cartItem) => cartItem.id !== item.id))} className="ml-auto text-gray-500 hover:text-red-400"><Trash2 size={15} /></button>
                                                 </div>
                                             </div>
                                         </div>
                                     ))}
                                 </div>
                                 <div className="border-t border-white/10 p-6">
-                                    <div className="flex justify-between text-lg font-bold"><span>Total</span><span className="text-[#f0c84b]">{total.toLocaleString()} PKR</span></div>
-                                    <NavLink to="/cart" onClick={() => setCartOpen(false)} className="mt-5 block w-full bg-[#d4af37] px-5 py-3 text-center text-sm font-bold text-[#171717] transition hover:bg-[#f0c84b]">View Cart</NavLink>
+                                    <div className="flex justify-between text-lg font-bold"><span>Total</span><span className="text-[#FFFFC9]">{total.toLocaleString()} PKR</span></div>
+                                    <NavLink to="/cart" onClick={() => setCartOpen(false)} className="mt-5 block w-full bg-[#9F6324] px-5 py-3 text-center text-sm font-bold text-[#000000] transition hover:bg-[#FFFFC9]">View Cart</NavLink>
                                 </div>
                             </>
                         )}

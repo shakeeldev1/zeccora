@@ -14,7 +14,7 @@ const HeroAbout = () => {
       <div className="absolute inset-0 bg-black/65"></div>
 
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#151515]/90 via-[#151515]/60 to-black/50"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-[#000000]/90 via-[#000000]/60 to-black/50"></div>
 
       {/* Content */}
       <div className="relative z-10 mx-auto w-full max-w-7xl px-6 py-20 text-center sm:px-8 lg:px-10">
@@ -23,36 +23,36 @@ const HeroAbout = () => {
         <div className="mb-7 flex items-center justify-center gap-2 text-sm">
           <a
             href="/"
-            className="flex items-center gap-1.5 text-gray-300 transition-colors duration-300 hover:text-[#d6af35]"
+            className="flex items-center gap-1.5 text-gray-300 transition-colors duration-300 hover:text-[#9F6324]"
           >
             <Home size={16} />
             Home
           </a>
 
-          <ChevronRight size={16} className="text-[#d6af35]" />
+          <ChevronRight size={16} className="text-[#9F6324]" />
 
-          <span className="text-[#d6af35]">
+          <span className="text-[#9F6324]">
             About Us
           </span>
         </div>
 
         {/* Small Heading */}
-        <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-[#d6af35]">
+        <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-[#9F6324]">
           The Zeccora Edit
         </p>
 
         {/* Main Heading */}
-        <h1 className="font-serif text-4xl font-bold text-white sm:text-5xl lg:text-6xl">
-          Made to Carry Your <span className="text-[#d6af35]">Story</span>
+        <h1 className=" text-4xl font-bold text-white sm:text-5xl lg:text-6xl">
+          Made to Carry Your <span className="text-[#9F6324]">Story</span>
         </h1>
 
         {/* Decorative Line */}
         <div className="mx-auto mt-6 flex items-center justify-center gap-3">
-          <div className="h-px w-12 bg-[#d6af35]"></div>
+          <div className="h-px w-12 bg-[#9F6324]"></div>
 
-          <div className="h-2.5 w-2.5 rotate-45 border border-[#d6af35]"></div>
+          <div className="h-2.5 w-2.5 rotate-45 border border-[#9F6324]"></div>
 
-          <div className="h-px w-12 bg-[#d6af35]"></div>
+          <div className="h-px w-12 bg-[#9F6324]"></div>
         </div>
 
         {/* Description */}
@@ -64,7 +64,7 @@ const HeroAbout = () => {
       </div>
 
       {/* Bottom Fade */}
-      <div className="absolute bottom-0 left-0 h-24 w-full bg-gradient-to-t from-[#151515] to-transparent"></div>
+      <div className="absolute bottom-0 left-0 h-24 w-full bg-gradient-to-t from-[#000000] to-transparent"></div>
     </section>
   );
 };

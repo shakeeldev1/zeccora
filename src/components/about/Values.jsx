@@ -40,19 +40,19 @@ const Values = () => {
         
         {/* Section Heading */}
         <div className="mx-auto max-w-3xl text-center">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-[#d6af35]">
+          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-[#9F6324]">
             What We Stand For
           </p>
 
-          <h2 className="font-serif text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
-            Our <span className="text-[#d6af35]">Values</span>
+          <h2 className=" text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
+            Our <span className="text-[#9F6324]">Values</span>
           </h2>
 
           {/* Decorative Line */}
           <div className="mx-auto mt-5 flex items-center justify-center gap-3">
-            <div className="h-px w-12 bg-[#d6af35]" />
-            <div className="h-2.5 w-2.5 rotate-45 border border-[#d6af35]" />
-            <div className="h-px w-12 bg-[#d6af35]" />
+            <div className="h-px w-12 bg-[#9F6324]" />
+            <div className="h-2.5 w-2.5 rotate-45 border border-[#9F6324]" />
+            <div className="h-px w-12 bg-[#9F6324]" />
           </div>
 
           <p className="mt-6 text-sm leading-7 text-gray-400 sm:text-base">
@@ -71,34 +71,34 @@ const Values = () => {
                 key={item.title}
                 className="
                   group relative overflow-hidden
-                  border border-[#d6af35]/20
-                  bg-[#151515]
+                  border border-[#9F6324]/20
+                  bg-gradient-to-b from-[#000000] via-[#120805] to-[#000000]
                   p-7
                   transition-all duration-500
                   hover:-translate-y-2
-                  hover:border-[#d6af35]/70
+                  hover:border-[#9F6324]/70
                 "
               >
                 
                 {/* Golden Top Line */}
-                <div className="absolute left-0 top-0 h-[2px] w-0 bg-[#d6af35] transition-all duration-500 group-hover:w-full" />
+                <div className="absolute left-0 top-0 h-[2px] w-0 bg-[#9F6324] transition-all duration-500 group-hover:w-full" />
 
                 {/* Icon */}
                 <div
                   className="
                     mb-6 flex h-14 w-14 items-center justify-center
-                    border border-[#d6af35]/40
+                    border border-[#9F6324]/40
                     bg-[#292716]
                     transition-all duration-300
                     group-hover:bg-[#342d15]
-                    group-hover:border-[#d6af35]
+                    group-hover:border-[#9F6324]
                   "
                 >
                   <Icon
                     size={26}
                     strokeWidth={1.7}
                     className="
-                      text-[#d6af35]
+                      text-[#9F6324]
                       transition-transform duration-300
                       group-hover:scale-110
                     "
@@ -106,7 +106,7 @@ const Values = () => {
                 </div>
 
                 {/* Title */}
-                <h3 className="font-serif text-xl font-semibold text-white">
+                <h3 className=" text-xl font-semibold text-white">
                   {item.title}
                 </h3>
 
@@ -116,7 +116,7 @@ const Values = () => {
                 </p>
 
                 {/* Bottom Decoration */}
-                <div className="mt-6 h-px w-10 bg-[#d6af35]/40 transition-all duration-300 group-hover:w-full" />
+                <div className="mt-6 h-px w-10 bg-[#9F6324]/40 transition-all duration-300 group-hover:w-full" />
               </div>
             );
           })}

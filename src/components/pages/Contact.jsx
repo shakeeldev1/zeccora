@@ -91,7 +91,7 @@ const Contact = () => {
           ========================== */}
           <div className="rounded-[28px] border border-white/10 bg-[#070707] p-7 shadow-[0_0_30px_rgba(0,0,0,0.35)] sm:p-8 lg:p-10">
 
-            <h2 className="font-serif text-4xl font-bold tracking-[-0.03em] text-white">
+            <h2 className=" text-4xl font-bold tracking-[-0.03em] text-white">
               Get in Touch
             </h2>
 
@@ -99,7 +99,7 @@ const Contact = () => {
 
               {/* Phone */}
               <div className="flex items-start gap-4">
-                <div className="mt-1 text-[#d4af37]">
+                <div className="mt-1 text-[#9F6324]">
                   <Phone size={24} />
                 </div>
 
@@ -113,7 +113,7 @@ const Contact = () => {
 
               {/* Email */}
               <div className="flex items-start gap-4">
-                <div className="mt-1 text-[#d4af37]">
+                <div className="mt-1 text-[#9F6324]">
                   <Mail size={24} />
                 </div>
 
@@ -127,7 +127,7 @@ const Contact = () => {
 
               {/* Address */}
               <div className="flex items-start gap-4">
-                <div className="mt-1 text-[#d4af37]">
+                <div className="mt-1 text-[#9F6324]">
                   <MapPin size={24} />
                 </div>
 
@@ -141,7 +141,7 @@ const Contact = () => {
 
               {/* Hours */}
               <div className="flex items-start gap-4">
-                <div className="mt-1 text-[#d4af37]">
+                <div className="mt-1 text-[#9F6324]">
                   <Clock3 size={24} />
                 </div>
 
@@ -166,7 +166,7 @@ const Contact = () => {
                   <button
                     key={name}
                     type="button"
-                    className="rounded-full border border-white/15 bg-[#1a1a1a] px-5 py-2.5 text-sm font-medium text-white/80 transition hover:border-[#d4af37]/60 hover:text-[#d4af37]"
+                    className="rounded-full border border-white/15 bg-[#1a1a1a] px-5 py-2.5 text-sm font-medium text-white/80 transition hover:border-[#9F6324]/60 hover:text-[#9F6324]"
                   >
                     {name}
                   </button>
@@ -178,7 +178,7 @@ const Contact = () => {
             <button
               type="button"
               onClick={() => window.history.back()}
-              className="mt-10 inline-flex items-center gap-3 text-lg font-medium text-[#d4af37] transition hover:text-[#f0c84b]"
+              className="mt-10 inline-flex items-center gap-3 text-lg font-medium text-[#9F6324] transition hover:text-[#FFFFC9]"
             >
               <ArrowLeft size={22} />
               Back
@@ -189,9 +189,9 @@ const Contact = () => {
           {/* =========================
               CONTACT FORM
           ========================== */}
-          <div className="rounded-[28px] border border-white/10 bg-[#1b1b1b] p-7 shadow-[0_0_30px_rgba(0,0,0,0.3)] sm:p-8 lg:p-10">
+          <div className="rounded-[28px] border border-white/10 bg-gradient-to-b from-[#000000] via-[#120805] to-[#000000] p-7 shadow-[0_0_30px_rgba(0,0,0,0.3)] sm:p-8 lg:p-10">
 
-  <h2 className="font-serif text-4xl font-bold tracking-[-0.04em] text-white">
+  <h2 className=" text-4xl font-bold tracking-[-0.04em] text-white">
     Send a Message
   </h2>
 
@@ -216,7 +216,7 @@ const Contact = () => {
           onChange={handleChange}
           placeholder="Your name"
           required
-          className="w-full rounded-2xl border border-white/10 bg-[#0e0e0e] px-4 py-4 text-base text-white placeholder:text-white/45 focus:border-[#d4af37] focus:outline-none"
+          className="w-full rounded-2xl border border-white/10 bg-gradient-to-br from-[#120805] to-[#000000] px-4 py-4 text-base text-white placeholder:text-white/45 focus:border-[#9F6324] focus:outline-none"
         />
       </div>
 
@@ -237,7 +237,7 @@ const Contact = () => {
           onChange={handleChange}
           placeholder="your@email.com"
           required
-          className="w-full rounded-2xl border border-white/10 bg-[#0e0e0e] px-4 py-4 text-base text-white placeholder:text-white/45 focus:border-[#d4af37] focus:outline-none"
+          className="w-full rounded-2xl border border-white/10 bg-gradient-to-br from-[#120805] to-[#000000] px-4 py-4 text-base text-white placeholder:text-white/45 focus:border-[#9F6324] focus:outline-none"
         />
       </div>
 
@@ -260,7 +260,7 @@ const Contact = () => {
         onChange={handleChange}
         placeholder="How can we help?"
         required
-        className="w-full rounded-2xl border border-white/10 bg-[#0e0e0e] px-4 py-4 text-base text-white placeholder:text-white/45 focus:border-[#d4af37] focus:outline-none"
+        className="w-full rounded-2xl border border-white/10 bg-gradient-to-br from-[#120805] to-[#000000] px-4 py-4 text-base text-white placeholder:text-white/45 focus:border-[#9F6324] focus:outline-none"
       />
     </div>
 
@@ -281,7 +281,7 @@ const Contact = () => {
         onChange={handleChange}
         placeholder="Your message..."
         required
-        className="w-full resize-none rounded-2xl border border-white/10 bg-[#0e0e0e] px-4 py-4 text-base text-white placeholder:text-white/45 focus:border-[#d4af37] focus:outline-none"
+        className="w-full resize-none rounded-2xl border border-white/10 bg-gradient-to-br from-[#120805] to-[#000000] px-4 py-4 text-base text-white placeholder:text-white/45 focus:border-[#9F6324] focus:outline-none"
       />
     </div>
 
@@ -304,7 +304,7 @@ const Contact = () => {
       <button
         type="submit"
         disabled={loading}
-        className={`inline-flex items-center justify-center gap-3 rounded-full bg-[#d4af37] px-8 py-4 text-lg font-bold text-[#111111] transition hover:bg-[#f0c84b] ${
+        className={`inline-flex items-center justify-center gap-3 rounded-full bg-[#9F6324] px-8 py-4 text-lg font-bold text-[#000000] transition hover:bg-[#FFFFC9] ${
           loading ? "cursor-not-allowed opacity-70" : ""
         }`}
       >

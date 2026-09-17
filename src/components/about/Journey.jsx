@@ -21,7 +21,7 @@ const stats = [
 
 const Journey = () => {
   return (
-    <section className="w-full bg-[#151515] py-16 sm:py-20 lg:py-24">
+    <section className="w-full bg-gradient-to-b from-[#000000] via-[#120805] to-[#000000] py-16 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
         
         {/* Main Content */}
@@ -31,7 +31,7 @@ const Journey = () => {
           <div className="relative">
             
             {/* Golden Border */}
-            <div className="absolute -left-3 -top-3 h-full w-full border border-[#d6af35]/40" />
+            <div className="absolute -left-3 -top-3 h-full w-full border border-[#9F6324]/40" />
 
             <div className="relative overflow-hidden">
               <img
@@ -44,9 +44,9 @@ const Journey = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
 
               {/* 15+ Experience Badge */}
-              <div className="absolute bottom-5 right-5 border border-[#d6af35]/60 bg-[#151515]/95 px-5 py-4 backdrop-blur-sm">
+              <div className="absolute bottom-5 right-5 border border-[#9F6324]/60 bg-gradient-to-b from-[#000000] via-[#120805] to-[#000000]/95 px-5 py-4 backdrop-blur-sm">
                 
-                <span className="block text-3xl font-bold text-[#d6af35]">
+                <span className="block text-3xl font-bold text-[#9F6324]">
                   15+
                 </span>
 
@@ -62,22 +62,22 @@ const Journey = () => {
           <div>
             
             {/* Small Heading */}
-            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-[#d6af35]">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-[#9F6324]">
               Our Journey
             </p>
 
             {/* Main Heading */}
-            <h2 className="font-serif text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
+            <h2 className=" text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
                   Defining Everyday{" "}
-              <span className="text-[#d6af35]">
+              <span className="text-[#9F6324]">
                 Luxury
               </span>
             </h2>
 
             {/* Decorative Line */}
             <div className="mt-5 flex items-center gap-3">
-              <div className="h-px w-12 bg-[#d6af35]" />
-              <div className="h-2 w-2 rotate-45 bg-[#d6af35]" />
+              <div className="h-px w-12 bg-[#9F6324]" />
+              <div className="h-2 w-2 rotate-45 bg-[#9F6324]" />
             </div>
 
             {/* Description */}
@@ -110,10 +110,10 @@ const Journey = () => {
                 fair pricing and a shopping experience built around trust.
               </p>
 
-              <p className="border-l-2 border-[#d6af35] pl-4 text-gray-200">
+              <p className="border-l-2 border-[#9F6324] pl-4 text-gray-200">
                 At Zeccora, we focus on more than the product. We care
                 about the feeling it brings to your everyday ritual.
-                <span className="ml-1 font-semibold text-[#d6af35]">
+                <span className="ml-1 font-semibold text-[#9F6324]">
                   Carry your elegance, your way.
                 </span>
               </p>
@@ -121,7 +121,7 @@ const Journey = () => {
             </div>
 
             {/* Small Stats - Only Under Text */}
-            <div className="mt-8 grid grid-cols-3 gap-3 border-t border-[#d6af35]/20 pt-6">
+            <div className="mt-8 grid grid-cols-3 gap-3 border-t border-[#9F6324]/20 pt-6">
               
               {stats.map((item) => {
                 const Icon = item.icon;
@@ -133,15 +133,15 @@ const Journey = () => {
                   >
                     
                     {/* Icon */}
-                    <div className="mx-auto mb-2 flex h-9 w-9 items-center justify-center rounded-md border border-[#d6af35]/30 bg-[#292716] transition-all duration-300 group-hover:border-[#d6af35]">
+                    <div className="mx-auto mb-2 flex h-9 w-9 items-center justify-center rounded-md border border-[#9F6324]/30 bg-[#292716] transition-all duration-300 group-hover:border-[#9F6324]">
                       <Icon
                         size={16}
-                        className="text-[#d6af35]"
+                        className="text-[#9F6324]"
                       />
                     </div>
 
                     {/* Number */}
-                    <h3 className="text-lg font-bold text-[#d6af35] sm:text-xl">
+                    <h3 className="text-lg font-bold text-[#9F6324] sm:text-xl">
                       {item.number}
                     </h3>
 

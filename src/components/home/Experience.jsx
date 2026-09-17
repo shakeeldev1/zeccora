@@ -1,4 +1,3 @@
-
 import React from "react";
 import {
   Star,
@@ -6,6 +5,7 @@ import {
   ShieldCheck,
   Headphones,
   ArrowRight,
+  Sparkles,
 } from "lucide-react";
 
 import experienceImage from "../../assets/image6.png";
@@ -15,92 +15,85 @@ const Experience = () => {
     {
       icon: Truck,
       title: "Fast Delivery",
-      description: "Quick and reliable delivery.",
+      description: "Quick and reliable delivery with safe handling.",
     },
     {
       icon: ShieldCheck,
       title: "Authentic Products",
-      description: "Quality you can trust.",
+      description: "Carefully curated items with verified quality.",
     },
     {
       icon: Headphones,
       title: "24/7 Support",
-      description: "Always here to help.",
+      description: "Dedicated service team ready to assist anytime.",
     },
   ];
 
   return (
-    <section className="overflow-hidden bg-[#1b1b1b] py-10 text-white sm:py-20 lg:py-14">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="relative overflow-hidden bg-gradient-to-b from-gray-50 via-white to-gray-50 py-12 text-gray-900 sm:py-20 lg:py-16">
+      {/* Soft Ambient Gold Glows */}
+      <div className="pointer-events-none absolute -left-32 top-1/2 h-80 w-80 -translate-y-1/2 rounded-full bg-[#A46A2A]/10 blur-[120px]" />
+      <div className="pointer-events-none absolute -right-32 top-1/2 h-80 w-80 -translate-y-1/2 rounded-full bg-[#A46A2A]/10 blur-[120px]" />
+
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-
-          {/* Left Content */}
+          {/* ================= LEFT CONTENT ================= */}
           <div>
-
             {/* Badge */}
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#d4af37]/20 bg-[#d4af37]/10 px-4 py-2">
-              <Star size={15} className="text-[#d4af37]" />
-
-              <span className="text-sm font-semibold text-[#d4af37]">
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#A46A2A]/30 bg-[#A46A2A]/10 px-4 py-2">
+              <Sparkles size={14} className="text-[#A46A2A]" />
+              <span className="text-xs font-semibold uppercase tracking-wider text-[#A46A2A]">
                 Premium Experience
               </span>
             </div>
 
             {/* Heading */}
-            <h2 className="max-w-xl font-serif text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl">
-              Experience True
-              <span className="block text-[#d4af37]">
-                Luxury & Quality
-              </span>
+            <h2 className="max-w-xl  text-3xl font-bold leading-tight text-gray-900 sm:text-5xl lg:text-5xl">
+              Experience True{" "}
+              <span className="block text-[#A46A2A]">Luxury & Quality</span>
             </h2>
 
             {/* Description */}
-            <p className="mt-5 max-w-xl text-base leading-7 text-gray-300 sm:text-lg">
-              Explore premium products carefully selected for quality,
-              style, and everyday elegance.
+            <p className="mt-4 max-w-xl text-sm leading-relaxed text-gray-600 sm:text-base">
+              Explore premium products carefully selected for quality, style, and everyday elegance. Designed to fit seamlessly into modern lifestyles.
             </p>
 
-            {/* Features */}
-            <div className="mt-8 space-y-5">
-
+            {/* Features (White Cards with Borders) */}
+            <div className="mt-8 space-y-4">
               {features.map((feature, index) => {
                 const Icon = feature.icon;
 
                 return (
                   <div
                     key={index}
-                    className="group flex items-center gap-4"
+                    className="group flex items-center gap-4 rounded-2xl border border-gray-200 bg-white p-4 text-gray-900 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#A46A2A] hover:shadow-md hover:shadow-[#A46A2A]/15"
                   >
-                    {/* Icon */}
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#d4af37]/10 text-[#d4af37] transition-all duration-300 group-hover:scale-110 group-hover:bg-[#d4af37] group-hover:text-[#1b1b1b]">
-                      <Icon size={21} />
+                    {/* Icon Box */}
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[#A46A2A]/20 bg-[#A46A2A]/10 text-[#A46A2A] transition-all duration-300 group-hover:scale-105 group-hover:bg-[#A46A2A] group-hover:text-white">
+                      <Icon size={22} />
                     </div>
 
-                    {/* Text */}
+                    {/* Text Details */}
                     <div>
-                      <h3 className="text-sm font-bold text-white sm:text-base">
+                      <h3 className="text-base font-bold text-gray-900 transition-colors duration-300 group-hover:text-[#A46A2A]">
                         {feature.title}
                       </h3>
-
-                      <p className="mt-1 text-sm text-gray-400">
+                      <p className="mt-0.5 text-xs text-gray-500 sm:text-sm">
                         {feature.description}
                       </p>
                     </div>
                   </div>
                 );
               })}
-
             </div>
 
-            {/* Buttons */}
-            <div className="mt-9 flex flex-wrap gap-4">
-
+            {/* CTA Buttons */}
+            <div className="mt-9 flex flex-wrap items-center gap-4">
               <a
                 href="/products"
-                className="group inline-flex items-center gap-2 rounded-xl bg-[#d4af37] px-7 py-3.5 text-sm font-bold text-[#1b1b1b] shadow-lg shadow-[#d4af37]/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#f0c84b]"
+                className="group inline-flex items-center gap-2 rounded-xl bg-[#A46A2A] px-7 py-3.5 text-sm font-bold text-white shadow-lg shadow-[#A46A2A]/25 transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-900"
               >
                 Shop Now
-
                 <ArrowRight
                   size={17}
                   className="transition-transform duration-300 group-hover:translate-x-1"
@@ -109,43 +102,42 @@ const Experience = () => {
 
               <a
                 href="/contact"
-                className="inline-flex items-center justify-center rounded-xl border border-[#d4af37]/70 px-7 py-3.5 text-sm font-bold text-[#d4af37] transition-all duration-300 hover:bg-[#d4af37] hover:text-[#1b1b1b]"
+                className="inline-flex items-center justify-center rounded-xl border border-gray-300 bg-white px-7 py-3.5 text-sm font-bold text-gray-800 shadow-sm transition-all duration-300 hover:border-[#A46A2A] hover:bg-[#A46A2A]/5 hover:text-[#A46A2A]"
               >
                 Contact Us
               </a>
-
             </div>
-
           </div>
 
-          {/* Right Image */}
+          {/* ================= RIGHT IMAGE ================= */}
           <div className="relative">
+            {/* Soft Ambient Glow */}
+            <div className="absolute -inset-4 rounded-[30px] bg-[#A46A2A]/10 blur-3xl" />
 
-            {/* Background Glow */}
-            <div className="absolute -inset-4 rounded-[30px] bg-[#d4af37]/10 blur-3xl" />
-
-            {/* Image */}
-            <div className="relative overflow-hidden rounded-2xl border border-[#d4af37]/20 bg-[#202020] shadow-2xl">
-
+            {/* Image Box */}
+            <div className="relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-2 shadow-xl">
               <img
                 src={experienceImage}
                 alt="Premium Collection"
-                className="h-[350px] w-full object-cover transition-transform duration-700 hover:scale-105 sm:h-[450px] lg:h-[500px]"
+                className="h-[380px] w-full rounded-xl object-cover transition-transform duration-700 hover:scale-105 sm:h-[450px] lg:h-[480px]"
               />
-
             </div>
 
             {/* Floating Badge */}
-            <div className="absolute -bottom-5 right-6 rounded-xl border border-[#d4af37]/30 bg-[#d4af37] px-5 py-4 shadow-xl sm:right-10">
-
-              <p className="text-sm font-bold text-[#1b1b1b]">
-                Trusted Quality
-              </p>
-
+            <div className="absolute -bottom-5 right-6 flex items-center gap-3 rounded-2xl border border-gray-200 bg-white/95 px-5 py-3.5 shadow-xl backdrop-blur-md sm:right-8">
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#A46A2A]/10 text-[#A46A2A]">
+                <Star size={18} className="fill-[#A46A2A]" />
+              </div>
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wider text-gray-400">
+                  Guaranteed
+                </p>
+                <p className="text-sm font-bold text-gray-900">
+                  Trusted Quality
+                </p>
+              </div>
             </div>
-
           </div>
-
         </div>
       </div>
     </section>
@@ -153,4 +145,3 @@ const Experience = () => {
 };
 
 export default Experience;
-

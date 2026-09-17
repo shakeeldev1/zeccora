@@ -15,27 +15,27 @@ const OffersHero = () => {
             <div className="mx-auto flex min-h-107.5 max-w-7xl items-center justify-center px-4 py-16 text-center sm:min-h-125 sm:px-6 lg:px-8">
                 <div className="flex max-w-2xl flex-col items-center">
                     <nav aria-label="Breadcrumb" className="mb-8 flex items-center justify-center gap-2 text-xs font-medium text-gray-300 sm:text-sm">
-                        <a href="/" className="transition hover:text-[#f0c84b]">Home</a>
+                        <a href="/" className="transition hover:text-[#FFFFC9]">Home</a>
                         <span className="text-gray-500">/</span>
-                        <span className="text-[#f0c84b]">Offers</span>
+                        <span className="text-[#FFFFC9]">Offers</span>
                         <span className="text-gray-500">/</span>
                         <span className="text-gray-400">Special Deals</span>
                     </nav>
 
-                    <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#d4af37]/35 bg-black/25 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#f0c84b] backdrop-blur-sm">
+                    <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#9F6324]/35 bg-black/25 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#FFFFC9] backdrop-blur-sm">
                         <Sparkles size={14} />
                         Limited-time edit
                     </div>
-                    <h1 className="font-serif text-4xl font-bold leading-[1.08] text-white sm:text-6xl lg:text-7xl">
+                    <h1 className=" text-4xl font-bold leading-[1.08] text-white sm:text-6xl lg:text-7xl">
                         Exclusive
-                        <span className="block text-[#d4af37]">Offers</span>
+                        <span className="block text-[#9F6324]">Offers</span>
                     </h1>
                     <p className="mx-auto mt-6 max-w-xl text-sm leading-7 text-gray-200 sm:text-base">
                         Discover amazing deals on our premium products. Limited time offers you don&apos;t want to miss!
                     </p>
                     <a
                         href="#special-deals"
-                        className="mt-8 inline-flex items-center gap-3 rounded-full bg-[#d4af37] px-6 py-3.5 text-sm font-bold text-[#171717] transition hover:-translate-y-0.5 hover:bg-[#f0c84b]"
+                        className="mt-8 inline-flex items-center gap-3 rounded-full bg-[#9F6324] px-6 py-3.5 text-sm font-bold text-[#000000] transition hover:-translate-y-0.5 hover:bg-[#FFFFC9]"
                     >
                         Shop special deals
                         <ArrowRight size={17} />
