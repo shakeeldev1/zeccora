@@ -23,36 +23,36 @@ const HeroAbout = () => {
         <div className="mb-7 flex items-center justify-center gap-2 text-sm">
           <a
             href="/"
-            className="flex items-center gap-1.5 text-gray-300 transition-colors duration-300 hover:text-[#9F6324]"
+            className="flex items-center gap-1.5 text-gray-300 transition-colors duration-300 hover:text-[#A46A2A]"
           >
             <Home size={16} />
             Home
           </a>
 
-          <ChevronRight size={16} className="text-[#9F6324]" />
+          <ChevronRight size={16} className="text-[#A46A2A]" />
 
-          <span className="text-[#9F6324]">
+          <span className="text-[#A46A2A]">
             About Us
           </span>
         </div>
 
         {/* Small Heading */}
-        <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-[#9F6324]">
+        <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-[#A46A2A]">
           The Zeccora Edit
         </p>
 
         {/* Main Heading */}
         <h1 className=" text-4xl font-bold text-white sm:text-5xl lg:text-6xl">
-          Made to Carry Your <span className="text-[#9F6324]">Story</span>
+          Made to Carry Your <span className="text-[#A46A2A]">Story</span>
         </h1>
 
         {/* Decorative Line */}
         <div className="mx-auto mt-6 flex items-center justify-center gap-3">
-          <div className="h-px w-12 bg-[#9F6324]"></div>
+          <div className="h-px w-12 bg-[#A46A2A]"></div>
 
-          <div className="h-2.5 w-2.5 rotate-45 border border-[#9F6324]"></div>
+          <div className="h-2.5 w-2.5 rotate-45 border border-[#A46A2A]"></div>
 
-          <div className="h-px w-12 bg-[#9F6324]"></div>
+          <div className="h-px w-12 bg-[#A46A2A]"></div>
         </div>
 
         {/* Description */}

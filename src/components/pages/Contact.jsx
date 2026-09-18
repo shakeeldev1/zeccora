@@ -99,7 +99,7 @@ const Contact = () => {
 
               {/* Phone */}
               <div className="flex items-start gap-4">
-                <div className="mt-1 text-[#9F6324]">
+                <div className="mt-1 text-[#A46A2A]">
                   <Phone size={24} />
                 </div>
 
@@ -113,7 +113,7 @@ const Contact = () => {
 
               {/* Email */}
               <div className="flex items-start gap-4">
-                <div className="mt-1 text-[#9F6324]">
+                <div className="mt-1 text-[#A46A2A]">
                   <Mail size={24} />
                 </div>
 
@@ -127,7 +127,7 @@ const Contact = () => {
 
               {/* Address */}
               <div className="flex items-start gap-4">
-                <div className="mt-1 text-[#9F6324]">
+                <div className="mt-1 text-[#A46A2A]">
                   <MapPin size={24} />
                 </div>
 
@@ -141,7 +141,7 @@ const Contact = () => {
 
               {/* Hours */}
               <div className="flex items-start gap-4">
-                <div className="mt-1 text-[#9F6324]">
+                <div className="mt-1 text-[#A46A2A]">
                   <Clock3 size={24} />
                 </div>
 
@@ -166,7 +166,7 @@ const Contact = () => {
                   <button
                     key={name}
                     type="button"
-                    className="rounded-full border border-white/15 bg-[#1a1a1a] px-5 py-2.5 text-sm font-medium text-white/80 transition hover:border-[#9F6324]/60 hover:text-[#9F6324]"
+                    className="rounded-full border border-white/15 bg-[#1a1a1a] px-5 py-2.5 text-sm font-medium text-white/80 transition hover:border-[#A46A2A]/60 hover:text-[#A46A2A]"
                   >
                     {name}
                   </button>
@@ -178,7 +178,7 @@ const Contact = () => {
             <button
               type="button"
               onClick={() => window.history.back()}
-              className="mt-10 inline-flex items-center gap-3 text-lg font-medium text-[#9F6324] transition hover:text-[#FFFFC9]"
+              className="mt-10 inline-flex items-center gap-3 text-lg font-medium text-[#A46A2A] transition hover:text-[#FFFFC9]"
             >
               <ArrowLeft size={22} />
               Back
@@ -216,7 +216,7 @@ const Contact = () => {
           onChange={handleChange}
           placeholder="Your name"
           required
-          className="w-full rounded-2xl border border-white/10 bg-gradient-to-br from-[#120805] to-[#000000] px-4 py-4 text-base text-white placeholder:text-white/45 focus:border-[#9F6324] focus:outline-none"
+          className="w-full rounded-2xl border border-white/10 bg-gradient-to-br from-[#120805] to-[#000000] px-4 py-4 text-base text-white placeholder:text-white/45 focus:border-[#A46A2A] focus:outline-none"
         />
       </div>
 
@@ -237,7 +237,7 @@ const Contact = () => {
           onChange={handleChange}
           placeholder="your@email.com"
           required
-          className="w-full rounded-2xl border border-white/10 bg-gradient-to-br from-[#120805] to-[#000000] px-4 py-4 text-base text-white placeholder:text-white/45 focus:border-[#9F6324] focus:outline-none"
+          className="w-full rounded-2xl border border-white/10 bg-gradient-to-br from-[#120805] to-[#000000] px-4 py-4 text-base text-white placeholder:text-white/45 focus:border-[#A46A2A] focus:outline-none"
         />
       </div>
 
@@ -260,7 +260,7 @@ const Contact = () => {
         onChange={handleChange}
         placeholder="How can we help?"
         required
-        className="w-full rounded-2xl border border-white/10 bg-gradient-to-br from-[#120805] to-[#000000] px-4 py-4 text-base text-white placeholder:text-white/45 focus:border-[#9F6324] focus:outline-none"
+        className="w-full rounded-2xl border border-white/10 bg-gradient-to-br from-[#120805] to-[#000000] px-4 py-4 text-base text-white placeholder:text-white/45 focus:border-[#A46A2A] focus:outline-none"
       />
     </div>
 
@@ -281,7 +281,7 @@ const Contact = () => {
         onChange={handleChange}
         placeholder="Your message..."
         required
-        className="w-full resize-none rounded-2xl border border-white/10 bg-gradient-to-br from-[#120805] to-[#000000] px-4 py-4 text-base text-white placeholder:text-white/45 focus:border-[#9F6324] focus:outline-none"
+        className="w-full resize-none rounded-2xl border border-white/10 bg-gradient-to-br from-[#120805] to-[#000000] px-4 py-4 text-base text-white placeholder:text-white/45 focus:border-[#A46A2A] focus:outline-none"
       />
     </div>
 
@@ -304,7 +304,7 @@ const Contact = () => {
       <button
         type="submit"
         disabled={loading}
-        className={`inline-flex items-center justify-center gap-3 rounded-full bg-[#9F6324] px-8 py-4 text-lg font-bold text-[#000000] transition hover:bg-[#FFFFC9] ${
+        className={`inline-flex items-center justify-center gap-3 rounded-full bg-[#A46A2A] px-8 py-4 text-lg font-bold text-[#000000] transition hover:bg-[#FFFFC9] ${
           loading ? "cursor-not-allowed opacity-70" : ""
         }`}
       >

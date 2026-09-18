@@ -35,24 +35,24 @@ const values = [
 
 const Values = () => {
   return (
-    <section className="w-full bg-[#1a1a1a] py-16 sm:py-20 lg:py-24">
+    <section className="w-full bg-gradient-to-b from-[#000000] via-[#120805] to-[#000000] py-16 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
         
         {/* Section Heading */}
         <div className="mx-auto max-w-3xl text-center">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-[#9F6324]">
+          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-[#A46A2A]">
             What We Stand For
           </p>
 
           <h2 className=" text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
-            Our <span className="text-[#9F6324]">Values</span>
+            Our <span className="text-[#A46A2A]">Values</span>
           </h2>
 
           {/* Decorative Line */}
           <div className="mx-auto mt-5 flex items-center justify-center gap-3">
-            <div className="h-px w-12 bg-[#9F6324]" />
-            <div className="h-2.5 w-2.5 rotate-45 border border-[#9F6324]" />
-            <div className="h-px w-12 bg-[#9F6324]" />
+            <div className="h-px w-12 bg-[#A46A2A]" />
+            <div className="h-2.5 w-2.5 rotate-45 border border-[#A46A2A]" />
+            <div className="h-px w-12 bg-[#A46A2A]" />
           </div>
 
           <p className="mt-6 text-sm leading-7 text-gray-400 sm:text-base">
@@ -71,34 +71,34 @@ const Values = () => {
                 key={item.title}
                 className="
                   group relative overflow-hidden
-                  border border-[#9F6324]/20
+                  border border-[#A46A2A]/20
                   bg-gradient-to-b from-[#000000] via-[#120805] to-[#000000]
                   p-7
                   transition-all duration-500
                   hover:-translate-y-2
-                  hover:border-[#9F6324]/70
+                  hover:border-[#A46A2A]/70
                 "
               >
                 
                 {/* Golden Top Line */}
-                <div className="absolute left-0 top-0 h-[2px] w-0 bg-[#9F6324] transition-all duration-500 group-hover:w-full" />
+                <div className="absolute left-0 top-0 h-[2px] w-0 bg-[#A46A2A] transition-all duration-500 group-hover:w-full" />
 
                 {/* Icon */}
                 <div
                   className="
                     mb-6 flex h-14 w-14 items-center justify-center
-                    border border-[#9F6324]/40
+                    border border-[#A46A2A]/40
                     bg-[#292716]
                     transition-all duration-300
                     group-hover:bg-[#342d15]
-                    group-hover:border-[#9F6324]
+                    group-hover:border-[#A46A2A]
                   "
                 >
                   <Icon
                     size={26}
                     strokeWidth={1.7}
                     className="
-                      text-[#9F6324]
+                      text-[#A46A2A]
                       transition-transform duration-300
                       group-hover:scale-110
                     "
@@ -116,7 +116,7 @@ const Values = () => {
                 </p>
 
                 {/* Bottom Decoration */}
-                <div className="mt-6 h-px w-10 bg-[#9F6324]/40 transition-all duration-300 group-hover:w-full" />
+                <div className="mt-6 h-px w-10 bg-[#A46A2A]/40 transition-all duration-300 group-hover:w-full" />
               </div>
             );
           })}

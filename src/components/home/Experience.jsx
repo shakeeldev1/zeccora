@@ -8,7 +8,7 @@ import {
   Sparkles,
 } from "lucide-react";
 
-import experienceImage from "../../assets/image6.png";
+import experienceImage from "/hero/zecorabout.png";
 
 const Experience = () => {
   const features = [
@@ -30,7 +30,7 @@ const Experience = () => {
   ];
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-gray-50 via-white to-gray-50 py-12 text-gray-900 sm:py-20 lg:py-16">
+    <section className="relative overflow-hidden bg-gradient-to-b from-[#f8f3ee] via-[#fffdfb] to-[#f4efe9] py-12 text-gray-900 sm:py-20 lg:py-16">
       {/* Soft Ambient Gold Glows */}
       <div className="pointer-events-none absolute -left-32 top-1/2 h-80 w-80 -translate-y-1/2 rounded-full bg-[#A46A2A]/10 blur-[120px]" />
       <div className="pointer-events-none absolute -right-32 top-1/2 h-80 w-80 -translate-y-1/2 rounded-full bg-[#A46A2A]/10 blur-[120px]" />
@@ -115,11 +115,11 @@ const Experience = () => {
             <div className="absolute -inset-4 rounded-[30px] bg-[#A46A2A]/10 blur-3xl" />
 
             {/* Image Box */}
-            <div className="relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-2 shadow-xl">
+            <div className="relative overflow-hidden rounded-[30px] border border-[#A46A2A]/20 bg-white p-2 shadow-[0_30px_60px_rgba(0,0,0,0.12)]">
               <img
                 src={experienceImage}
                 alt="Premium Collection"
-                className="h-[380px] w-full rounded-xl object-cover transition-transform duration-700 hover:scale-105 sm:h-[450px] lg:h-[480px]"
+                className="h-[380px] w-full rounded-[22px] object-cover transition-transform duration-700 hover:scale-105 sm:h-[450px] lg:h-[480px]"
               />
             </div>
 

@@ -108,7 +108,7 @@ const Navbar = () => {
                     <button
                         type="button"
                         onClick={() => setCartOpen(true)}
-                        className="group flex items-center gap-2 rounded-full border border-[#9F6324]/60 bg-gradient-to-r from-[#2a160b] to-[#120805] px-5 py-3 text-xs font-bold uppercase tracking-[0.12em] text-[#FFFFC9] shadow-[0_6px_20px_rgba(0,0,0,0.2)] transition duration-300 hover:border-[#FFFFC9] hover:bg-[#9F6324] hover:text-[#000000] hover:shadow-[0_8px_24px_rgba(159,99,36,0.2)]"
+                        className="group flex items-center gap-2 rounded-full border border-[#9F6324]/60 bg-[#120805] px-5 py-3 text-xs font-bold uppercase tracking-[0.12em] text-[#FFFFC9] shadow-[0_6px_20px_rgba(0,0,0,0.2)] transition duration-300 hover:border-white hover:bg-white hover:text-[#000000] hover:shadow-[0_8px_24px_rgba(255,255,255,0.12)]"
                     >
                         <ShoppingBag
                             size={18}

@@ -68,19 +68,19 @@ const BagCategories = () => {
   ];
 
   return (
-    <section className="bg-white py-12 text-gray-900">
+    <section className="bg-[#f5efe9] py-16 text-gray-900 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Heading */}
         <div className="mb-14 text-center">
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#9F6324]/20 bg-[#9F6324]/10 px-4 py-2">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#9F6324]/20 bg-[#9F6324]/10 px-4 py-2 shadow-sm shadow-[#9F6324]/10">
             <Sparkles size={14} className="text-[#9F6324]" />
-            <span className="text-xs font-semibold uppercase tracking-wider text-[#9F6324]">
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#9F6324]">
               Explore Our Collection
             </span>
           </div>
 
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl">
+          <h2 className="text-3xl font-bold tracking-[-0.03em] text-gray-900 sm:text-4xl lg:text-5xl">
             Shop by <span className="text-[#9F6324]">Bag Category</span>
           </h2>
 
@@ -96,11 +96,11 @@ const BagCategories = () => {
             <Link
               key={category.id}
               to={category.href}
-              className="group flex flex-col justify-between overflow-hidden rounded-2xl border border-zinc-800 bg-gradient-to-br from-[#120805] via-[#1a0c07] to-[#000000] text-white shadow-xl transition-all duration-300 hover:-translate-y-2 hover:border-[#9F6324]/60 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)]"
+              className="group flex flex-col justify-between overflow-hidden rounded-[28px] border border-[#1b120d] bg-gradient-to-br from-[#120805] via-[#1a0c07] to-[#000000] text-white shadow-[0_25px_55px_rgba(0,0,0,0.12)] transition-all duration-300 hover:-translate-y-2 hover:border-[#9F6324]/70 hover:shadow-[0_28px_60px_rgba(159,99,36,0.18)]"
             >
               <div>
                 {/* Image */}
-                <div className="relative h-[250px] overflow-hidden bg-zinc-900">
+                <div className="relative h-[270px] overflow-hidden bg-zinc-900">
                   <img
                     src={category.image}
                     alt={category.title}
@@ -110,7 +110,7 @@ const BagCategories = () => {
                   />
 
                   {/* Badge */}
-                  <div className="absolute right-4 top-4 rounded-full border border-white/10 bg-black/80 px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-wider text-[#FFFFC9] backdrop-blur-md shadow-md">
+                  <div className="absolute right-4 top-4 rounded-full border border-white/10 bg-black/80 px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-[#FFFFC9] backdrop-blur-md shadow-md">
                     {category.products}
                   </div>
                 </div>

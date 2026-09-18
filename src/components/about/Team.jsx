@@ -28,19 +28,19 @@ const Team = () => {
         
         {/* Section Heading */}
         <div className="mx-auto max-w-3xl text-center">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-[#9F6324]">
+          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-[#A46A2A]">
             The People Behind
           </p>
 
           <h2 className=" text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
-            Our <span className="text-[#9F6324]">Team</span>
+            Our <span className="text-[#A46A2A]">Team</span>
           </h2>
 
           {/* Decorative Line */}
           <div className="mx-auto mt-5 flex items-center justify-center gap-3">
-            <div className="h-px w-12 bg-[#9F6324]" />
-            <div className="h-2.5 w-2.5 rotate-45 border border-[#9F6324]" />
-            <div className="h-px w-12 bg-[#9F6324]" />
+            <div className="h-px w-12 bg-[#A46A2A]" />
+            <div className="h-2.5 w-2.5 rotate-45 border border-[#A46A2A]" />
+            <div className="h-px w-12 bg-[#A46A2A]" />
           </div>
 
           <p className="mt-6 text-sm leading-7 text-gray-400 sm:text-base">
@@ -78,11 +78,11 @@ const Team = () => {
               </h3>
 
               {/* Role */}
-              <p className="mt-2 text-sm text-[#9F6324]">
+              <p className="mt-2 text-sm text-[#A46A2A]">
                 {member.role}
               </p>
 
-              <div className="mx-auto mt-5 h-px w-10 bg-[#9F6324]/50 transition-all duration-300 group-hover:w-20" />
+              <div className="mx-auto mt-5 h-px w-10 bg-[#A46A2A]/50 transition-all duration-300 group-hover:w-20" />
 
             </div>
           ))}

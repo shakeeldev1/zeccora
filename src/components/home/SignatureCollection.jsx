@@ -275,19 +275,19 @@ const SignatureCollection = () => {
   };
 
   return (
-    <section className="bg-white pb-12 pt-4 text-gray-900">
+    <section className="bg-[#f7f2ec] pb-14 pt-5 text-gray-900 sm:pb-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* HEADING */}
         <div className="mb-14 text-center">
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#9F6324]/20 bg-[#9F6324]/10 px-4 py-2">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#9F6324]/20 bg-[#9F6324]/10 px-4 py-2 shadow-sm shadow-[#9F6324]/10">
             <Sparkles size={14} className="text-[#9F6324]" />
-            <span className="text-xs font-semibold uppercase tracking-widest text-[#9F6324]">
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#9F6324]">
               Our Signature Collection
             </span>
           </div>
 
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl">
+          <h2 className="text-3xl font-bold tracking-[-0.03em] text-gray-900 sm:text-4xl lg:text-5xl">
             Our Signature <span className="text-[#9F6324]">Collection</span>
           </h2>
 
@@ -304,10 +304,10 @@ const SignatureCollection = () => {
               <button
                 key={filter}
                 onClick={() => setActiveFilter(filter)}
-                className={`cursor-pointer rounded-full px-6 py-2.5 text-xs font-bold uppercase tracking-wider transition-all duration-300 sm:text-sm ${
+                className={`cursor-pointer rounded-full px-6 py-2.5 text-xs font-bold uppercase tracking-[0.18em] transition-all duration-300 sm:text-sm ${
                   isActive
                     ? "bg-[#9F6324] text-white shadow-lg shadow-[#9F6324]/30"
-                    : "border border-gray-200 bg-gray-50 text-gray-700 hover:border-[#9F6324]/50 hover:bg-[#9F6324]/5 hover:text-[#9F6324]"
+                    : "border border-gray-200 bg-white text-gray-700 hover:border-[#9F6324]/50 hover:bg-[#9F6324]/5 hover:text-[#9F6324]"
                 }`}
               >
                 {filter}
@@ -326,7 +326,7 @@ const SignatureCollection = () => {
               <div
                 key={product.id}
                 onClick={() => navigate(`/products/${product.id}`)}
-                className="group flex flex-col justify-between overflow-hidden rounded-2xl border border-zinc-800/80 bg-gradient-to-br from-[#120805] via-[#1a0c07] to-[#000000] text-white shadow-xl transition-all duration-500 cursor-pointer hover:-translate-y-2 hover:border-[#9F6324] hover:shadow-[0_20px_40px_rgba(159,99,36,0.2)]"
+                className="group flex flex-col justify-between overflow-hidden rounded-[30px] border border-zinc-800/80 bg-gradient-to-br from-[#120805] via-[#1a0c07] to-[#000000] text-white shadow-[0_25px_55px_rgba(0,0,0,0.12)] transition-all duration-500 cursor-pointer hover:-translate-y-2 hover:border-[#9F6324]/70 hover:shadow-[0_30px_60px_rgba(159,99,36,0.18)]"
               >
                 <div>
                   {/* High Clarity Image Container */}
