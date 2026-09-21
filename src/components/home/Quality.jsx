@@ -13,8 +13,8 @@ import bgImage from "/hero/bag-fixed.png";
 const qualityItems = [
   {
     icon: Truck,
-    title: "Free Shipping",
-    subtitle: "On All Orders",
+    title: "Rs. 300 delivery",
+    subtitle: "Paid first, then COD",
   },
   {
     icon: ShieldCheck,
@@ -23,8 +23,8 @@ const qualityItems = [
   },
   {
     icon: CreditCard,
-    title: "Secure Payment",
-    subtitle: "SSL Protected",
+    title: "Cash on delivery",
+    subtitle: "Pay when it arrives",
   },
   {
     icon: Clock3,
@@ -38,11 +38,11 @@ const Quality = () => {
     <>
       {/* Hero Section with Dark Fixed Background */}
       <section
-        className="relative overflow-hidden bg-cover bg-fixed bg-center py-16 sm:py-20 lg:py-24"
+        className="relative overflow-hidden bg-cover bg-center bg-scroll py-14 sm:py-20 lg:bg-fixed lg:py-24"
         style={{ backgroundImage: `url(${bgImage})` }}
       >
         {/* Dark Shaded Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-[#120805]/85 to-black/90 backdrop-blur-[2px]" />
+        <div className="absolute inset-0 bg-black/50" />
 
         {/* Deep Ambient Gold Glows */}
         <div className="pointer-events-none absolute -left-32 top-1/2 h-80 w-80 -translate-y-1/2 rounded-full bg-[#A46A2A]/20 blur-[120px]" />
@@ -53,9 +53,9 @@ const Quality = () => {
             Zeccora
           </p>
 
-          <h1 className="mx-auto max-w-4xl  text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
+          <h1 className="mx-auto max-w-4xl display-font text-3xl leading-tight text-white sm:text-5xl lg:text-6xl">
             Shop Quality Products at{" "}
-            <span className="text-[#A46A2A]">Zeccora</span>
+            <span className="italic text-[#E8C27A]">Zeccora</span>
           </h1>
 
           <h2 className="mt-3  text-xl font-medium text-gray-200 sm:text-2xl lg:text-3xl">
@@ -68,7 +68,7 @@ const Quality = () => {
           </p>
 
           {/* Buttons */}
-          <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <div className="mt-8 flex w-full flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:gap-4">
             <a
               href="/products"
               className="group inline-flex items-center justify-center gap-2 rounded-xl bg-[#A46A2A] px-7 py-3.5 text-sm font-bold text-black shadow-lg shadow-[#A46A2A]/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#FFFFC9]"
@@ -92,31 +92,23 @@ const Quality = () => {
       </section>
 
       {/* Dark Quality Features Strip */}
-      <section className="w-full border-b border-t border-[#A46A2A]/30 bg-[#0d0705] text-white">
+      <section className="w-full bg-[#efe6dc] text-[#1a120c]">
         <div className="mx-auto max-w-7xl px-6 py-8 sm:px-8 lg:px-10">
-          <div className="grid grid-cols-1 divide-y divide-[#A46A2A]/20 sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-4 lg:divide-x lg:divide-y-0 lg:divide-[#A46A2A]/20">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {qualityItems.map((item) => {
               const Icon = item.icon;
 
               return (
                 <div
                   key={item.title}
-                  className="group flex items-center gap-4 px-4 py-5 first:pt-0 last:pb-0 sm:px-6 sm:py-4 lg:py-2"
+                  className="group flex items-center gap-4 rounded-[28px] bg-white px-4 py-5"
                 >
-                  {/* Icon Box */}
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[#A46A2A]/30 bg-[#A46A2A]/10 text-[#A46A2A] transition-all duration-300 group-hover:scale-105 group-hover:bg-[#A46A2A] group-hover:text-black">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#f7f2ec] text-[#9F6324]">
                     <Icon size={21} strokeWidth={1.8} />
                   </div>
-
-                  {/* Content */}
                   <div>
-                    <h3 className=" text-sm font-bold text-white transition-colors duration-300 group-hover:text-[#A46A2A]">
-                      {item.title}
-                    </h3>
-
-                    <p className="mt-0.5 text-xs text-gray-400">
-                      {item.subtitle}
-                    </p>
+                    <h3 className="text-sm font-semibold">{item.title}</h3>
+                    <p className="mt-0.5 text-xs text-[#8a7b70]">{item.subtitle}</p>
                   </div>
                 </div>
               );

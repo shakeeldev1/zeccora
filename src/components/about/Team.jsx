@@ -4,26 +4,23 @@ const teamMembers = [
   {
     name: "Ahmed Ali",
     role: "Founder & CEO",
-    image:
-      "https://i.pinimg.com/736x/98/d4/e3/98d4e3c28316349f3f7ccc976929e986.jpg",
+    image: "https://randomuser.me/api/portraits/men/32.jpg",
   },
   {
     name: "Fatima Hassan",
     role: "Head of Customer Service",
-    image:
-      "https://i.pinimg.com/736x/ff/43/ac/ff43ac9a9638df9019a13c54bfa3c82e.jpg",
+    image: "https://randomuser.me/api/portraits/women/44.jpg",
   },
   {
     name: "Mohammad Rashid",
     role: "Quality Assurance Director",
-    image:
-      "https://i.pinimg.com/736x/18/7d/36/187d36b81bd4427fdf01554ec09621b4.jpg",
+    image: "https://randomuser.me/api/portraits/men/75.jpg",
   },
 ];
 
 const Team = () => {
   return (
-    <section className="w-full bg-gradient-to-b from-[#000000] via-[#120805] to-[#000000] py-16 sm:py-20 lg:py-24">
+    <section className="w-full bg-[#efe6dc] py-16 text-[#1a120c] sm:py-20 lg:py-24">
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
         
         {/* Section Heading */}
@@ -32,8 +29,8 @@ const Team = () => {
             The People Behind
           </p>
 
-          <h2 className=" text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
-            Our <span className="text-[#A46A2A]">Team</span>
+          <h2 className="display-font text-4xl sm:text-5xl lg:text-6xl">
+            Our <span className="italic text-[#9F6324]">Team</span>
           </h2>
 
           {/* Decorative Line */}
@@ -43,9 +40,8 @@ const Team = () => {
             <div className="h-px w-12 bg-[#A46A2A]" />
           </div>
 
-          <p className="mt-6 text-sm leading-7 text-gray-400 sm:text-base">
-            Meet the people shaping a more thoughtful way to discover and
-            carry everyday luxury.
+          <p className="mt-6 text-sm leading-7 text-[#6b5b4e] sm:text-base">
+          Meet the studio team in Johar Town shaping how Zeccora is made, packed, and sent.
           </p>
         </div>
 
@@ -59,21 +55,16 @@ const Team = () => {
             >
               
               {/* Circular Image */}
-              <div className="relative mx-auto h-48 w-48 overflow-hidden rounded-full sm:h-52 sm:w-52">
-                
-                {/* Image */}
+              <div className="relative mx-auto h-36 w-36 overflow-hidden rounded-full bg-[#efe6dc] sm:h-52 sm:w-52">
                 <img
                   src={member.image}
                   alt={member.name}
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-
-                {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-b from-[#000000] via-[#120805] to-[#000000]/20 transition-all duration-500 group-hover:bg-gradient-to-b from-[#000000] via-[#120805] to-[#000000]/0" />
               </div>
 
               {/* Name */}
-              <h3 className="mt-6  text-xl font-semibold text-white sm:text-2xl">
+              <h3 className="mt-6 text-xl font-semibold sm:text-2xl">
                 {member.name}
               </h3>
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { Award, Package, Users, ShieldCheck } from "lucide-react";
+import { Package, Users, ShieldCheck } from "lucide-react";
 
 const stats = [
   {
@@ -21,39 +21,34 @@ const stats = [
 
 const Journey = () => {
   return (
-    <section className="w-full bg-gradient-to-b from-[#000000] via-[#120805] to-[#000000] py-16 sm:py-20 lg:py-24">
+    <section className="w-full bg-[#f7f2ec] py-16 text-[#1a120c] sm:py-20 lg:py-24">
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
         
         {/* Main Content */}
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
           
           {/* Image Side */}
-          <div className="relative">
+          <div className="relative overflow-hidden">
             
             {/* Golden Border */}
             <div className="absolute -left-3 -top-3 h-full w-full border border-[#A46A2A]/40" />
 
             <div className="relative overflow-hidden">
               <img
-                src="https://i.pinimg.com/736x/28/87/c7/2887c712f8ac7adc7dec2c3f6e889040.jpg"
+                src="/hero/hero3.png"
                 alt="Zeccora Journey"
-                className="h-[480px] w-full object-cover transition-transform duration-700 hover:scale-105 sm:h-[550px]"
+                className="h-[300px] w-full object-cover object-center transition-transform duration-700 hover:scale-105 sm:h-[550px]"
               />
 
               {/* Image Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
 
               {/* 15+ Experience Badge */}
-              <div className="absolute bottom-5 right-5 border border-[#A46A2A]/60 bg-gradient-to-b from-[#000000] via-[#120805] to-[#000000]/95 px-5 py-4 backdrop-blur-sm">
-                
-                <span className="block text-3xl font-bold text-[#A46A2A]">
-                  15+
-                </span>
-
-                <span className="mt-1 block text-xs font-medium uppercase tracking-wider text-gray-200">
+              <div className="absolute bottom-4 right-3 rounded-2xl bg-white px-4 py-3 sm:bottom-5 sm:right-5 sm:px-5 sm:py-4">
+                <span className="block text-2xl font-bold text-[#9F6324] sm:text-3xl">15+</span>
+                <span className="mt-1 block text-xs font-medium uppercase tracking-wider text-[#6b5b4e]">
                   Years of Excellence
                 </span>
-
               </div>
             </div>
           </div>
@@ -67,9 +62,9 @@ const Journey = () => {
             </p>
 
             {/* Main Heading */}
-            <h2 className=" text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
+            <h2 className="display-font text-4xl leading-tight sm:text-5xl lg:text-6xl">
                   Defining Everyday{" "}
-              <span className="text-[#A46A2A]">
+              <span className="italic text-[#9F6324]">
                 Luxury
               </span>
             </h2>
@@ -81,7 +76,7 @@ const Journey = () => {
             </div>
 
             {/* Description */}
-            <div className="mt-7 space-y-4 text-sm leading-7 text-gray-300">
+            <div className="mt-7 space-y-4 text-sm leading-7 text-[#5c4c40]">
               
               <p>
                 Zeccora began with a simple belief: the bag you carry
@@ -102,7 +97,7 @@ const Journey = () => {
 
               <p>
                 From structured top handles to relaxed shoulder styles, we
-                keep the edit refined, wearable, and in step with your style.
+                keep the collection refined, wearable, and in step with your style.
               </p>
 
               <p>
@@ -110,7 +105,7 @@ const Journey = () => {
                 fair pricing and a shopping experience built around trust.
               </p>
 
-              <p className="border-l-2 border-[#A46A2A] pl-4 text-gray-200">
+              <p className="border-l-2 border-[#9F6324] pl-4 text-[#1a120c]">
                 At Zeccora, we focus on more than the product. We care
                 about the feeling it brings to your everyday ritual.
                 <span className="ml-1 font-semibold text-[#A46A2A]">
@@ -133,7 +128,7 @@ const Journey = () => {
                   >
                     
                     {/* Icon */}
-                    <div className="mx-auto mb-2 flex h-9 w-9 items-center justify-center rounded-md border border-[#A46A2A]/30 bg-[#292716] transition-all duration-300 group-hover:border-[#A46A2A]">
+                    <div className="mx-auto mb-2 flex h-9 w-9 items-center justify-center rounded-md bg-white">
                       <Icon
                         size={16}
                         className="text-[#A46A2A]"
@@ -146,7 +141,7 @@ const Journey = () => {
                     </h3>
 
                     {/* Label */}
-                    <p className="mt-1 text-[10px] leading-4 text-gray-400 sm:text-xs">
+                    <p className="mt-1 text-[10px] leading-4 text-[#8a7b70] sm:text-xs">
                       {item.label}
                     </p>
 

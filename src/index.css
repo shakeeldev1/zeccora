@@ -1,25 +1,40 @@
 @import "tailwindcss";
 
 :root {
-	color-scheme: dark;
+	color-scheme: light;
 	--zeccora-brown: #9F6324;
-	--zeccora-cream: #FFFFC9;
-	--zeccora-black: #000000;
-	--zeccora-deep-brown: #120805;
+	--zeccora-cream: #f7f2ec;
+	--zeccora-black: #1a120c;
+	--zeccora-deep-brown: #efe6dc;
 }
 
 html {
-	background: var(--zeccora-black);
-	cursor: pointer;
+	background: var(--zeccora-cream);
+	scroll-behavior: smooth;
+	overflow-x: hidden;
 }
 
 body {
 	margin: 0;
-	background:
-		radial-gradient(circle at 50% 0%, rgba(159, 99, 36, 0.14), transparent 34rem),
-		linear-gradient(145deg, var(--zeccora-black) 0%, var(--zeccora-deep-brown) 52%, var(--zeccora-black) 100%);
-	color: var(--zeccora-cream);
-	cursor: pointer;
+	background: var(--zeccora-cream);
+	color: var(--zeccora-black);
+	font-family: Inter, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	overflow-x: hidden;
+	padding-left: env(safe-area-inset-left);
+	padding-right: env(safe-area-inset-right);
+}
+
+#root {
+	overflow-x: hidden;
+	min-width: 0;
+}
+
+input,
+select,
+textarea {
+	font-size: 16px;
 }
 
 button,
@@ -32,7 +47,85 @@ select,
 	cursor: pointer;
 }
 
+:focus-visible {
+	outline: 2px solid var(--zeccora-brown);
+	outline-offset: 3px;
+}
+
+.skip-link {
+	position: absolute;
+	left: 1rem;
+	top: -4rem;
+	z-index: 100;
+	border-radius: 999px;
+	background: #1a120c;
+	padding: 0.6rem 1rem;
+	color: #fff;
+	font-size: 0.8rem;
+}
+
+.skip-link:focus {
+	top: 1rem;
+}
+
 ::selection {
 	background: var(--zeccora-brown);
-	color: var(--zeccora-cream);
+	color: #fff;
+}
+
+.brand-word {
+	font-family: "Yellowtail", cursive;
+	font-weight: 400;
+	line-height: 0.85;
+}
+
+.brand-tag {
+	font-family: Inter, sans-serif;
+	font-weight: 400;
+	letter-spacing: 0.01em;
+}
+
+.display-font {
+	font-family: "Cormorant Garamond", serif;
+	font-weight: 600;
+	letter-spacing: -0.02em;
+}
+
+.section-kicker {
+	font-size: 11px;
+	font-weight: 500;
+	letter-spacing: 0.28em;
+	text-transform: uppercase;
+	color: var(--zeccora-brown);
+}
+
+img {
+	max-width: 100%;
+}
+
+.chip-row {
+	display: flex;
+	gap: 0.5rem;
+	overflow-x: auto;
+	overscroll-behavior-x: contain;
+	-webkit-overflow-scrolling: touch;
+	scrollbar-width: none;
+	padding-bottom: 2px;
+}
+
+.chip-row::-webkit-scrollbar {
+	display: none;
+}
+
+.chip-row > * {
+	flex-shrink: 0;
+}
+
+.home-marquee {
+	animation: homeMarquee 28s linear infinite;
+}
+
+@keyframes homeMarquee {
+	from { transform: translateX(0); }
+	to { transform: translateX(-50%); }
 }

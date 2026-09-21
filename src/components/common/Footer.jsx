@@ -1,57 +1,56 @@
-import React from 'react'
-import { ArrowUpRight, Mail, MapPin, Phone, Sparkles } from 'lucide-react'
-import { FiFacebook, FiInstagram, FiTwitter } from 'react-icons/fi'
+import React, { useState } from 'react'
+import { ArrowUpRight, Mail, MapPin, Phone } from 'lucide-react'
+import { FaWhatsapp } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
+import BrandLogo from './BrandLogo'
+import { SITE, whatsappUrl } from '../../lib/site'
 
 const Footer = () => {
   const year = new Date().getFullYear()
+  const [email, setEmail] = useState('')
+  const [subscribed, setSubscribed] = useState(false)
+
+  const handleSubscribe = (event) => {
+    event.preventDefault()
+    const saved = JSON.parse(localStorage.getItem('zeccora-newsletter') || '[]')
+    localStorage.setItem('zeccora-newsletter', JSON.stringify([...new Set([...saved, email])]))
+    window.open(whatsappUrl(`Please add ${email} to Zeccora updates.`), '_blank', 'noopener,noreferrer')
+    setSubscribed(true)
+    setEmail('')
+  }
 
   return (
-    <footer className="relative overflow-hidden border-t border-[#9F6324]/20 bg-gradient-to-b from-[#000000] via-[#120805] to-[#000000] text-gray-300">
-      {/* Background Ambient Glows */}
-      <div className="pointer-events-none absolute -left-32 top-0 h-80 w-80 rounded-full bg-[#9F6324]/10 blur-[120px]" />
-      <div className="pointer-events-none absolute -right-32 bottom-0 h-80 w-80 rounded-full bg-[#9F6324]/10 blur-[120px]" />
-
-      <div className="relative mx-auto max-w-[1400px] px-6 pb-8 pt-16 lg:px-10">
-        <div className="grid gap-12 border-b border-white/10 pb-12 md:grid-cols-2 lg:grid-cols-[1.4fr_0.8fr_0.8fr_1.3fr]">
-          
-          {/* Brand Info */}
+    <footer className="relative overflow-hidden border-t border-black/5 bg-[#efe6dc] text-[#5c4c40]">
+      <div className="relative mx-auto max-w-[1400px] px-4 pb-24 pt-12 sm:px-6 sm:pb-8 sm:pt-16 lg:px-10">
+        <div className="grid gap-12 border-b border-black/5 pb-12 md:grid-cols-2 lg:grid-cols-[1.4fr_0.8fr_0.8fr_1.3fr]">
           <div>
-            <Link to="/" className="inline-flex">
-              <img
-                src="/hero/zeccora-logo.jpg"
-                alt="Zeccora"
-                className="h-[88px] w-[156px] object-contain brightness-110 contrast-110 transition-transform duration-300 hover:scale-105"
-              />
+            <Link to="/" className="inline-flex w-fit" aria-label="Zeccora home">
+              <BrandLogo size="footer" />
             </Link>
-
-            <p className="mt-5 max-w-sm text-sm leading-relaxed text-gray-400">
-              Curated fashion for people who make their own statement. Discover timeless style with a modern edge.
+            <p className="mt-5 max-w-sm text-sm leading-relaxed">
+              Premium bags from Johar Town, Lahore. Cash on delivery across Pakistan.
             </p>
-
-            {/* Social Icons */}
             <div className="mt-6 flex gap-3">
-              {[
-                { icon: FiInstagram, label: 'Instagram' },
-                { icon: FiFacebook, label: 'Facebook' },
-                { icon: FiTwitter, label: 'Twitter' },
-              ].map(({ icon: Icon, label }) => (
-                <a
-                  key={label}
-                  href="#social"
-                  aria-label={label}
-                  className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-gray-400 transition-all duration-300 hover:-translate-y-0.5 hover:border-[#9F6324] hover:bg-[#9F6324] hover:text-black hover:shadow-lg hover:shadow-[#9F6324]/20"
-                >
-                  <Icon size={17} />
-                </a>
-              ))}
+              <a
+                href={whatsappUrl('Hello Zeccora, I would like to know more.')}
+                aria-label="WhatsApp"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#5c4c40] transition hover:bg-[#9F6324] hover:text-white"
+              >
+                <FaWhatsapp size={17} />
+              </a>
+              <a
+                href={`mailto:${SITE.email}`}
+                aria-label="Email"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#5c4c40] transition hover:bg-[#9F6324] hover:text-white"
+              >
+                <Mail size={17} />
+              </a>
             </div>
           </div>
 
-          {/* Quick Links */}
           <div>
-            <h2 className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-[#9F6324]">
-              <Sparkles size={13} /> Explore
+            <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-[#9F6324]">
+              Explore
             </h2>
             <div className="mt-5 flex flex-col gap-3 text-sm">
               {[
@@ -60,91 +59,75 @@ const Footer = () => {
                 { label: 'Current offers', path: '/offers' },
                 { label: 'Contact us', path: '/contact' },
               ].map((item) => (
-                <Link
-                  key={item.label}
-                  to={item.path}
-                  className="w-fit text-gray-400 transition-colors duration-200 hover:text-[#9F6324]"
-                >
+                <Link key={item.label} to={item.path} className="w-fit transition hover:text-[#9F6324]">
                   {item.label}
                 </Link>
               ))}
             </div>
           </div>
 
-          {/* Customer Care */}
           <div>
-            <h2 className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-[#9F6324]">
-              <Sparkles size={13} /> Customer Care
+            <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-[#9F6324]">
+              Customer Care
             </h2>
             <div className="mt-5 flex flex-col gap-3 text-sm">
-              <Link to="/cart" className="w-fit text-gray-400 transition-colors duration-200 hover:text-[#9F6324]">
-                Shopping bag
-              </Link>
-              <a href="mailto:hello@zeccora.store" className="w-fit text-gray-400 transition-colors duration-200 hover:text-[#9F6324]">
-                Shipping & returns
-              </a>
-              <a href="mailto:hello@zeccora.store" className="w-fit text-gray-400 transition-colors duration-200 hover:text-[#9F6324]">
-                Size guide
-              </a>
-              <a href="mailto:hello@zeccora.store" className="w-fit text-gray-400 transition-colors duration-200 hover:text-[#9F6324]">
-                FAQs
-              </a>
+              <Link to="/cart" className="w-fit transition hover:text-[#9F6324]">Shopping bag</Link>
+              <Link to="/shipping" className="w-fit transition hover:text-[#9F6324]">Shipping</Link>
+              <Link to="/returns" className="w-fit transition hover:text-[#9F6324]">Returns</Link>
+              <Link to="/size-guide" className="w-fit transition hover:text-[#9F6324]">Size guide</Link>
+              <Link to="/faqs" className="w-fit transition hover:text-[#9F6324]">FAQs</Link>
             </div>
           </div>
 
-          {/* Newsletter & Contact Detail Card */}
-          <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-md">
-            <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-[#9F6324]">
+          <div className="rounded-[28px] bg-white p-6">
+            <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-[#9F6324]">
               Stay in the loop
             </h2>
-            <p className="mt-3 text-xs leading-relaxed text-gray-400">
+            <p className="mt-3 text-xs leading-relaxed">
               Get first access to new drops, private offers, and style notes.
             </p>
-
-            <form
-              className="mt-4 flex items-center rounded-xl border border-white/15 bg-black/40 px-3 py-2 transition-all focus-within:border-[#9F6324]"
-              onSubmit={(event) => event.preventDefault()}
-            >
-              <Mail size={16} className="mr-2 shrink-0 text-[#9F6324]" />
-              <input
-                type="email"
-                required
-                placeholder="Your email address"
-                aria-label="Your email address"
-                className="min-w-0 flex-1 bg-transparent text-xs text-white outline-none placeholder:text-gray-500"
-              />
-              <button
-                type="submit"
-                aria-label="Subscribe"
-                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#9F6324] text-black transition-all hover:scale-105 hover:bg-white"
-              >
-                <ArrowUpRight size={16} />
-              </button>
-            </form>
-
-            <div className="mt-6 space-y-2.5 text-xs text-gray-400">
+            {subscribed ? (
+              <p className="mt-4 text-sm text-[#9F6324]">Saved. WhatsApp will confirm your updates.</p>
+            ) : (
+              <form className="mt-4 flex items-center rounded-full bg-[#f7f2ec] px-3 py-2" onSubmit={handleSubscribe}>
+                <Mail size={16} className="mr-2 shrink-0 text-[#9F6324]" />
+                <input
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(event) => setEmail(event.target.value)}
+                  placeholder="Your email address"
+                  aria-label="Your email address"
+                  className="min-w-0 flex-1 bg-transparent text-base text-[#1a120c] outline-none placeholder:text-[#8a7b70] sm:text-xs"
+                />
+                <button
+                  type="submit"
+                  aria-label="Subscribe"
+                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#9F6324] text-white"
+                >
+                  <ArrowUpRight size={16} />
+                </button>
+              </form>
+            )}
+            <div className="mt-6 space-y-2.5 text-xs">
               <p className="flex items-center gap-2.5">
-                <MapPin size={14} className="shrink-0 text-[#9F6324]" /> Bahawalpur, Pakistan
+                <MapPin size={14} className="shrink-0 text-[#9F6324]" /> {SITE.address}
               </p>
-              <p className="flex items-center gap-2.5">
-                <Phone size={14} className="shrink-0 text-[#9F6324]" /> +92 312 626 3348
-              </p>
-              <a
-                href="mailto:info@zeccora.com"
-                className="flex items-center gap-2.5 transition-colors hover:text-[#9F6324]"
-              >
-                <Mail size={14} className="shrink-0 text-[#9F6324]" /> info@zeccora.com
+              <a href={whatsappUrl('Hello Zeccora')} className="flex items-center gap-2.5 transition hover:text-[#9F6324]">
+                <Phone size={14} className="shrink-0 text-[#9F6324]" /> {SITE.phoneDisplay}
+              </a>
+              <a href={`mailto:${SITE.email}`} className="flex items-center gap-2.5 transition hover:text-[#9F6324]">
+                <Mail size={14} className="shrink-0 text-[#9F6324]" /> {SITE.email}
               </a>
             </div>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="flex flex-col gap-3 pt-7 text-xs text-gray-500 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-3 pt-7 text-xs sm:flex-row sm:items-center sm:justify-between">
           <p>© {year} Zeccora. All rights reserved.</p>
           <div className="flex gap-6">
-            <a href="#privacy" className="transition-colors hover:text-[#9F6324]">Privacy Policy</a>
-            <a href="#terms" className="transition-colors hover:text-[#9F6324]">Terms of Service</a>
+            <Link to="/privacy" className="transition hover:text-[#9F6324]">Privacy Policy</Link>
+            <Link to="/terms" className="transition hover:text-[#9F6324]">Terms of Service</Link>
           </div>
         </div>
       </div>

@@ -1,49 +1,92 @@
 import React from "react";
 import { ArrowDown, Sparkles } from "lucide-react";
-import heroImage from "../../assets/image4.png";
+import { Link } from "react-router-dom";
+
+const categories = [
+    { label: "Handbags", href: "/products?category=Handbags" },
+    { label: "Crossbody", href: "/products?category=Crossbody%20Bags" },
+    { label: "Tote bags", href: "/products?category=Tote%20Bags" },
+    { label: "Canvas", href: "/products?category=Canvas%20Bags" },
+];
+
+const offerLinks = [
+    { label: "50% Off", href: "/products?offer=50" },
+    { label: "30% Off", href: "/products?offer=30" },
+    { label: "20% Off", href: "/products?offer=20" },
+    { label: "15% Off", href: "/coming-soon", soon: true },
+];
 
 const ProductHero = () => {
     return (
-        <section className="relative isolate min-h-[420px] overflow-hidden border-b border-[#A46A2A]/20 sm:min-h-[500px]">
+        <section className="relative isolate min-h-[380px] overflow-hidden bg-[#efe6dc] sm:min-h-[540px]">
             <img
-                src={heroImage}
-                alt="Premium collection at Zeccora"
-                className="absolute inset-0 -z-20 h-full w-full object-cover opacity-90"
+                src="/hero/hero2.png"
+                alt="Zeccora collection"
+                className="absolute inset-0 -z-20 h-full w-full object-cover object-[center_20%] sm:object-center"
             />
-            <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(164,106,42,0.18),rgba(0,0,0,0.42)_36%,rgba(0,0,0,0.78)_100%)]" />
-            <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(0,0,0,0.72)_0%,rgba(0,0,0,0.58)_36%,rgba(0,0,0,0.45)_100%)]" />
+            <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#1a120c]/35 via-transparent to-transparent" />
+            <div className="pointer-events-none absolute -left-16 top-1/4 h-64 w-64 rounded-full bg-[#9F6324]/20 blur-3xl" />
 
-            <div className="mx-auto flex min-h-[420px] max-w-[1600px] items-center justify-center px-4 py-16 text-center sm:min-h-[500px] sm:px-6 lg:px-10">
-                <div className="flex max-w-3xl flex-col items-center">
-                    <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#A46A2A]/60 bg-[#A46A2A]/10 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#FFFFC9] backdrop-blur-sm">
-                        <Sparkles size={12} className="text-[#A46A2A]" />
-                        The Zeccora Edit
+            <div className="mx-auto flex min-h-[380px] max-w-7xl items-end px-4 py-8 sm:min-h-[540px] sm:items-center sm:px-8 sm:py-10 lg:px-12">
+                <div className="relative max-w-xl overflow-hidden rounded-[24px] border border-white/70 bg-white/80 p-4 shadow-[0_30px_80px_rgba(26,18,12,0.2)] backdrop-blur-xl sm:rounded-[32px] sm:p-9 lg:p-10">
+                    <div className="absolute inset-x-8 top-0 h-[3px] bg-gradient-to-r from-transparent via-[#9F6324] to-transparent" />
+
+                    <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-[#9F6324]/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#9F6324]">
+                        <Sparkles size={12} />
+                        Shop the collection
                     </div>
 
-                    <h1 className="text-4xl font-bold leading-[1.08] tracking-[-0.04em] text-white sm:text-6xl lg:text-[5.2rem]">
+                    <h1 className="display-font text-[2.15rem] leading-[0.94] text-[#1a120c] sm:text-6xl">
                         Pieces that make
-                        <span className="mt-2 block text-[#A46A2A]">everyday iconic.</span>
+                        <span className="mt-1 block italic text-[#9F6324]">everyday iconic.</span>
                     </h1>
 
-                    <p className="mx-auto mt-6 max-w-2xl text-sm leading-7 text-gray-200 sm:text-base">
-                        Discover a considered edit of premium bags, made for the moments that deserve a little more style, intention, and confidence.
+                    <p className="mt-5 max-w-md text-sm leading-7 text-[#5c4c40]">
+                        Handbags, crossbody bags, tote bags and canvas bags — with live 50%, 30% and 20% off.
                     </p>
 
-                    <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+                    <div className="mt-5 flex flex-col gap-2.5 sm:mt-7 sm:flex-row sm:flex-wrap sm:items-center sm:gap-3">
                         <a
                             href="#collection"
-                            className="inline-flex items-center gap-3 rounded-full bg-[#A46A2A] px-6 py-3.5 text-sm font-bold text-[#000000] shadow-lg shadow-[#A46A2A]/25 transition duration-300 hover:-translate-y-0.5 hover:bg-[#FFFFC9]"
+                            className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#9F6324] px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-white shadow-[0_12px_28px_rgba(159,99,36,0.32)] transition hover:bg-[#8a541c] sm:w-auto"
                         >
                             Explore collection
-                            <ArrowDown size={17} />
+                            <ArrowDown size={15} />
                         </a>
-
-                        <a
-                            href="/offers"
-                            className="inline-flex items-center gap-3 rounded-full border border-white/20 bg-black/20 px-6 py-3.5 text-sm font-bold text-white transition duration-300 hover:border-[#A46A2A] hover:text-[#A46A2A]"
+                        <Link
+                            to="/offers"
+                            className="inline-flex w-full items-center justify-center rounded-full border border-[#9F6324]/30 bg-white px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#1a120c] transition hover:border-[#9F6324] hover:text-[#9F6324] sm:w-auto"
                         >
                             See offers
-                        </a>
+                        </Link>
+                    </div>
+
+                    <div className="chip-row mt-5 sm:mt-6 sm:flex-wrap">
+                        {categories.map((category) => (
+                            <Link
+                                key={category.label}
+                                to={category.href}
+                                className="rounded-full bg-[#f7f2ec] px-3.5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-[#5c4c40] transition hover:bg-[#9F6324] hover:text-white"
+                            >
+                                {category.label}
+                            </Link>
+                        ))}
+                    </div>
+
+                    <div className="chip-row mt-3 sm:flex-wrap">
+                        {offerLinks.map((offer) => (
+                            <Link
+                                key={offer.label}
+                                to={offer.href}
+                                className={`rounded-full px-3.5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] transition ${
+                                    offer.soon
+                                        ? "bg-[#f7f2ec] text-[#8a7b70] hover:text-[#9F6324]"
+                                        : "bg-[#1a120c] text-white hover:bg-[#9F6324]"
+                                }`}
+                            >
+                                {offer.soon ? `${offer.label} · Soon` : offer.label}
+                            </Link>
+                        ))}
                     </div>
                 </div>
             </div>
