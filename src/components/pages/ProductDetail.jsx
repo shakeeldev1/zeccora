@@ -15,11 +15,13 @@ const ProductDetail = () => {
     const [quantity, setQuantity] = useState(1);
     const [copied, setCopied] = useState(false);
     const [selectedColor, setSelectedColor] = useState(product?.colors?.[0]?.name || "Black");
+    const [selectedImage, setSelectedImage] = useState(product?.images?.[0] || product?.image);
     const [zoomOpen, setZoomOpen] = useState(false);
 
     useEffect(() => {
         setQuantity(1);
         setSelectedColor(product?.colors?.[0]?.name || "Black");
+        setSelectedImage(product?.images?.[0] || product?.image);
         setZoomOpen(false);
     }, [productId, product]);
 
@@ -67,7 +69,7 @@ const ProductDetail = () => {
                             className="group relative w-full overflow-hidden rounded-2xl bg-[#efe6dc] sm:rounded-[28px]"
                             aria-label={`Zoom ${product.name}`}
                         >
-                            <img src={product.image} alt={product.name} className="aspect-[4/5] h-full w-full object-cover object-center" />
+                            <img src={selectedImage} alt={product.name} className="aspect-[4/5] h-full w-full object-cover object-center" />
                             <span className="absolute bottom-4 right-4 inline-flex items-center gap-1 rounded-full bg-white/95 px-3 py-1.5 text-[10px] uppercase tracking-[0.16em] text-[#1a120c]">
                                 <ZoomIn size={12} /> View
                             </span>
@@ -84,19 +86,18 @@ const ProductDetail = () => {
                         <p className="mt-6 leading-7 text-[#6b5b4e]">{product.description}</p>
 
                         <div className="mt-8">
-                            <p className="text-sm">Color: <span className="font-medium text-[#9F6324]">{selectedColor}</span></p>
-                            <p className="mt-1 text-xs text-[#8a7b70]">Photo shows this design. We dispatch the color you select.</p>
+                            <p className="text-sm">Product images</p>
+                            <p className="mt-1 text-xs text-[#8a7b70]">Select an image to view this product from another angle.</p>
                             <div className="mt-3 flex flex-wrap gap-3">
-                                {product.colors.map((color) => (
+                                {product.images.map((image, imageIndex) => (
                                     <button
-                                        key={color.name}
+                                        key={`${product.id}-detail-image-${imageIndex}`}
                                         type="button"
-                                        onClick={() => setSelectedColor(color.name)}
-                                        className={`flex items-center gap-2 rounded-full bg-white px-3 py-2 text-xs capitalize ${selectedColor === color.name ? "ring-1 ring-[#9F6324] text-[#9F6324]" : "text-[#5c4c40]"}`}
-                                        aria-label={`Select ${color.name}`}
+                                        onClick={() => setSelectedImage(image)}
+                                        className={`h-20 w-16 overflow-hidden rounded-xl bg-white p-1 transition sm:h-24 sm:w-20 ${selectedImage === image ? "ring-2 ring-[#9F6324]" : "ring-1 ring-black/5 hover:ring-[#9F6324]/50"}`}
+                                        aria-label={`View product image ${imageIndex + 1}`}
                                     >
-                                        <span className="h-4 w-4 rounded-full border border-black/10" style={{ backgroundColor: color.hex }} />
-                                        {color.name}
+                                        <img src={image} alt={`${product.name} thumbnail ${imageIndex + 1}`} className="h-full w-full rounded-lg object-cover object-center" />
                                     </button>
                                 ))}
                             </div>
@@ -170,7 +171,7 @@ const ProductDetail = () => {
 
                 {suggestedProducts.length > 0 ? (
                     <div className="mt-20">
-                    <h2 className="display-font text-center text-3xl sm:text-5xl">You may also like</h2>
+                        <h2 className="display-font text-center text-3xl sm:text-5xl">You may also like</h2>
                         <div className="mt-10 grid grid-cols-2 gap-x-3 gap-y-8 sm:mt-20 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-4">
                             {suggestedProducts.map((suggestedProduct) => (
                                 <ProductCard key={suggestedProduct.id} product={suggestedProduct} />
@@ -183,7 +184,7 @@ const ProductDetail = () => {
             {zoomOpen ? (
                 <div className="fixed inset-0 z-[70] flex items-center justify-center bg-black/80 p-4">
                     <button type="button" aria-label="Close image" onClick={() => setZoomOpen(false)} className="absolute right-5 top-5 text-white"><X size={28} /></button>
-                    <img src={product.image} alt={product.name} className="max-h-[90vh] max-w-full rounded-2xl object-contain" />
+                    <img src={selectedImage} alt={product.name} className="max-h-[90vh] max-w-full rounded-2xl object-contain" />
                 </div>
             ) : null}
         </section>

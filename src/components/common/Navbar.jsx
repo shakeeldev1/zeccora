@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { Menu, X, ShoppingBag, Minus, Plus, Trash2, Search } from "lucide-react";
+import { Menu, X, ShoppingBag, Minus, Plus, Trash2 } from "lucide-react";
 import { cartLineKey, readCart, writeCart } from "../../lib/cart";
 import BrandLogo from "./BrandLogo";
 
 const Navbar = () => {
     const navigate = useNavigate();
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const [searchOpen, setSearchOpen] = useState(false);
-    const [query, setQuery] = useState("");
     const [cartCount, setCartCount] = useState(0);
     const [cartOpen, setCartOpen] = useState(false);
     const [cart, setCart] = useState(() => readCart());
@@ -59,14 +57,6 @@ const Navbar = () => {
         return sum + priceNum * item.quantity;
     }, 0);
 
-    const submitSearch = (event) => {
-        event.preventDefault();
-        const nextQuery = query.trim();
-        navigate(nextQuery ? `/products?q=${encodeURIComponent(nextQuery)}` : "/products");
-        setSearchOpen(false);
-        setMobileMenuOpen(false);
-    };
-
     const navLinks = [
         { name: "Home", href: "/" },
         { name: "Products", href: "/products" },
@@ -102,14 +92,6 @@ const Navbar = () => {
                 <div className="hidden items-center gap-3 lg:flex">
                     <button
                         type="button"
-                        onClick={() => setSearchOpen((open) => !open)}
-                        className="rounded-full bg-white p-2.5 text-[#1a120c] transition hover:text-[#9F6324]"
-                        aria-label="Search products"
-                    >
-                        <Search size={16} />
-                    </button>
-                    <button
-                        type="button"
                         onClick={() => setCartOpen(true)}
                         className="inline-flex items-center gap-2 rounded-full bg-[#9F6324] px-5 py-2.5 text-[11px] font-medium uppercase tracking-[0.16em] text-white shadow-[0_8px_20px_rgba(159,99,36,0.25)] transition hover:bg-[#8a541c]"
                     >
@@ -119,17 +101,6 @@ const Navbar = () => {
                 </div>
 
                 <div className="flex shrink-0 items-center gap-2 lg:hidden">
-                    <button
-                        type="button"
-                        onClick={() => {
-                            setSearchOpen((open) => !open);
-                            setMobileMenuOpen(false);
-                        }}
-                        className="rounded-full bg-white p-2.5 text-[#1a120c]"
-                        aria-label="Search products"
-                    >
-                        <Search size={18} />
-                    </button>
                     <button
                         type="button"
                         onClick={() => setCartOpen(true)}
@@ -146,7 +117,6 @@ const Navbar = () => {
                     <button
                         onClick={() => {
                             setMobileMenuOpen(!mobileMenuOpen);
-                            setSearchOpen(false);
                         }}
                         className="rounded-full bg-white p-2.5 text-[#1a120c]"
                         aria-label="Menu"
@@ -155,23 +125,6 @@ const Navbar = () => {
                     </button>
                 </div>
             </div>
-
-            {searchOpen && (
-                <form onSubmit={submitSearch} className="border-t border-black/5 bg-[#f7f2ec] px-3 py-3 sm:px-6 lg:px-10">
-                    <div className="mx-auto flex max-w-3xl items-center rounded-full bg-white px-3 sm:px-4">
-                        <Search size={16} className="shrink-0 text-[#9F6324]" />
-                        <input
-                            autoFocus
-                            value={query}
-                            onChange={(event) => setQuery(event.target.value)}
-                            placeholder="Search bags..."
-                            aria-label="Search the collection"
-                            className="min-w-0 w-full bg-transparent px-2 py-3 text-base outline-none sm:px-3 sm:text-sm"
-                        />
-                        <button type="submit" className="shrink-0 px-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#9F6324] sm:px-0 sm:text-xs sm:tracking-[0.16em]">Go</button>
-                    </div>
-                </form>
-            )}
 
             {mobileMenuOpen && (
                 <div className="border-t border-black/5 bg-[#f7f2ec] px-6 py-6 lg:hidden">
