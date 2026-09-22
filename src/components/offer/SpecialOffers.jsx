@@ -1,56 +1,57 @@
-import React from "react";
-import { ArrowRight, Clock3, Gift, ShieldCheck, Sparkles, Tag } from "lucide-react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { ArrowRight, Clock3, Gift, Percent, ShieldCheck, Sparkles, Tag } from "lucide-react";
+import { OFFERS } from "../../lib/offers";
 
-const offers = [
-    {
-        title: "First Order Privilege",
-        value: "15% OFF",
-        detail: "Make your first purchase feel even more special with an exclusive welcome discount on your next signature piece.",
-        code: "WELCOME15",
-        icon: Gift,
-        tone: "bg-[#2a1d11]",
-    },
-    {
-        title: "The Weekend Edit",
-        value: "UP TO 30% OFF",
-        detail: "Refresh your collection with premium essentials and seasonal favorites selected for refined everyday styling.",
-        code: "WEEKEND30",
-        icon: Tag,
-        tone: "bg-[#1d1714]",
-    },
-];
+import image7 from "../../assets/img7 (4).jpeg";
+import image10 from "../../assets/img 10.jpeg";
+import image21 from "../../assets/img 21.png";
+import image18 from "../../assets/img18.png";
+
+const offerIcons = {
+    50: Percent,
+    30: Tag,
+    20: Sparkles,
+    15: Gift,
+};
+
+const offerVisuals = {
+    30: { image: image10, oldPrice: "3,143 PKR", salePrice: "2,200 PKR" },
+    15: { image: image18, oldPrice: "3,143 PKR", salePrice: "2,550 PKR" },
+};
 
 const perks = [
-    { icon: ShieldCheck, label: "Secure checkout" },
-    { icon: Sparkles, label: "Curated luxury picks" },
-    { icon: Clock3, label: "Limited stock" },
+    { icon: ShieldCheck, label: "Cash on delivery" },
+    { icon: Sparkles, label: "Sale price already applied" },
+    { icon: Clock3, label: "2–5 day dispatch" },
 ];
 
 const SpecialOffers = () => {
+    const [copiedCode, setCopiedCode] = useState("");
+
+    const copyCode = async (event, code) => {
+        event.preventDefault();
+        event.stopPropagation();
+        await navigator.clipboard.writeText(code);
+        setCopiedCode(code);
+        window.setTimeout(() => setCopiedCode(""), 1600);
+    };
+
     return (
-        <section id="special-deals" className="bg-gradient-to-b from-[#000000] via-[#120805] to-[#000000] py-16 text-white sm:py-20">
+        <section id="special-deals" className="bg-[#f7f2ec] py-16 text-[#1a120c] sm:py-20">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <div className="flex flex-col justify-between gap-5 border-b border-white/10 pb-8 sm:flex-row sm:items-end">
-                    <div>
-                        <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#A46A2A]">Special deals</p>
-                        <h2 className="mt-3 text-3xl font-bold sm:text-4xl">A little more luxury, for less</h2>
-                        <p className="mt-3 max-w-xl text-sm leading-6 text-gray-400">
-                            Enjoy carefully selected offers designed to bring your next favorite piece closer while keeping the experience elevated and effortless.
-                        </p>
-                    </div>
-                    <div className="flex items-center gap-2 text-sm text-gray-400">
-                        <Clock3 size={16} className="text-[#A46A2A]" />
-                        Limited availability
-                    </div>
+                <div className="mb-10 text-center">
+                    <p className="section-kicker">Special deals</p>
+                    <h2 className="display-font mt-3 text-4xl sm:text-5xl">A little more luxury, for less</h2>
+                    <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-[#6b5b4e]">
+                        Click any offer to shop that discount. Sale prices are already applied on the product page and in your cart.
+                    </p>
                 </div>
 
-                <div className="mt-8 grid gap-4 sm:grid-cols-3">
+                <div className="grid gap-4 sm:grid-cols-3">
                     {perks.map(({ icon: Icon, label }) => (
-                        <div
-                            key={label}
-                            className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.02] px-4 py-3 text-sm text-gray-200"
-                        >
-                            <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#A46A2A]/40 bg-[#A46A2A]/10 text-[#A46A2A]">
+                        <div key={label} className="flex items-center gap-3 rounded-[28px] bg-white px-4 py-3 text-sm text-[#5c4c40] shadow-[0_10px_30px_rgba(26,18,12,0.04)]">
+                            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#efe6dc] text-[#9F6324]">
                                 <Icon size={18} />
                             </div>
                             <span>{label}</span>
@@ -59,28 +60,65 @@ const SpecialOffers = () => {
                 </div>
 
                 <div className="mt-8 grid gap-5 md:grid-cols-2">
-                    {offers.map((offer) => {
-                        const Icon = offer.icon;
+                    {OFFERS.map((offer) => {
+                        const Icon = offerIcons[offer.percent];
+                        const visual = offerVisuals[offer.percent];
                         return (
-                            <article key={offer.title} className={`group relative overflow-hidden rounded-[28px] border border-[#A46A2A]/25 ${offer.tone} p-7 shadow-[0_20px_40px_rgba(0,0,0,0.22)] transition duration-300 hover:-translate-y-1 hover:border-[#A46A2A]/50 sm:p-9`}>
-                                <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full border border-[#A46A2A]/20 transition duration-500 group-hover:scale-125" />
-                                <div className="relative">
-                                    <div className="flex items-start justify-between gap-4">
-                                        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#A46A2A] text-[#000000] shadow-lg shadow-[#A46A2A]/25">
-                                            <Icon size={22} />
+                            <article
+                                key={offer.title}
+                                className="group overflow-hidden rounded-[32px] bg-white shadow-[0_10px_30px_rgba(26,18,12,0.04)] transition duration-500 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(26,18,12,0.1)]"
+                            >
+                                <div className="relative aspect-[16/10] overflow-hidden bg-[#efe6dc]">
+                                    <img
+                                        src={visual.image}
+                                        alt={offer.title}
+                                        className={`h-full w-full object-cover object-center transition duration-700 group-hover:scale-105 ${offer.comingSoon ? "grayscale-[0.2]" : ""}`}
+                                    />
+                                    <span className="absolute left-4 top-4 rounded-full bg-white/95 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#9F6324]">
+                                        {offer.comingSoon ? "Coming soon" : "Online exclusive"}
+                                    </span>
+                                </div>
+
+                                <div className="p-6 sm:p-8">
+                                    <div className="flex items-center gap-3">
+                                        <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#9F6324] text-white">
+                                            <Icon size={20} />
                                         </div>
-                                        <span className="rounded-full border border-[#A46A2A]/30 bg-black/15 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-[#FFFFC9]">Online exclusive</span>
+                                        <p className="text-sm font-medium text-[#6b5b4e]">{offer.title}</p>
                                     </div>
 
-                                    <p className="mt-8 text-sm font-semibold text-gray-300">{offer.title}</p>
-                                    <h3 className="mt-2 text-4xl font-bold text-[#FFFFC9] sm:text-5xl">{offer.value}</h3>
-                                    <p className="mt-4 max-w-md text-sm leading-6 text-gray-400">{offer.detail}</p>
+                                    <h3 className="display-font mt-4 text-4xl text-[#9F6324] sm:text-5xl">{offer.value}</h3>
+                                    <div className="mt-2 flex items-center gap-2 text-sm">
+                                        <span className="font-semibold text-[#1a120c]">{visual.salePrice}</span>
+                                        <span className="text-[#8a7b70] line-through">{visual.oldPrice}</span>
+                                    </div>
+                                    <p className="mt-4 text-sm leading-6 text-[#6b5b4e]">{offer.detail}</p>
 
-                                    <div className="mt-7 flex flex-wrap items-center gap-4">
-                                        <span className="border border-dashed border-[#A46A2A]/60 bg-black/20 px-4 py-2 text-xs font-bold tracking-[0.2em] text-white">CODE: {offer.code}</span>
-                                        <a href="/products" className="inline-flex items-center gap-2 text-sm font-bold text-[#FFFFC9] transition hover:gap-3">
-                                            Shop offer <ArrowRight size={16} />
-                                        </a>
+                                    <div className="mt-6 flex flex-wrap items-center gap-3">
+                                        {offer.comingSoon ? (
+                                            <Link
+                                                to={offer.href}
+                                                className="inline-flex items-center gap-2 rounded-full bg-[#efe6dc] px-5 py-2.5 text-sm font-semibold text-[#9F6324]"
+                                            >
+                                                View coming soon <ArrowRight size={16} />
+                                            </Link>
+                                        ) : (
+                                            <>
+                                                <button
+                                                    type="button"
+                                                    onClick={(event) => copyCode(event, offer.code)}
+                                                    className="rounded-full bg-[#efe6dc] px-4 py-2.5 text-[11px] font-semibold tracking-[0.16em] text-[#1a120c] transition hover:text-[#9F6324]"
+                                                >
+                                                    {copiedCode === offer.code ? "COPIED" : `CODE: ${offer.code}`}
+                                                </button>
+                                                <Link
+                                                    to={offer.href}
+                                                    className="inline-flex items-center gap-2 rounded-full bg-[#9F6324] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#8a541c]"
+                                                >
+                                                    Shop {offer.value} <ArrowRight size={16} />
+                                                </Link>
+                                            </>
+                                        )}
                                     </div>
                                 </div>
                             </article>
@@ -88,15 +126,15 @@ const SpecialOffers = () => {
                     })}
                 </div>
 
-                <div className="mt-8 flex flex-col items-start justify-between gap-6 rounded-[28px] border border-[#A46A2A]/20 bg-gradient-to-br from-[#160b05] via-[#120805] to-[#000000] p-7 shadow-[0_18px_45px_rgba(0,0,0,0.28)] sm:flex-row sm:items-center sm:p-9">
+                <div className="mt-8 flex flex-col items-start justify-between gap-6 rounded-[32px] bg-white p-7 shadow-[0_10px_30px_rgba(26,18,12,0.04)] sm:flex-row sm:items-center sm:p-9">
                     <div>
-                        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#A46A2A]">More to discover</p>
-                        <h3 className="mt-2 text-2xl font-bold text-white">Your next signature piece is waiting.</h3>
-                        <p className="mt-2 text-sm text-gray-400">Browse the complete collection and find the bag that completes your day effortlessly.</p>
+                        <p className="section-kicker">More to discover</p>
+                        <h3 className="display-font mt-2 text-2xl sm:text-3xl">Your next signature piece is waiting.</h3>
+                        <p className="mt-2 text-sm text-[#6b5b4e]">Browse the complete collection and find the bag that completes your day.</p>
                     </div>
-                    <a href="/products" className="inline-flex shrink-0 items-center gap-2 rounded-full border border-[#A46A2A]/60 bg-[#A46A2A]/10 px-5 py-3 text-sm font-bold text-[#FFFFC9] transition duration-300 hover:bg-[#A46A2A] hover:text-[#000000]">
+                    <Link to="/products" className="inline-flex shrink-0 items-center gap-2 rounded-full bg-[#9F6324] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#8a541c]">
                         View collection <ArrowRight size={16} />
-                    </a>
+                    </Link>
                 </div>
             </div>
         </section>

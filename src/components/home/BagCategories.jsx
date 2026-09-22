@@ -1,166 +1,70 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Sparkles } from "lucide-react";
 
 import image7 from "../../assets/img7 (4).jpeg";
-import image8 from "../../assets/img 8.jpeg";
-import image21 from "../../assets/img 21.png";
+import img8 from "../../assets/img8.jpeg";
 import image10 from "../../assets/img 10.jpeg";
-import image24 from "../../assets/img 24.png";
 import image18 from "../../assets/img18.png";
 
 const BagCategories = () => {
   const categories = [
     {
       id: "cat-handbags",
-      title: "Handbags",
-      description:
-        "Elegant handcrafted handbags for everyday elegance and statement styling.",
+      title: "handbags",
       image: image7,
-      products: "Premium Edit",
       href: "/products?category=Handbags",
     },
     {
-      id: "cat-shoulder",
-      title: "Shoulder Bags",
-      description:
-        "Modern shoulder bags designed for effortless comfort and luxury appeal.",
-      image: image8,
-      products: "New Collection",
-      href: "/products?category=Shoulder%20Bags",
-    },
-    {
-      id: "cat-totes",
-      title: "Tote Bags",
-      description:
-        "Spacious, sophisticated silhouettes crafted to elevate your daily wardrobe.",
-      image: image21,
-      products: "Luxury Edit",
-      href: "/products?category=Tote%20Bags",
-    },
-    {
       id: "cat-crossbody",
-      title: "Crossbody Bags",
-      description:
-        "Chic and practical hands-free designs made for modern luxury living.",
+      title: "crossbody",
       image: image10,
-      products: "Trending",
       href: "/products?category=Crossbody%20Bags",
     },
     {
-      id: "cat-clutches",
-      title: "Clutches & Mini",
-      description:
-        "Refined evening designs that blend premium craftsmanship with compact style.",
-      image: image24,
-      products: "Exclusive",
-      href: "/products?category=Clutches",
+      id: "cat-totes",
+      title: "tote bags",
+      image: img8,
+      href: "/products?category=Tote%20Bags",
     },
     {
-      id: "cat-travel",
-      title: "Travel & Duffles",
-      description:
-        "Statement-making luxury carriers that complement every journey effortlessly.",
+      id: "cat-canvas",
+      title: "canvas bags",
       image: image18,
-      products: "Designer Picks",
-      href: "/products?category=Travel",
+      href: "/products?category=Canvas%20Bags",
     },
   ];
 
   return (
-    <section className="bg-[#f5efe9] py-16 text-gray-900 sm:py-20">
+    <section className="bg-[#f7f2ec] py-12 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        
-        {/* Heading */}
-        <div className="mb-14 text-center">
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#9F6324]/20 bg-[#9F6324]/10 px-4 py-2 shadow-sm shadow-[#9F6324]/10">
-            <Sparkles size={14} className="text-[#9F6324]" />
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#9F6324]">
-              Explore Our Collection
-            </span>
-          </div>
-
-          <h2 className="text-3xl font-bold tracking-[-0.03em] text-gray-900 sm:text-4xl lg:text-5xl">
-            Shop by <span className="text-[#9F6324]">Bag Category</span>
+        <div className="mb-8 text-center sm:mb-12">
+          <p className="section-kicker">Start shopping</p>
+          <h2 className="display-font mt-3 text-3xl text-[#1a120c] sm:text-5xl">
+            Shop by category
           </h2>
-
-          <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-gray-600 sm:text-base">
-            Discover our carefully selected collection of stylish, practical,
-            and premium bags for every occasion.
-          </p>
         </div>
 
-        {/* Categories Grid */}
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4 lg:gap-6">
           {categories.map((category) => (
-            <Link
-              key={category.id}
-              to={category.href}
-              className="group flex flex-col justify-between overflow-hidden rounded-[28px] border border-[#1b120d] bg-gradient-to-br from-[#120805] via-[#1a0c07] to-[#000000] text-white shadow-[0_25px_55px_rgba(0,0,0,0.12)] transition-all duration-300 hover:-translate-y-2 hover:border-[#9F6324]/70 hover:shadow-[0_28px_60px_rgba(159,99,36,0.18)]"
-            >
-              <div>
-                {/* Image */}
-                <div className="relative h-[270px] overflow-hidden bg-zinc-900">
+            <Link key={category.id} to={category.href} className="group block text-center">
+              <div className="overflow-hidden rounded-2xl bg-[#efe6dc] shadow-[0_12px_32px_rgba(26,18,12,0.08)] transition duration-500 group-hover:-translate-y-1.5 group-hover:shadow-[0_22px_48px_rgba(26,18,12,0.14)] sm:rounded-[28px]">
+                <div className="aspect-[4/5] overflow-hidden">
                   <img
                     src={category.image}
                     alt={category.title}
                     loading="lazy"
                     decoding="async"
-                    className="h-full w-full object-cover transition duration-700 group-hover:scale-110"
+                    className="h-full w-full object-cover object-center transition duration-700 group-hover:scale-110"
                   />
-
-                  {/* Badge */}
-                  <div className="absolute right-4 top-4 rounded-full border border-white/10 bg-black/80 px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-[#FFFFC9] backdrop-blur-md shadow-md">
-                    {category.products}
-                  </div>
-                </div>
-
-                {/* Text Content */}
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-white transition-colors duration-300 group-hover:text-[#9F6324]">
-                    {category.title}
-                  </h3>
-
-                  <p className="mt-3 text-sm leading-6 text-gray-300">
-                    {category.description}
-                  </p>
                 </div>
               </div>
-
-              {/* MODERN EXPLORE BUTTON FOOTER */}
-              <div className="px-6 pb-6 pt-2">
-                <div className="inline-flex w-full items-center justify-between rounded-full border border-[#9F6324]/20 bg-[#9F6324]/10 py-2.5 pl-5 pr-2 backdrop-blur-sm transition-all duration-300 group-hover:border-[#9F6324]/50 group-hover:bg-[#9F6324]/20 group-hover:shadow-[0_0_15px_rgba(159,99,36,0.2)]">
-                  <span className="text-xs font-bold uppercase tracking-widest text-[#FFFFC9] transition-colors duration-300 group-hover:text-white">
-                    Explore Collection
-                  </span>
-
-                  {/* Circular Animated Arrow Icon */}
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#9F6324] text-black shadow-md transition-all duration-300 group-hover:bg-white group-hover:text-[#9F6324] group-hover:scale-105">
-                    <ArrowRight
-                      size={15}
-                      className="transition-transform duration-300 group-hover:translate-x-0.5"
-                    />
-                  </div>
-                </div>
-              </div>
+              <h3 className="display-font mt-3 text-lg capitalize tracking-wide text-[#1a120c] transition group-hover:text-[#9F6324] sm:mt-4 sm:text-2xl">
+                {category.title}
+              </h3>
+              <span className="mx-auto mt-2 block h-px w-8 bg-[#9F6324]/40 transition-all duration-300 group-hover:w-14 group-hover:bg-[#9F6324]" />
             </Link>
           ))}
         </div>
-
-        {/* Bottom Action Button */}
-        <div className="mt-14 flex justify-center">
-          <Link
-            to="/products"
-            className="group flex items-center gap-3 rounded-full border border-[#9F6324]/40 bg-zinc-950 px-8 py-4 text-sm font-bold uppercase tracking-wider text-white shadow-xl transition duration-300 hover:border-[#9F6324] hover:bg-[#9F6324] hover:text-black hover:shadow-[0_10px_25px_rgba(159,99,36,0.3)]"
-          >
-            View All Bags
-            <ArrowRight
-              size={17}
-              className="transition-transform duration-300 group-hover:translate-x-1"
-            />
-          </Link>
-        </div>
-
       </div>
     </section>
   );

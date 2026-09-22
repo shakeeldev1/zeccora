@@ -1,84 +1,191 @@
-import React, { useState } from "react";
-import { ArrowLeft, Globe2, Heart, MessageCircle, Share2, ShoppingBag } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import { Heart, MessageCircle, Share2, ShoppingBag, Truck, Undo2, ShieldCheck, ZoomIn, X } from "lucide-react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { products } from "./Products";
+import { findProduct, products } from "../../lib/products";
+import { addItemToCart } from "../../lib/cart";
+import { SITE, whatsappUrl } from "../../lib/site";
+import { useWishlist } from "../../lib/wishlist";
+import ProductCard from "../products/ProductCard";
 
 const ProductDetail = () => {
     const { productId } = useParams();
     const navigate = useNavigate();
-    const product = products.find((item) => item.id === Number(productId));
+    const product = findProduct(productId);
+    const { wishlist, toggle } = useWishlist();
     const [quantity, setQuantity] = useState(1);
     const [copied, setCopied] = useState(false);
+    const [selectedColor, setSelectedColor] = useState(product?.colors?.[0]?.name || "Black");
+    const [zoomOpen, setZoomOpen] = useState(false);
+
+    useEffect(() => {
+        setQuantity(1);
+        setSelectedColor(product?.colors?.[0]?.name || "Black");
+        setZoomOpen(false);
+    }, [productId, product]);
+
+    useEffect(() => {
+        document.title = product ? `${product.name} | Zeccora` : "Product not found | Zeccora";
+    }, [product]);
 
     if (!product) {
-        return <section className="min-h-[60vh] bg-gradient-to-b from-[#000000] via-[#120805] to-[#000000] px-6 py-24 text-center text-white"><h1 className=" text-4xl font-bold">Product not found</h1><Link to="/products" className="mt-6 inline-block text-[#FFFFC9]">Back to products</Link></section>;
+        return (
+            <section className="min-h-[60vh] bg-[#f7f2ec] px-6 py-24 text-center text-[#1a120c]">
+                <h1 className="display-font text-4xl">Product not found</h1>
+                <Link to="/products" className="mt-6 inline-block text-[#9F6324]">Back to products</Link>
+            </section>
+        );
     }
 
-    const shareBaseUrl = (import.meta.env.VITE_PUBLIC_BASE_URL || window.location.origin).replace(/\/$/, "");
-    const productUrl = `${shareBaseUrl}/products/${product.id}`;
+    const productUrl = `${(import.meta.env.VITE_PUBLIC_BASE_URL || window.location.origin).replace(/\/$/, "")}/products/${product.id}`;
     const shareText = `Check out ${product.name} from Zeccora`;
+    const suggestedProducts = products.filter((item) => item.id !== product.id && item.category === product.category).slice(0, 4);
+    const saved = wishlist.includes(product.id);
+
     const addToCart = (redirectToCheckout = false) => {
-        const savedCart = JSON.parse(localStorage.getItem("urban-bazaar-cart") || "[]");
-        const existingProduct = savedCart.find((item) => item.id === product.id);
-        const nextCart = existingProduct
-            ? savedCart.map((item) => item.id === product.id ? { ...item, quantity: item.quantity + quantity } : item)
-            : [...savedCart, { ...product, quantity }];
-        localStorage.setItem("urban-bazaar-cart", JSON.stringify(nextCart));
-        window.dispatchEvent(new Event("cart-updated"));
+        addItemToCart({ ...product, image: product.image, color: selectedColor }, quantity);
         navigate(redirectToCheckout ? "/cart?checkout=1" : "/cart");
     };
 
-    const shareProduct = async () => {
-        if (navigator.share) {
-            await navigator.share({ title: product.name, text: shareText, url: productUrl });
-        } else {
-            await navigator.clipboard.writeText(productUrl);
-            setCopied(true);
-            window.setTimeout(() => setCopied(false), 1800);
-        }
-    };
-
-    const socialLinks = [
-        { label: "WhatsApp", icon: MessageCircle, url: `https://wa.me/?text=${encodeURIComponent(`${shareText} ${productUrl}`)}` },
-        { label: "Facebook", icon: Globe2, url: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(productUrl)}` },
-        { label: "X", icon: Share2, url: `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(productUrl)}` },
-    ];
-
-    const suggestedProducts = products.filter((item) => item.id !== product.id && item.category === product.category).slice(0, 4);
-
     return (
-        <section className="min-h-[70vh] bg-gradient-to-b from-[#000000] via-[#120805] to-[#000000] px-4 py-12 text-white sm:px-6 lg:px-8">
+        <section className="min-h-[70vh] bg-[#f7f2ec] px-3 py-8 text-[#1a120c] sm:px-6 sm:py-12 lg:px-8">
             <div className="mx-auto max-w-6xl">
-                <Link to="/products" className="inline-flex items-center gap-2 text-sm text-gray-400 transition hover:text-[#FFFFC9]"><ArrowLeft size={16} /> Back to collection</Link>
+                <nav className="flex flex-wrap items-center gap-1.5 text-xs text-[#6b5b4e] sm:gap-2 sm:text-sm">
+                    <Link to="/" className="transition hover:text-[#9F6324]">Home</Link>
+                    <span>/</span>
+                    <Link to="/products" className="transition hover:text-[#9F6324]">Collection</Link>
+                    <span>/</span>
+                    <Link to={`/products?category=${encodeURIComponent(product.category)}`} className="transition hover:text-[#9F6324]">{product.category}</Link>
+                    <span>/</span>
+                    <span className="text-[#1a120c]">{product.name}</span>
+                </nav>
+
                 <div className="mt-8 grid gap-10 lg:grid-cols-2 lg:gap-16">
-                    <div className="overflow-hidden border border-white/10 bg-gradient-to-br from-[#160b05] to-[#000000] p-3"><img src={product.image} alt={product.name} className="aspect-square w-full object-cover" /></div>
+                    <div>
+                        <button
+                            type="button"
+                            onClick={() => setZoomOpen(true)}
+                            className="group relative w-full overflow-hidden rounded-2xl bg-[#efe6dc] sm:rounded-[28px]"
+                            aria-label={`Zoom ${product.name}`}
+                        >
+                            <img src={product.image} alt={product.name} className="aspect-[4/5] h-full w-full object-cover object-center" />
+                            <span className="absolute bottom-4 right-4 inline-flex items-center gap-1 rounded-full bg-white/95 px-3 py-1.5 text-[10px] uppercase tracking-[0.16em] text-[#1a120c]">
+                                <ZoomIn size={12} /> View
+                            </span>
+                        </button>
+                    </div>
                     <div className="flex flex-col justify-center">
-                        <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#9F6324]">{product.category} / {product.badge}</p>
-                        <h1 className="mt-4  text-4xl font-bold sm:text-5xl">{product.name}</h1>
-                        <div className="mt-5 flex items-center gap-3"><span className="text-2xl font-bold text-[#FFFFC9]">{product.price}</span><span className="text-sm text-gray-500 line-through">{product.oldPrice}</span></div>
-                        <p className="mt-6 leading-7 text-gray-400">A refined Zeccora piece designed for effortless everyday elegance. Thoughtful structure, premium finish, and enough room for the moments that matter.</p>
-                        <div className="mt-8 flex flex-wrap items-center gap-3">
-                            <div className="flex items-center border border-white/15"><button type="button" aria-label="Decrease quantity" onClick={() => setQuantity(Math.max(1, quantity - 1))} className="px-4 py-3 text-gray-300 hover:text-[#FFFFC9]">-</button><span className="w-8 text-center">{quantity}</span><button type="button" aria-label="Increase quantity" onClick={() => setQuantity(quantity + 1)} className="px-4 py-3 text-gray-300 hover:text-[#FFFFC9]">+</button></div>
-                            <button type="button" onClick={addToCart} className="flex flex-1 items-center justify-center gap-2 border border-[#9F6324] px-5 py-3 font-bold text-[#FFFFC9] transition hover:bg-[#9F6324] hover:text-[#000000]"><ShoppingBag size={17} /> Add to cart</button>
-                            <button type="button" onClick={() => addToCart(true)} className="w-full bg-[#9F6324] px-5 py-3 font-bold text-[#000000] transition hover:bg-[#FFFFC9] sm:w-auto">Buy now</button>
+                        <p className="text-sm capitalize text-[#8a7b70]">{product.category} · {product.sku}</p>
+                        <h1 className="display-font mt-2 text-3xl sm:mt-3 sm:text-6xl">{product.name}</h1>
+                        <div className="mt-5 flex flex-wrap items-center gap-3">
+                            <span className="text-2xl font-semibold text-[#9F6324]">{product.price}</span>
+                            <span className="text-sm text-[#8a7b70] line-through">{product.oldPrice}</span>
+                            {product.discount ? <span className="rounded-full bg-[#9F6324]/10 px-3 py-1 text-sm font-medium text-[#9F6324]">{product.discount}% off</span> : null}
                         </div>
-                        <div className="mt-8 border-t border-white/10 pt-6"><p className="mb-3 flex items-center gap-2 text-sm font-semibold"><Share2 size={16} className="text-[#9F6324]" /> Share this piece</p><div className="flex flex-wrap gap-2"><button type="button" onClick={shareProduct} className="flex items-center gap-2 border border-white/15 px-3 py-2 text-xs text-gray-300 hover:border-[#9F6324] hover:text-[#FFFFC9]"><Share2 size={14} /> {copied ? "Link copied" : "Share link"}</button>{socialLinks.map(({ label, icon: Icon, url }) => <a key={label} href={url} target="_blank" rel="noreferrer" aria-label={`Share on ${label}`} className="flex items-center gap-2 border border-white/15 px-3 py-2 text-xs text-gray-300 hover:border-[#9F6324] hover:text-[#FFFFC9]"><Icon size={14} /> {label}</a>)}</div></div>
-                        <div className="mt-6 flex items-center gap-2 text-xs text-gray-500"><Heart size={15} className="text-[#9F6324]" /> Carefully packed and delivered across Pakistan</div>
+                        <p className="mt-6 leading-7 text-[#6b5b4e]">{product.description}</p>
+
+                        <div className="mt-8">
+                            <p className="text-sm">Color: <span className="font-medium text-[#9F6324]">{selectedColor}</span></p>
+                            <p className="mt-1 text-xs text-[#8a7b70]">Photo shows this design. We dispatch the color you select.</p>
+                            <div className="mt-3 flex flex-wrap gap-3">
+                                {product.colors.map((color) => (
+                                    <button
+                                        key={color.name}
+                                        type="button"
+                                        onClick={() => setSelectedColor(color.name)}
+                                        className={`flex items-center gap-2 rounded-full bg-white px-3 py-2 text-xs capitalize ${selectedColor === color.name ? "ring-1 ring-[#9F6324] text-[#9F6324]" : "text-[#5c4c40]"}`}
+                                        aria-label={`Select ${color.name}`}
+                                    >
+                                        <span className="h-4 w-4 rounded-full border border-black/10" style={{ backgroundColor: color.hex }} />
+                                        {color.name}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+
+                        <dl className="mt-8 grid grid-cols-2 gap-3 text-sm">
+                            <div className="rounded-2xl bg-white p-4">
+                                <dt className="text-xs uppercase tracking-[0.14em] text-[#8a7b70]">Material</dt>
+                                <dd className="mt-1 text-[#1a120c]">{product.material}</dd>
+                            </div>
+                            <div className="rounded-2xl bg-white p-4">
+                                <dt className="text-xs uppercase tracking-[0.14em] text-[#8a7b70]">Size</dt>
+                                <dd className="mt-1 text-[#1a120c]">{product.dimensions}</dd>
+                            </div>
+                            <div className="rounded-2xl bg-white p-4">
+                                <dt className="text-xs uppercase tracking-[0.14em] text-[#8a7b70]">Strap</dt>
+                                <dd className="mt-1 text-[#1a120c]">{product.strap}</dd>
+                            </div>
+                            <div className="rounded-2xl bg-white p-4">
+                                <dt className="text-xs uppercase tracking-[0.14em] text-[#8a7b70]">Availability</dt>
+                                <dd className="mt-1 text-emerald-700">Ready to dispatch</dd>
+                            </div>
+                        </dl>
+
+                        <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:flex-wrap sm:items-center">
+                            <div className="flex items-center justify-between rounded-full bg-white sm:justify-start">
+                                <button type="button" aria-label="Decrease quantity" onClick={() => setQuantity(Math.max(1, quantity - 1))} className="px-5 py-3">-</button>
+                                <span className="w-8 text-center">{quantity}</span>
+                                <button type="button" aria-label="Increase quantity" onClick={() => setQuantity(quantity + 1)} className="px-5 py-3">+</button>
+                            </div>
+                            <div className="flex gap-3">
+                                <button type="button" onClick={() => addToCart()} className="flex min-w-0 flex-1 items-center justify-center gap-2 rounded-full bg-[#9F6324] px-5 py-3 font-semibold text-white">
+                                    <ShoppingBag size={17} /> Add to cart
+                                </button>
+                                <button type="button" onClick={() => toggle(product.id)} className={`shrink-0 rounded-full border px-4 py-3 ${saved ? "border-[#9F6324] text-[#9F6324]" : "border-black/10 text-[#5c4c40]"}`} aria-label="Save for later">
+                                    <Heart size={17} fill={saved ? "#9F6324" : "none"} />
+                                </button>
+                            </div>
+                            <button type="button" onClick={() => addToCart(true)} className="w-full rounded-full border border-[#9F6324] px-5 py-3 font-semibold text-[#9F6324] sm:w-auto">
+                                Buy now
+                            </button>
+                        </div>
+
+                        <div className="mt-8 grid gap-3 text-xs text-[#5c4c40] sm:grid-cols-3">
+                            <p className="flex items-center gap-2 rounded-2xl bg-white p-3"><Truck size={14} className="text-[#9F6324]" /> {SITE.deliveryWindow} · Rs. {SITE.deliveryFee} delivery</p>
+                            <p className="flex items-center gap-2 rounded-2xl bg-white p-3"><Undo2 size={14} className="text-[#9F6324]" /> {SITE.returnDays}-day returns</p>
+                            <p className="flex items-center gap-2 rounded-2xl bg-white p-3"><ShieldCheck size={14} className="text-[#9F6324]" /> Cash on delivery</p>
+                        </div>
+
+                        <div className="mt-6 flex flex-wrap gap-4 text-sm">
+                            <Link to="/size-guide" className="text-[#9F6324]">Size guide</Link>
+                            <Link to="/shipping" className="text-[#9F6324]">Shipping</Link>
+                            <Link to="/returns" className="text-[#9F6324]">Returns</Link>
+                        </div>
+
+                        <button type="button" onClick={async () => {
+                            if (navigator.share) await navigator.share({ title: product.name, text: shareText, url: productUrl });
+                            else {
+                                await navigator.clipboard.writeText(productUrl);
+                                setCopied(true);
+                                window.setTimeout(() => setCopied(false), 1800);
+                            }
+                        }} className="mt-6 inline-flex items-center gap-2 text-sm text-[#6b5b4e] hover:text-[#9F6324]">
+                            <Share2 size={14} /> {copied ? "Link copied" : "Share"}
+                        </button>
+                        <a href={whatsappUrl(`${shareText} ${productUrl}`)} className="mt-3 inline-flex items-center gap-2 text-xs text-[#6b5b4e] hover:text-[#9F6324]">
+                            <MessageCircle size={14} /> Ask on WhatsApp
+                        </a>
                     </div>
                 </div>
-                <div className="mt-20 border-t border-white/10 pt-12">
-                    <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#9F6324]">You may also like</p>
-                    <h2 className="mt-3  text-3xl font-bold">More from the collection</h2>
-                    <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-                        {suggestedProducts.map((suggestedProduct) => (
-                            <Link key={suggestedProduct.id} to={`/products/${suggestedProduct.id}`} className="group overflow-hidden border border-white/10 bg-gradient-to-br from-[#160b05] to-[#000000] transition hover:-translate-y-1 hover:border-[#9F6324]/60">
-                                <div className="h-56 overflow-hidden bg-[#2c2c2c]"><img src={suggestedProduct.image} alt={suggestedProduct.name} className="h-full w-full object-cover transition duration-500 group-hover:scale-105" /></div>
-                                <div className="p-4"><p className="text-[10px] uppercase tracking-[0.18em] text-gray-500">{suggestedProduct.category}</p><h3 className="mt-2 font-bold group-hover:text-[#FFFFC9]">{suggestedProduct.name}</h3><p className="mt-3 text-sm font-bold text-[#FFFFC9]">{suggestedProduct.price}</p></div>
-                            </Link>
-                        ))}
+
+                {suggestedProducts.length > 0 ? (
+                    <div className="mt-20">
+                    <h2 className="display-font text-center text-3xl sm:text-5xl">You may also like</h2>
+                        <div className="mt-10 grid grid-cols-2 gap-x-3 gap-y-8 sm:mt-20 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-4">
+                            {suggestedProducts.map((suggestedProduct) => (
+                                <ProductCard key={suggestedProduct.id} product={suggestedProduct} />
+                            ))}
+                        </div>
                     </div>
-                </div>
+                ) : null}
             </div>
+
+            {zoomOpen ? (
+                <div className="fixed inset-0 z-[70] flex items-center justify-center bg-black/80 p-4">
+                    <button type="button" aria-label="Close image" onClick={() => setZoomOpen(false)} className="absolute right-5 top-5 text-white"><X size={28} /></button>
+                    <img src={product.image} alt={product.name} className="max-h-[90vh] max-w-full rounded-2xl object-contain" />
+                </div>
+            ) : null}
         </section>
     );
 };

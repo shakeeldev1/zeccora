@@ -1,56 +1,53 @@
 import React from "react";
 import { ArrowRight, Sparkles } from "lucide-react";
+import { Link } from "react-router-dom";
+import { OFFERS } from "../../lib/offers";
 
 const OffersHero = () => {
     return (
-        <section className="relative isolate overflow-hidden border-b border-[#A46A2A]/20">
+        <section className="relative isolate min-h-[360px] overflow-hidden bg-[#efe6dc] sm:min-h-[540px]">
             <img
-                src="https://i.pinimg.com/736x/8a/16/47/8a1647f900a974b524237331e9fc0cdb.jpg"
+                src="/hero/hero4.png"
                 alt="Exclusive offers from Zeccora"
-                className="absolute inset-0 -z-20 h-full w-full object-cover opacity-90"
+                className="absolute inset-0 -z-20 h-full w-full object-cover object-[center_20%] sm:object-center"
             />
-            <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(164,106,42,0.15),rgba(0,0,0,0.38)_35%,rgba(0,0,0,0.78)_100%)]" />
-            <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(0,0,0,0.74)_0%,rgba(0,0,0,0.62)_36%,rgba(0,0,0,0.55)_100%)]" />
+            <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#1a120c]/35 via-transparent to-transparent" />
+            <div className="pointer-events-none absolute -left-16 top-1/4 h-64 w-64 rounded-full bg-[#9F6324]/20 blur-3xl" />
 
-            <div className="mx-auto flex min-h-[420px] max-w-[1600px] items-center justify-center px-4 py-16 text-center sm:min-h-[500px] sm:px-6 lg:px-10">
-                <div className="flex max-w-3xl flex-col items-center">
-                    <nav aria-label="Breadcrumb" className="mb-8 flex items-center justify-center gap-2 text-xs font-medium text-gray-300 sm:text-sm">
-                        <a href="/" className="transition hover:text-[#FFFFC9]">Home</a>
-                        <span className="text-[#A46A2A]">/</span>
-                        <span className="text-[#FFFFC9]">Offers</span>
-                        <span className="text-[#A46A2A]">/</span>
-                        <span className="text-gray-400">Special Deals</span>
-                    </nav>
+            <div className="mx-auto flex min-h-[360px] max-w-7xl items-end px-4 py-8 sm:min-h-[540px] sm:items-center sm:px-8 sm:py-10 lg:px-12">
+                <div className="relative max-w-xl overflow-hidden rounded-[24px] border border-white/70 bg-white/80 p-4 shadow-[0_30px_80px_rgba(26,18,12,0.2)] backdrop-blur-xl sm:rounded-[32px] sm:p-9 lg:p-10">
+                    <div className="absolute inset-x-8 top-0 h-[3px] bg-gradient-to-r from-transparent via-[#9F6324] to-transparent" />
 
-                    <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#A46A2A]/60 bg-[#A46A2A]/10 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#FFFFC9] backdrop-blur-sm">
-                        <Sparkles size={12} className="text-[#A46A2A]" />
+                    <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-[#9F6324]/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#9F6324]">
+                        <Sparkles size={12} />
                         Limited-time edit
                     </div>
 
-                    <h1 className="text-4xl font-bold leading-[1.08] tracking-[-0.04em] text-white sm:text-6xl lg:text-7xl">
+                    <h1 className="display-font text-[2.15rem] leading-[0.94] text-[#1a120c] sm:text-6xl">
                         Luxury,
-                        <span className="mt-2 block text-[#A46A2A]">For Less</span>
+                        <span className="mt-1 block italic text-[#9F6324]">for less.</span>
                     </h1>
 
-                    <p className="mx-auto mt-6 max-w-2xl text-sm leading-7 text-gray-200 sm:text-base">
-                        Discover premium essentials, seasonal edits, and curated offers designed to make your next style moment feel even more special.
+                    <p className="mt-5 max-w-md text-sm leading-7 text-[#5c4c40]">
+                      Shop 30% OFF on the Zeccora Collection - available now. 15% OFF coming soon! Sale prices are applied to products and in your cart.
+
                     </p>
 
-                    <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-                        <a
-                            href="#special-deals"
-                            className="inline-flex items-center gap-3 rounded-full bg-[#A46A2A] px-6 py-3.5 text-sm font-bold text-[#000000] shadow-lg shadow-[#A46A2A]/20 transition duration-300 hover:-translate-y-0.5 hover:bg-[#FFFFC9]"
-                        >
-                            Explore offers
-                            <ArrowRight size={17} />
-                        </a>
-
-                        <a
-                            href="/products"
-                            className="inline-flex items-center gap-3 rounded-full border border-white/20 bg-black/25 px-6 py-3.5 text-sm font-bold text-white transition duration-300 hover:border-[#A46A2A] hover:text-[#A46A2A]"
-                        >
-                            View collection
-                        </a>
+                    <div className="chip-row mt-5 sm:mt-7 sm:flex-wrap">
+                        {OFFERS.map((offer) => (
+                            <Link
+                                key={offer.percent}
+                                to={offer.href}
+                                className={`inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.14em] transition ${
+                                    offer.comingSoon
+                                        ? "bg-[#f7f2ec] text-[#8a7b70] hover:text-[#9F6324]"
+                                        : "bg-[#9F6324] text-white hover:bg-[#8a541c]"
+                                }`}
+                            >
+                                {offer.comingSoon ? `${offer.value} · Soon` : `Shop ${offer.value}`}
+                                {!offer.comingSoon ? <ArrowRight size={14} /> : null}
+                            </Link>
+                        ))}
                     </div>
                 </div>
             </div>

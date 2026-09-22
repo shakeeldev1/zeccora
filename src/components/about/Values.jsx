@@ -35,7 +35,7 @@ const values = [
 
 const Values = () => {
   return (
-    <section className="w-full bg-gradient-to-b from-[#000000] via-[#120805] to-[#000000] py-16 sm:py-20 lg:py-24">
+    <section className="w-full bg-[#f7f2ec] py-16 text-[#1a120c] sm:py-20 lg:py-10">
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
         
         {/* Section Heading */}
@@ -44,8 +44,8 @@ const Values = () => {
             What We Stand For
           </p>
 
-          <h2 className=" text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
-            Our <span className="text-[#A46A2A]">Values</span>
+          <h2 className="display-font text-4xl sm:text-5xl lg:text-6xl">
+            Our <span className="italic text-[#9F6324]">Values</span>
           </h2>
 
           {/* Decorative Line */}
@@ -55,13 +55,13 @@ const Values = () => {
             <div className="h-px w-12 bg-[#A46A2A]" />
           </div>
 
-          <p className="mt-6 text-sm leading-7 text-gray-400 sm:text-base">
+          <p className="mt-6 text-sm leading-7 text-[#6b5b4e] sm:text-base">
             The details that guide our edit
           </p>
         </div>
 
         {/* Values Cards */}
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           
           {values.map((item) => {
             const Icon = item.icon;
@@ -69,31 +69,14 @@ const Values = () => {
             return (
               <div
                 key={item.title}
-                className="
-                  group relative overflow-hidden
-                  border border-[#A46A2A]/20
-                  bg-gradient-to-b from-[#000000] via-[#120805] to-[#000000]
-                  p-7
-                  transition-all duration-500
-                  hover:-translate-y-2
-                  hover:border-[#A46A2A]/70
-                "
+                className="group relative overflow-hidden rounded-[28px] bg-white p-7 transition hover:-translate-y-1"
               >
                 
                 {/* Golden Top Line */}
                 <div className="absolute left-0 top-0 h-[2px] w-0 bg-[#A46A2A] transition-all duration-500 group-hover:w-full" />
 
                 {/* Icon */}
-                <div
-                  className="
-                    mb-6 flex h-14 w-14 items-center justify-center
-                    border border-[#A46A2A]/40
-                    bg-[#292716]
-                    transition-all duration-300
-                    group-hover:bg-[#342d15]
-                    group-hover:border-[#A46A2A]
-                  "
-                >
+                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#efe6dc]">
                   <Icon
                     size={26}
                     strokeWidth={1.7}
@@ -106,12 +89,12 @@ const Values = () => {
                 </div>
 
                 {/* Title */}
-                <h3 className=" text-xl font-semibold text-white">
+                <h3 className="text-xl font-semibold">
                   {item.title}
                 </h3>
 
                 {/* Description */}
-                <p className="mt-4 text-sm leading-7 text-gray-400">
+                <p className="mt-4 text-sm leading-7 text-[#6b5b4e]">
                   {item.description}
                 </p>
 
