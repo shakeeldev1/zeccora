@@ -18,7 +18,7 @@ const heroSlides = [
   {
     src: "/hero/hero1.png",
     alt: "Luxury ladies bag collection",
-    subtitle: "THE ZECCORA EDIT",
+    subtitle: " ZECCORA ",
     heading: "TIMELESS",
     highlight: "BY DESIGN",
     text: "Discover a considered collection of premium handbags made to elevate every day.",

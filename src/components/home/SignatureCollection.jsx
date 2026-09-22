@@ -231,9 +231,9 @@ const SignatureCollection = () => {
   ];
 
   const stats = [
-    { number: "150", symbol: "+", label: "Premium Products" },
-    { number: "15K", symbol: "+", label: "Happy Customers" },
-    { number: "12", symbol: "+", label: "Countries Served" },
+    { number: "15", symbol: "+", label: "Premium Products" },
+    { number: "10", symbol: "+", label: "Happy Customers" },
+    { number: "3", symbol: "+", label: "Countries Served" },
     { number: "4.9", symbol: "", label: "Customer Rating" },
   ];
 

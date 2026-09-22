@@ -55,7 +55,7 @@ const Contact = () => {
           message: formData.message,
 
           // Optional extra values for EmailJS template
-          to_email: "info@zeccora.store",
+          to_email: "info@zeccora.com",
           reply_to: formData.email,
         },
         {
@@ -120,7 +120,7 @@ const Contact = () => {
                 <div>
                   <p className="text-lg text-white">Email</p>
                   <p className="mt-2 break-all text-lg text-white/90">
-                    info@zeccora.store
+                    info@zeccora.com
                   </p>
                 </div>
               </div>
@@ -134,7 +134,7 @@ const Contact = () => {
                 <div>
                   <p className="text-lg text-white">Address</p>
                   <p className="mt-2 text-lg text-white/90">
-                    Bahawalpur, Pakistan
+                    Johar Town, Lahore, Pakistan
                   </p>
                 </div>
               </div>
