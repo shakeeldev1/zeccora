@@ -1,12 +1,25 @@
 import { discountedAmount, formatPrice } from "./offers";
+import image9 from "../assets/img 9.jpeg";
 import image7 from "../assets/img7 (4).jpeg";
+import image11 from "../assets/img 11.jpeg";
 import image8 from "../assets/img8.jpeg";
 import image10 from "../assets/img 10.jpeg";
+import image13 from "../assets/img 13.jpeg";
+import image14 from "../assets/img 14.jpeg";
+import image16 from "../assets/img 16.jpeg";
 import image18 from "../assets/img18.png";
+import image21 from "../assets/img 21.png";
+import image22 from "../assets/img 22.png";
+import image17 from "../assets/img17.jpeg";
+import img07 from "../assets/img07.png";
+import img007 from "../assets/img007.png";
+import img010 from "../assets/img010.png";
+import img0010 from "../assets/img0010.png";
 import bag1 from "../assets/bag1.png";
 import bag2 from "../assets/bag2.png";
 import bag3 from "../assets/bag3.png";
 import bag4 from "../assets/bag4.png";
+import bag04 from "../assets/bag04.png";
 
 export const COLOR_OPTIONS = [
   { name: "Black", hex: "#1c1c1c" },
@@ -17,21 +30,38 @@ export const COLOR_OPTIONS = [
 
 const OLD_PRICE = 3143;
 
+const productGalleries = new Map([
+  [image9, [image7, img07, img007]],
+  [bag4, [image18, bag04, bag4]],
+  [image8, [image8, image16, bag2]],
+  [image10, [image10, img010, img0010]],
+  [bag1, [bag1, image9, image11]],
+  [bag2, [bag2, image13, image16]],
+  [image18, [image18, image21, image22]],
+  [bag3, [bag4, bag04, image17]],
+]);
+
 const withMedia = (product) => {
   const salePrice = discountedAmount(OLD_PRICE, product.discount);
+  const images = productGalleries.get(product.image) || [product.image];
 
   return {
     ...product,
-    images: [product.image],
+    images,
     oldPrice: formatPrice(OLD_PRICE),
     price: formatPrice(salePrice),
     priceValue: salePrice,
     oldPriceValue: OLD_PRICE,
     inStock: true,
-    colors: COLOR_OPTIONS.map((color) => ({
-      ...color,
-      image: product.image,
-    })),
+    colors: COLOR_OPTIONS.map((color, colorIndex) => {
+      const colorImages = images;
+
+      return {
+        ...color,
+        image: colorImages[0],
+        images: colorImages,
+      };
+    }),
   };
 };
 
@@ -43,14 +73,14 @@ const rawProducts = [
     category: "Handbags",
     badge: "Bestseller",
     discount: 30,
-    image: image7,
+    image: image9,
     material: "Structured vegan leather",
     dimensions: "28 × 20 × 11 cm",
     strap: "Detachable shoulder strap",
     description:
       "A clean everyday handbag with a structured body, enough room for a wallet, phone, and compact pouch. Built for workdays in Lahore and weekends out.",
   },
- {
+  {
     id: 17,
     sku: "ZC-SH-17",
     name: "Arden Everyday Bag",
@@ -80,20 +110,6 @@ const rawProducts = [
       "A slim shoulder bag with a soft drop and easy open-close. Sits close to the body and keeps daily essentials in one place.",
   },
   {
-    id: 13,
-    sku: "ZC-HB-13",
-    name: "Serena Quilted Bag",
-    category: "Handbags",
-    badge: "Limited",
-    discount: 30,
-    image: bag1,
-    material: "Quilted vegan leather",
-    dimensions: "27 × 19 × 10 cm",
-    strap: "Chain shoulder strap",
-    description:
-      "Soft quilting with a structured base. A statement everyday bag that still sits neatly under the arm.",
-  },
-  {
     id: 4,
     sku: "ZC-SH-04",
     name: "The Weekender",
@@ -107,55 +123,9 @@ const rawProducts = [
     description:
       "A roomier shoulder bag for longer days. Holds a small water bottle, makeup pouch, and a light wrap without losing shape.",
   },
-  
-    {
-    id: 15,
-    sku: "ZC-CB-15",
-    name: "Soleil Chain Bag",
-    category: "Crossbody Bags",
-    badge: "New arrival",
-    discount: 30,
-    image: bag2,
-    material: "Polished vegan leather",
-    dimensions: "23 × 15 × 7 cm",
-    strap: "Decorative chain strap",
-    description:
-      "A chain crossbody with a bright, finished look. Small, secure, and made to lift a simple outfit.",
-  },
- 
-  {
-    id: 12,
-    sku: "ZC-CL-12",
-    name: "Marais Evening Bag",
-    category: "Clutches",
-    badge: "Exclusive",
-    discount: 30,
-    image: image18,
-    material: "Smooth evening finish",
-    dimensions: "24 × 14 × 5 cm",
-    strap: "Optional slim chain",
-    description:
-      "An evening clutch with a clean face and just enough room for phone, lipstick, and cards. Made for dinners, weddings, and events.",
-  },
- 
-  
 
-  {
-    id: 16,
-    sku: "ZC-HB-16",
-    name: "Camille Structured Bag",
-    category: "Handbags",
-    badge: "Editor's pick",
-    discount: 30,
-    image: bag3,
-    material: "Firm structured finish",
-    dimensions: "31 × 22 × 12 cm",
-    strap: "Top handle and long strap",
-    description:
-      "A defined handbag with a stable base. Stands on its own, photographs cleanly, and carries a full daily kit.",
-  },
- 
- 
+
+
 ];
 
 export const products = rawProducts.map(withMedia);

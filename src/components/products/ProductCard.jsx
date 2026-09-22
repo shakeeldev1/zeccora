@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Check, Heart, ShoppingBag } from "lucide-react";
 
@@ -9,23 +9,77 @@ const ProductCard = ({
     onToggleWishlist,
     added = false,
 }) => {
+    const images = product.images?.length >= 3 ? product.images.slice(0, 3) : [product.image];
+    const slideImages = images.length > 1 ? [...images, images[0]] : images;
+    const [activeImage, setActiveImage] = useState(0);
+    const [isHovered, setIsHovered] = useState(false);
+
+    useEffect(() => {
+        if (!isHovered || images.length < 2) return undefined;
+
+        const interval = window.setInterval(() => {
+            setActiveImage((currentImage) => currentImage + 1);
+        }, 900);
+
+        return () => window.clearInterval(interval);
+    }, [isHovered, images.length]);
+
+    useEffect(() => {
+        if (activeImage !== images.length) return undefined;
+
+        const resetTimer = window.setTimeout(() => setActiveImage(0), 350);
+        return () => window.clearTimeout(resetTimer);
+    }, [activeImage, images.length]);
+
     return (
-        <article className="group">
+        <article
+            className="group"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => {
+                setIsHovered(false);
+                setActiveImage(0);
+            }}
+        >
             <Link to={`/products/${product.id}`} className="block">
                 <div className="relative overflow-hidden rounded-2xl bg-[#efe6dc] shadow-[0_10px_30px_rgba(26,18,12,0.04)] transition duration-500 group-hover:-translate-y-1 group-hover:shadow-[0_18px_40px_rgba(26,18,12,0.1)] sm:rounded-[28px]">
                     <div className="aspect-[4/5] overflow-hidden">
-                        <img
-                            src={product.image}
-                            alt={product.name}
-                            loading="lazy"
-                            decoding="async"
-                            className="h-full w-full object-cover object-center transition duration-700 group-hover:scale-110"
-                        />
+                        <div
+                            className={`flex h-full ${activeImage === 0 ? "" : "transition-transform duration-350 ease-out"}`}
+                            style={{
+                                width: `${slideImages.length * 100}%`,
+                                transform: `translateX(-${(activeImage * 100) / slideImages.length}%)`,
+                            }}
+                        >
+                            {slideImages.map((image, imageIndex) => (
+                                <img
+                                    key={`${product.id}-${imageIndex}`}
+                                    src={image}
+                                    alt={`${product.name} view ${imageIndex + 1}`}
+                                    loading={imageIndex === 0 ? "lazy" : "eager"}
+                                    decoding="async"
+                                    className="h-full shrink-0 object-cover object-center"
+                                    style={{ width: `${100 / slideImages.length}%` }}
+                                />
+                            ))}
+                        </div>
                     </div>
                     <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent opacity-0 transition duration-500 group-hover:opacity-100" />
-                    <span className="pointer-events-none absolute bottom-3 left-1/2 hidden -translate-x-1/2 translate-y-2 rounded-full bg-white/95 px-4 py-2 text-[10px] font-medium uppercase tracking-[0.18em] text-[#1a120c] opacity-0 shadow-sm transition duration-500 sm:block group-hover:translate-y-0 group-hover:opacity-100">
-                        Shop now
-                    </span>
+                    <div className="pointer-events-none absolute bottom-3 left-1/2 flex -translate-x-1/2 translate-y-2 flex-col items-center gap-1 opacity-0 transition duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+                        <span className="rounded-full bg-white/95 px-4 py-2 text-[10px] font-medium uppercase tracking-[0.18em] text-[#1a120c] shadow-sm">
+                            Shop now
+                        </span>
+                        {images.length > 1 ? (
+                            <div className="flex gap-1.5" aria-label={`${images.length} product photos`}>
+                                {images.map((image, imageIndex) => (
+                                    <span
+                                        key={`${product.id}-${imageIndex}`}
+                                        className={`h-1.5 w-1.5 rounded-full border border-white/80 shadow-sm transition ${imageIndex === activeImage % images.length ? "bg-[#9F6324]" : "bg-white/80"}`}
+                                        aria-hidden="true"
+                                    />
+                                ))}
+                            </div>
+                        ) : null}
+                    </div>
                     {product.discount ? (
                         <span className="absolute left-3 top-3 rounded-full bg-white/95 px-2.5 py-1 text-[10px] font-semibold tracking-wide text-[#9F6324] shadow-sm">
                             {product.discount}% off
@@ -68,9 +122,8 @@ const ProductCard = ({
                     <button
                         type="button"
                         onClick={() => onAddToCart(product)}
-                        className={`inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] ${
-                            added ? "text-emerald-700" : "text-[#1a120c] hover:text-[#9F6324]"
-                        }`}
+                        className={`inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] ${added ? "text-emerald-700" : "text-[#1a120c] hover:text-[#9F6324]"
+                            }`}
                     >
                         {added ? <Check size={14} /> : <ShoppingBag size={14} />}
                         {added ? "Added" : "Add to cart"}

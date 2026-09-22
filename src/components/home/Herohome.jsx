@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { Autoplay, EffectFade } from "swiper/modules";
+import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
-import "swiper/css/effect-fade";
 
 const heroSlides = [
   {
@@ -55,10 +54,8 @@ const Herohome = () => {
   return (
     <section className="relative h-[calc(100svh-6rem)] min-h-[32rem] w-full overflow-hidden bg-[#1a120c] sm:h-[calc(100svh-122px)] sm:min-h-[640px]">
       <Swiper
-        modules={[Autoplay, EffectFade]}
-        effect="fade"
-        fadeEffect={{ crossFade: true }}
-        speed={1200}
+        modules={[Autoplay]}
+        speed={900}
         autoplay={{ delay: 5200, disableOnInteraction: false }}
         loop
         onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
@@ -114,11 +111,10 @@ const Herohome = () => {
                         <Link
                           key={offer.label}
                           to={offer.href}
-                          className={`rounded-full border px-3.5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] backdrop-blur-sm transition ${
-                            offer.soon
+                          className={`rounded-full border px-3.5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] backdrop-blur-sm transition ${offer.soon
                               ? "border-white/30 bg-white/10 text-white/80 hover:text-white"
                               : "border-white/40 bg-white/15 text-white hover:bg-white hover:text-[#1a120c]"
-                          }`}
+                            }`}
                         >
                           {offer.soon ? `${offer.label} · Soon` : offer.label}
                         </Link>
@@ -136,9 +132,8 @@ const Herohome = () => {
         {heroSlides.map((slide, index) => (
           <span
             key={slide.src}
-            className={`h-1.5 rounded-full transition-all duration-500 ${
-              activeIndex === index ? "w-8 bg-[#E8C27A]" : "w-1.5 bg-white/55"
-            }`}
+            className={`h-1.5 rounded-full transition-all duration-500 ${activeIndex === index ? "w-8 bg-[#E8C27A]" : "w-1.5 bg-white/55"
+              }`}
           />
         ))}
       </div>
