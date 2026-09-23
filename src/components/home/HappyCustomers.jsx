@@ -36,11 +36,11 @@ const reviews = [
 
 const HappyCustomers = () => {
     return (
-        <section className="bg-[#f7f2ec] py-10 text-[#1a120c] sm:py-5">
+        <section className="bg-[#f7f2ec]  py-0 text-[#1a120c] ">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="mb-12 text-center">
                     <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#9F6324]/20 bg-[#9F6324]/10 px-4 py-2">
-                        <Sparkles size={14} className="text-[#9F6324]" />
+                        {/* <Sparkles size={14} className="text-[#9F6324]" /> */}
                         <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#9F6324]">
                             Happy Customers
                         </span>

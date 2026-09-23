@@ -1,6 +1,5 @@
 import React from 'react'
 import Herohome from '../home/Herohome'
-import BagCategories from '../home/BagCategories'
 import SignatureCollection from '../home/SignatureCollection'
 import Experience from '../home/Experience'
 import WhyChooseUs from '../home/WhyChooseUs'
@@ -27,13 +26,12 @@ const Home = () => {
           ))}
         </div>
       </div>
-      <Herohome/>
-      <BagCategories/>
-      <SignatureCollection/>
-      <HappyCustomers/>
-      <WhyChooseUs/>
-      <Experience/>
-      <Quality/>
+      <Herohome />
+      <SignatureCollection />
+      <HappyCustomers />
+      <WhyChooseUs />
+      <Experience />
+      <Quality />
     </div>
   )
 }

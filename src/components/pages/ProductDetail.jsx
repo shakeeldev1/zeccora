@@ -56,8 +56,6 @@ const ProductDetail = () => {
                     <span>/</span>
                     <Link to="/products" className="transition hover:text-[#9F6324]">Collection</Link>
                     <span>/</span>
-                    <Link to={`/products?category=${encodeURIComponent(product.category)}`} className="transition hover:text-[#9F6324]">{product.category}</Link>
-                    <span>/</span>
                     <span className="text-[#1a120c]">{product.name}</span>
                 </nav>
 
@@ -76,7 +74,7 @@ const ProductDetail = () => {
                         </button>
                     </div>
                     <div className="flex flex-col justify-center">
-                        <p className="text-sm capitalize text-[#8a7b70]">{product.category} · {product.sku}</p>
+                        <p className="text-sm uppercase tracking-[0.14em] text-[#8a7b70]">{product.sku}</p>
                         <h1 className="display-font mt-2 text-3xl sm:mt-3 sm:text-6xl">{product.name}</h1>
                         <div className="mt-5 flex flex-wrap items-center gap-3">
                             <span className="text-2xl font-semibold text-[#9F6324]">{product.price}</span>

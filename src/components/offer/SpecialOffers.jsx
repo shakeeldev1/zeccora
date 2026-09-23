@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Clock3, Gift, Percent, ShieldCheck, Sparkles, Tag } from "lucide-react";
+import { ArrowRight, Clock3, Gift, Percent, ShieldCheck, BadgePercent, Tag } from "lucide-react";
 import { OFFERS } from "../../lib/offers";
 
 import image7 from "../../assets/img7 (4).jpeg";
@@ -11,7 +11,7 @@ import image18 from "../../assets/img18.png";
 const offerIcons = {
     50: Percent,
     30: Tag,
-    20: Sparkles,
+    20: BadgePercent,
     15: Gift,
 };
 
@@ -22,10 +22,9 @@ const offerVisuals = {
 
 const perks = [
     { icon: ShieldCheck, label: "Cash on delivery" },
-    { icon: Sparkles, label: "Sale price already applied" },
+    { icon: BadgePercent, label: "Sale price already applied" },
     { icon: Clock3, label: "2–5 day dispatch" },
 ];
-
 const SpecialOffers = () => {
     const [copiedCode, setCopiedCode] = useState("");
 

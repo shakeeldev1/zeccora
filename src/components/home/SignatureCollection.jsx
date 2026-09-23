@@ -7,19 +7,13 @@ import ProductCard from "../products/ProductCard";
 
 const SignatureCollection = () => {
   const navigate = useNavigate();
-  const [activeFilter, setActiveFilter] = useState("All");
   const { wishlist, toggle } = useWishlist();
   const [addedProduct, setAddedProduct] = useState(null);
 
-  const filters = ["All", "Handbags", "Crossbody Bags", "Tote Bags", "Canvas Bags"];
-  const filteredProducts =
-    activeFilter === "All"
-      ? catalogProducts
-      : catalogProducts.filter((product) => product.category === activeFilter);
-  const visibleProducts = filteredProducts.slice(0, 8);
+  const visibleProducts = catalogProducts.slice(0, 8);
 
   return (
-    <section className="bg-[#f7f2ec] pb-16  text-[#1a120c] sm:pb-20">
+    <section className="bg-[#f7f2ec] pb-16 mt-10 text-[#1a120c] sm:pb-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-10 text-center">
           <p className="section-kicker">The Zeccora Collection</p>
@@ -27,21 +21,6 @@ const SignatureCollection = () => {
           <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-[#6b5b4e]">
             Hand-selected premium products crafted for everyday luxury.
           </p>
-        </div>
-
-        <div className="chip-row mb-8 sm:mb-10 sm:flex-wrap sm:justify-center">
-          {filters.map((filter) => (
-            <button
-              key={filter}
-              type="button"
-              onClick={() => setActiveFilter(filter)}
-              className={`rounded-full px-3.5 py-2 text-xs capitalize transition sm:px-4 sm:text-sm ${
-                activeFilter === filter ? "bg-[#9F6324] text-white" : "bg-white text-[#5c4c40] hover:text-[#9F6324]"
-              }`}
-            >
-              {filter === "All" ? "All" : filter.replace(" Bags", "").toLowerCase()}
-            </button>
-          ))}
         </div>
 
         <div className="grid grid-cols-2 gap-x-3 gap-y-8 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-4 lg:gap-x-8">

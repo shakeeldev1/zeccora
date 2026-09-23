@@ -14,13 +14,10 @@ const ProductGrid = ({ products, onAddToCart }) => {
 
     const offerPercent = Number(searchParams.get("offer"));
     const activeOffer = isOfferPercent(offerPercent) ? findOffer(offerPercent) : null;
-    const filters = ["All", "Handbags", "Crossbody Bags", "Tote Bags", "Canvas Bags", "Shoulder Bags", "Clutches"];
-    const activeFilter = filters.includes(searchParams.get("category") || "") ? searchParams.get("category") : "All";
     const searchTerm = searchParams.get("q") || "";
 
     useEffect(() => {
-        if (!searchParams.get("category")) return;
-        if (!filters.includes(searchParams.get("category"))) {
+        if (searchParams.get("category")) {
             const nextParams = new URLSearchParams(searchParams);
             nextParams.delete("category");
             setSearchParams(nextParams, { replace: true });
@@ -28,12 +25,9 @@ const ProductGrid = ({ products, onAddToCart }) => {
     }, [searchParams, setSearchParams]);
 
     const filteredProducts = useMemo(() => {
-        const categoryProducts = activeFilter === "All"
-            ? products
-            : products.filter((product) => product.category === activeFilter);
         const offerProducts = activeOffer
-            ? categoryProducts.filter((product) => Number(product.discount) === activeOffer.percent)
-            : categoryProducts;
+            ? products.filter((product) => Number(product.discount) === activeOffer.percent)
+            : products;
         const searched = offerProducts.filter((product) => {
             const searchValue = searchTerm.trim().toLowerCase();
             return !searchValue || [product.name, product.category, product.badge, product.sku]
@@ -45,7 +39,7 @@ const ProductGrid = ({ products, onAddToCart }) => {
         if (sortBy === "price-desc") sorted.sort((a, b) => b.priceValue - a.priceValue);
         if (sortBy === "discount") sorted.sort((a, b) => b.discount - a.discount);
         return sorted;
-    }, [products, activeFilter, activeOffer, searchTerm, sortBy]);
+    }, [products, activeOffer, searchTerm, sortBy]);
 
     const setParam = (key, value) => {
         const nextParams = new URLSearchParams(searchParams);
@@ -65,8 +59,7 @@ const ProductGrid = ({ products, onAddToCart }) => {
     };
 
     const chipClass = (active) =>
-        `rounded-full px-3.5 py-2 text-xs capitalize transition sm:px-4 sm:text-sm ${
-            active ? "bg-[#9F6324] text-white" : "bg-white text-[#5c4c40] hover:text-[#9F6324]"
+        `rounded-full px-3.5 py-2 text-xs capitalize transition sm:px-4 sm:text-sm ${active ? "bg-[#9F6324] text-white" : "bg-white text-[#5c4c40] hover:text-[#9F6324]"
         }`;
 
     return (
@@ -80,7 +73,7 @@ const ProductGrid = ({ products, onAddToCart }) => {
                     <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-[#6b5b4e]">
                         {activeOffer
                             ? `Sale prices are already applied. Mention code ${activeOffer.code} on WhatsApp if you like.`
-                            : "Handbags, crossbody bags, tote bags and canvas bags — each listing uses the real product photo."}
+                            : "Explore the complete collection, with every listing shown using its real product photo."}
                     </p>
                     <p className="mt-3 text-sm text-[#8a7b70]">{filteredProducts.length} pieces</p>
                 </div>
@@ -101,19 +94,7 @@ const ProductGrid = ({ products, onAddToCart }) => {
                     ))}
                 </div>
 
-                <div className="mb-8 flex flex-col gap-3 sm:mb-10 sm:items-center sm:gap-4 lg:flex-row lg:justify-between">
-                    <div className="chip-row sm:flex-wrap sm:justify-center">
-                        {filters.map((filter) => (
-                            <button
-                                key={filter}
-                                type="button"
-                                onClick={() => setParam("category", filter === "All" ? "" : filter)}
-                                className={chipClass(activeFilter === filter)}
-                            >
-                                {filter === "All" ? "All" : filter.replace(" Bags", "").toLowerCase()}
-                            </button>
-                        ))}
-                    </div>
+                <div className="mb-8 flex flex-col gap-3 sm:mb-10 sm:items-center sm:gap-4 lg:flex-row lg:justify-end">
                     <div className="flex w-full flex-col gap-3 sm:max-w-xl sm:flex-row">
                         <div className="relative flex-1">
                             <Search size={17} className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[#9F6324]" />
@@ -132,17 +113,7 @@ const ProductGrid = ({ products, onAddToCart }) => {
                             ) : null}
                         </div>
                         <label className="sr-only" htmlFor="sort-products">Sort products</label>
-                        <select
-                            id="sort-products"
-                            value={sortBy}
-                            onChange={(event) => setSortBy(event.target.value)}
-                            className="w-full rounded-full bg-white px-4 py-3 text-base text-[#5c4c40] outline-none sm:w-auto sm:text-sm"
-                        >
-                            <option value="featured">Featured</option>
-                            <option value="price-asc">Price: low to high</option>
-                            <option value="price-desc">Price: high to low</option>
-                            <option value="discount">Highest discount</option>
-                        </select>
+                      
                     </div>
                 </div>
 

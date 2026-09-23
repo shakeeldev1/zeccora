@@ -35,7 +35,7 @@ const values = [
 
 const Values = () => {
   return (
-    <section className="w-full bg-[#f7f2ec] py-16 text-[#1a120c] sm:py-20 lg:py-10">
+    <section className="w-full bg-[#f7f2ec] py-10 text-[#1a120c] sm:py-10 lg:py-10">
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
         
         {/* Section Heading */}

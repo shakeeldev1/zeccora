@@ -12,31 +12,27 @@ const ProductCard = ({
     const images = product.images?.length >= 3 ? product.images.slice(0, 3) : [product.image];
     const slideImages = images.length > 1 ? [...images, images[0]] : images;
     const [activeImage, setActiveImage] = useState(0);
-    const [isHovered, setIsHovered] = useState(false);
-
     useEffect(() => {
-        if (!isHovered || images.length < 2) return undefined;
+        if (images.length < 2) return undefined;
 
         const interval = window.setInterval(() => {
             setActiveImage((currentImage) => currentImage + 1);
-        }, 900);
+        }, 2200);
 
         return () => window.clearInterval(interval);
-    }, [isHovered, images.length]);
+    }, [images.length]);
 
     useEffect(() => {
         if (activeImage !== images.length) return undefined;
 
-        const resetTimer = window.setTimeout(() => setActiveImage(0), 350);
+        const resetTimer = window.setTimeout(() => setActiveImage(0), 700);
         return () => window.clearTimeout(resetTimer);
     }, [activeImage, images.length]);
 
     return (
         <article
             className="group"
-            onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => {
-                setIsHovered(false);
                 setActiveImage(0);
             }}
         >
@@ -44,7 +40,7 @@ const ProductCard = ({
                 <div className="relative overflow-hidden rounded-2xl bg-[#efe6dc] shadow-[0_10px_30px_rgba(26,18,12,0.04)] transition duration-500 group-hover:-translate-y-1 group-hover:shadow-[0_18px_40px_rgba(26,18,12,0.1)] sm:rounded-[28px]">
                     <div className="aspect-[4/5] overflow-hidden">
                         <div
-                            className={`flex h-full ${activeImage === 0 ? "" : "transition-transform duration-350 ease-out"}`}
+                            className={`flex h-full ${activeImage === 0 ? "" : "transition-transform duration-700 ease-out"}`}
                             style={{
                                 width: `${slideImages.length * 100}%`,
                                 transform: `translateX(-${(activeImage * 100) / slideImages.length}%)`,
@@ -100,7 +96,6 @@ const ProductCard = ({
                     ) : null}
                 </div>
                 <div className="mt-3 text-center sm:mt-4">
-                    <p className="text-[10px] capitalize tracking-[0.14em] text-[#8a7b70] sm:text-[11px]">{product.category}</p>
                     <h3 className="display-font mt-1 line-clamp-2 text-base font-medium tracking-wide text-[#1a120c] transition group-hover:text-[#9F6324] sm:text-xl">
                         {product.name}
                     </h3>

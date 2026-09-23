@@ -1,11 +1,11 @@
 import React from "react";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { OFFERS } from "../../lib/offers";
 
 const OffersHero = () => {
     return (
-        <section className="relative isolate min-h-[360px] overflow-hidden bg-[#efe6dc] sm:min-h-[540px]">
+        <section className="relative isolate min-h-90 overflow-hidden bg-[#efe6dc] sm:min-h-[540px]">
             <img
                 src="/hero/hero4.png"
                 alt="Exclusive offers from Zeccora"
@@ -19,7 +19,7 @@ const OffersHero = () => {
                     <div className="absolute inset-x-8 top-0 h-[3px] bg-gradient-to-r from-transparent via-[#9F6324] to-transparent" />
 
                     <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-[#9F6324]/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#9F6324]">
-                        <Sparkles size={12} />
+                        
                         Limited-time edit
                     </div>
 

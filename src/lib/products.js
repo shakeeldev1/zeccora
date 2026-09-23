@@ -5,7 +5,6 @@ import image11 from "../assets/img 11.jpeg";
 import image8 from "../assets/img8.jpeg";
 import image10 from "../assets/img 10.jpeg";
 import image13 from "../assets/img 13.jpeg";
-import image14 from "../assets/img 14.jpeg";
 import image16 from "../assets/img 16.jpeg";
 import image18 from "../assets/img18.png";
 import image21 from "../assets/img 21.png";
@@ -20,6 +19,9 @@ import bag2 from "../assets/bag2.png";
 import bag3 from "../assets/bag3.png";
 import bag4 from "../assets/bag4.png";
 import bag04 from "../assets/bag04.png";
+import white1 from "../assets/white1.png";
+import white2 from "../assets/white2.png";
+import white from "../assets/white.jpeg";
 
 export const COLOR_OPTIONS = [
   { name: "Black", hex: "#1c1c1c" },
@@ -32,7 +34,7 @@ const OLD_PRICE = 3143;
 
 const productGalleries = new Map([
   [image9, [image7, img07, img007]],
-  [bag4, [image18, bag04, bag4]],
+  [bag4, [white1, white2, white]],
   [image8, [image8, image16, bag2]],
   [image10, [image10, img010, img0010]],
   [bag1, [bag1, image9, image11]],

@@ -55,7 +55,7 @@ const WhyChooseUs = () => {
       <div className="relative mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
         <div className="mx-auto mb-16 max-w-3xl text-center">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2">
-            <Sparkles size={14} className="text-[#9F6324]" />
+            {/* <Sparkles size={14} className="text-[#9F6324]" /> */}
             <span className="text-xs font-semibold uppercase tracking-widest text-[#9F6324]">Why Choose Us</span>
           </div>
           <h2 className="display-font text-3xl leading-tight sm:text-5xl lg:text-6xl">

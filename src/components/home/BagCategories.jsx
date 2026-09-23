@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import image7 from "../../assets/img7 (4).jpeg";
 import img8 from "../../assets/img8.jpeg";
 import image10 from "../../assets/img 10.jpeg";
-import image18 from "../../assets/img18.png";
+import white1 from "../../assets/white1.png";
 
 const BagCategories = () => {
   const categories = [
@@ -12,25 +12,25 @@ const BagCategories = () => {
       id: "cat-handbags",
       title: "handbags",
       image: image7,
-      href: "/products?category=Handbags",
+      // href: "/products?category=Handbags",
     },
     {
       id: "cat-crossbody",
       title: "crossbody",
       image: image10,
-      href: "/products?category=Crossbody%20Bags",
+      // href: "/products?category=Crossbody%20Bags",
     },
     {
       id: "cat-totes",
       title: "tote bags",
       image: img8,
-      href: "/products?category=Tote%20Bags",
+      // href: "/products?category=Tote%20Bags",
     },
     {
       id: "cat-canvas",
       title: "canvas bags",
-      image: image18,
-      href: "/products?category=Canvas%20Bags",
+      image: white1,
+      // href: "/products?category=Canvas%20Bags",
     },
   ];
 

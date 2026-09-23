@@ -41,7 +41,7 @@ const Experience = () => {
           <div>
             {/* Badge */}
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#A46A2A]/30 bg-[#A46A2A]/10 px-4 py-2">
-              <Sparkles size={14} className="text-[#A46A2A]" />
+              {/* <Sparkles size={14} className="text-[#A46A2A]" /> */}
               <span className="text-xs font-semibold uppercase tracking-wider text-[#A46A2A]">
                 Premium Experience
               </span>
