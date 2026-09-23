@@ -9,6 +9,7 @@ import "swiper/css";
 const heroSlides = [
   {
     src: "/hero/hero1.png",
+    mobileSrc: "/hero/hero1-mobile.png",
     alt: "Luxury ladies bag collection",
     subtitle: "The Zeccora Collection",
     heading: "Timeless",
@@ -17,6 +18,7 @@ const heroSlides = [
   },
   {
     src: "/hero/hero2.png",
+    mobileSrc: "/hero/hero2-mobile.png",
     alt: "Featured Zeccora handbag",
     subtitle: "New season edit",
     heading: "Your style.",
@@ -25,6 +27,7 @@ const heroSlides = [
   },
   {
     src: "/hero/hero3.png",
+    mobileSrc: "/hero/hero3-mobile.png",
     alt: "Elegant handbag styling",
     subtitle: "Made for everyday",
     heading: "Effortless",
@@ -33,6 +36,7 @@ const heroSlides = [
   },
   {
     src: "/hero/hero4.png",
+    mobileSrc: "/hero/hero4-mobile.png",
     alt: "Zeccora signature bag",
     subtitle: "Your next essential",
     heading: "Carry",
@@ -66,14 +70,17 @@ const Herohome = () => {
           return (
             <SwiperSlide key={slide.src} className="relative h-full w-full">
               <div className="absolute inset-0 overflow-hidden">
-                <img
-                  src={slide.src}
-                  alt={slide.alt}
-                  loading={index === 0 ? "eager" : "lazy"}
-                  fetchPriority={index === 0 ? "high" : "auto"}
-                  decoding="async"
-                  className="hero-image h-full w-full object-cover object-[center_22%] sm:object-center"
-                />
+                <picture>
+                  <source media="(max-width: 639px)" srcSet={slide.mobileSrc} />
+                  <img
+                    src={slide.src}
+                    alt={slide.alt}
+                    loading={index === 0 ? "eager" : "lazy"}
+                    fetchPriority={index === 0 ? "high" : "auto"}
+                    decoding="async"
+                    className="hero-image h-full w-full object-contain object-center sm:object-cover sm:object-center"
+                  />
+                </picture>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-black/15 sm:bg-gradient-to-r sm:from-black/70 sm:via-black/25 sm:to-transparent" />
               </div>
 
@@ -112,8 +119,8 @@ const Herohome = () => {
                           key={offer.label}
                           to={offer.href}
                           className={`rounded-full border px-3.5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] backdrop-blur-sm transition ${offer.soon
-                              ? "border-white/30 bg-white/10 text-white/80 hover:text-white"
-                              : "border-white/40 bg-white/15 text-white hover:bg-white hover:text-[#1a120c]"
+                            ? "border-white/30 bg-white/10 text-white/80 hover:text-white"
+                            : "border-white/40 bg-white/15 text-white hover:bg-white hover:text-[#1a120c]"
                             }`}
                         >
                           {offer.soon ? `${offer.label} · Soon` : offer.label}
@@ -140,12 +147,16 @@ const Herohome = () => {
 
       <style>{`
         .hero-image {
-          transform: scale(1.1);
+          transform: scale(1);
           filter: saturate(1.1) contrast(1.05);
           transition: transform 9s cubic-bezier(0.2, 0.6, 0.2, 1);
         }
         .swiper-slide-active .hero-image {
           transform: scale(1);
+        }
+        @media (min-width: 640px) {
+          .hero-image { transform: scale(1.1); }
+          .swiper-slide-active .hero-image { transform: scale(1); }
         }
         .animate-heroTextIn {
           animation: heroTextIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;

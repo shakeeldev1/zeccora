@@ -7,6 +7,7 @@ import {
   ArrowRight,
   Phone,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 import bgImage from "/hero/bag-fixed.png";
 
@@ -46,6 +47,7 @@ const Quality = () => {
 
         {/* Deep Ambient Gold Glows */}
         <div className="pointer-events-none absolute -left-32 top-1/2 h-80 w-80 -translate-y-1/2 rounded-full bg-[#A46A2A]/20 blur-[120px]" />
+
         <div className="pointer-events-none absolute -right-32 top-1/2 h-80 w-80 -translate-y-1/2 rounded-full bg-[#A46A2A]/20 blur-[120px]" />
 
         <div className="relative mx-auto max-w-7xl px-6 text-center sm:px-8 lg:px-10">
@@ -58,7 +60,7 @@ const Quality = () => {
             <span className="italic text-[#E8C27A]">Zeccora</span>
           </h1>
 
-          <h2 className="mt-3  text-xl font-medium text-gray-200 sm:text-2xl lg:text-3xl">
+          <h2 className="mt-3 text-xl font-medium text-gray-200 sm:text-2xl lg:text-3xl">
             Experience True Arabian Luxury
           </h2>
 
@@ -69,29 +71,33 @@ const Quality = () => {
 
           {/* Buttons */}
           <div className="mt-8 flex w-full flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:gap-4">
-            <a
-              href="/products"
+            
+            {/* Shop Now */}
+            <Link
+              to="/products"
               className="group inline-flex items-center justify-center gap-2 rounded-xl bg-[#A46A2A] px-7 py-3.5 text-sm font-bold text-black shadow-lg shadow-[#A46A2A]/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#FFFFC9]"
             >
               Shop Now
+
               <ArrowRight
                 size={18}
                 className="transition-transform duration-300 group-hover:translate-x-1"
               />
-            </a>
+            </Link>
 
-            <a
-              href="/contact"
+            {/* Contact Us */}
+            <Link
+              to="/contact"
               className="group inline-flex items-center justify-center gap-2 rounded-xl border border-[#A46A2A]/60 bg-black/40 px-7 py-3.5 text-sm font-bold text-white backdrop-blur-sm transition-all duration-300 hover:border-[#A46A2A] hover:bg-[#A46A2A] hover:text-black"
             >
               <Phone size={17} />
               Contact Us
-            </a>
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Dark Quality Features Strip */}
+      {/* Quality Features Strip */}
       <section className="w-full bg-[#efe6dc] text-[#1a120c]">
         <div className="mx-auto max-w-7xl px-6 py-8 sm:px-8 lg:px-10">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -106,9 +112,15 @@ const Quality = () => {
                   <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#f7f2ec] text-[#9F6324]">
                     <Icon size={21} strokeWidth={1.8} />
                   </div>
+
                   <div>
-                    <h3 className="text-sm font-semibold">{item.title}</h3>
-                    <p className="mt-0.5 text-xs text-[#8a7b70]">{item.subtitle}</p>
+                    <h3 className="text-sm font-semibold">
+                      {item.title}
+                    </h3>
+
+                    <p className="mt-0.5 text-xs text-[#8a7b70]">
+                      {item.subtitle}
+                    </p>
                   </div>
                 </div>
               );

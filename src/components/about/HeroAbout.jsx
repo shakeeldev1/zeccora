@@ -4,11 +4,13 @@ import { Home, ChevronRight } from "lucide-react";
 const HeroAbout = () => {
   return (
     <section
-      className="relative flex min-h-[360px] w-full items-center justify-center overflow-hidden bg-cover bg-center bg-no-repeat sm:min-h-[500px]"
-      style={{
-        backgroundImage: "url('/hero/hero1.png')",
-      }}
+      className="relative flex min-h-[500px] w-full items-center justify-center overflow-hidden bg-[#1a120c] sm:min-h-[500px]"
     >
+      <picture className="absolute inset-0">
+        <source media="(max-width: 639px)" srcSet="/hero/hero1-mobile.png" />
+        <img src="/hero/hero1.png" alt="Zeccora collection" className="h-full w-full object-contain object-center sm:object-cover sm:object-[center_35%]" />
+      </picture>
+
       {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black/65"></div>
 
@@ -17,7 +19,7 @@ const HeroAbout = () => {
 
       {/* Content */}
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 py-14 text-center sm:px-8 sm:py-20 lg:px-10">
-        
+
         {/* Breadcrumb */}
         <div className="mb-7 flex items-center justify-center gap-2 text-sm">
           <a
@@ -42,7 +44,8 @@ const HeroAbout = () => {
 
         {/* Main Heading */}
         <h1 className="display-font text-4xl text-white sm:text-6xl lg:text-7xl">
-          Made to Carry Your <span className="italic text-[#E8C27A]">Story</span>
+          Made to Carry Your{" "}
+          <span className="italic text-[#E8C27A]">Story</span>
         </h1>
 
         {/* Decorative Line */}
