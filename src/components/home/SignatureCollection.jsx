@@ -13,17 +13,17 @@ const SignatureCollection = () => {
   const visibleProducts = catalogProducts.slice(0, 8);
 
   return (
-    <section className="bg-[#f7f2ec] pb-16 mt-10 text-[#1a120c] sm:pb-20">
+    <section className="bg-[#f7f2ec] pb-20 pt-8 text-[#1a120c] sm:pb-20 sm:pt-10">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-10 text-center">
+        <div className="mb-10 px-2 text-center sm:px-0">
           <p className="section-kicker">The Zeccora Collection</p>
-          <h2 className="display-font mt-3 text-3xl sm:text-5xl">Our Signature Collection</h2>
+          <h2 className="display-font mt-3 text-3xl sm:text-4xl md:text-5xl">Our Signature Collection</h2>
           <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-[#6b5b4e]">
             Hand-selected premium products crafted for everyday luxury.
           </p>
         </div>
 
-        <div className="grid grid-cols-2 gap-x-3 gap-y-8 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-4 lg:gap-x-8">
+        <div className="grid grid-cols-2 gap-x-2.5 gap-y-7 sm:gap-x-5 sm:gap-y-10 md:grid-cols-3 lg:grid-cols-4 lg:gap-x-8">
           {visibleProducts.map((product) => (
             <ProductCard
               key={product.id}

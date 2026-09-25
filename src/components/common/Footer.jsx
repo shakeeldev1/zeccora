@@ -1,9 +1,16 @@
 import React, { useState } from 'react'
 import { ArrowUpRight, Mail, MapPin, Phone } from 'lucide-react'
-import { FaWhatsapp } from 'react-icons/fa'
+import { FaFacebookF, FaInstagram, FaTiktok, FaWhatsapp } from 'react-icons/fa6'
 import { Link } from 'react-router-dom'
 import BrandLogo from './BrandLogo'
 import { SITE, whatsappUrl } from '../../lib/site'
+
+const socialLinks = [
+  { label: 'Instagram', href: SITE.social.instagram, Icon: FaInstagram },
+  { label: 'TikTok', href: SITE.social.tiktok, Icon: FaTiktok },
+  { label: 'Facebook', href: SITE.social.facebook, Icon: FaFacebookF },
+  { label: 'WhatsApp', href: whatsappUrl('Hello Zeccora, I would like to know more.'), Icon: FaWhatsapp },
+]
 
 const Footer = () => {
   const year = new Date().getFullYear()
@@ -21,7 +28,7 @@ const Footer = () => {
 
   return (
     <footer className="relative overflow-hidden border-t border-black/5 bg-[#efe6dc] text-[#5c4c40]">
-      <div className="relative mx-auto max-w-[1400px] px-4 pb-24 pt-12 sm:px-6 sm:pb-8 sm:pt-16 lg:px-10">
+      <div className="relative mx-auto max-w-[1400px] px-4 pb-28 pt-12 sm:px-6 sm:pb-10 sm:pt-16 lg:px-10">
         <div className="grid gap-12 border-b border-black/5 pb-12 md:grid-cols-2 lg:grid-cols-[1.4fr_0.8fr_0.8fr_1.3fr]">
           <div>
             <Link to="/" className="inline-flex w-fit" aria-label="Zeccora home">
@@ -30,14 +37,19 @@ const Footer = () => {
             <p className="mt-5 max-w-sm text-sm leading-relaxed">
               Premium bags from Johar Town, Lahore. Cash on delivery across Pakistan.
             </p>
-            <div className="mt-6 flex gap-3">
-              <a
-                href={whatsappUrl('Hello Zeccora, I would like to know more.')}
-                aria-label="WhatsApp"
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#5c4c40] transition hover:bg-[#9F6324] hover:text-white"
-              >
-                <FaWhatsapp size={17} />
-              </a>
+            <div className="mt-6 flex flex-wrap gap-3">
+              {socialLinks.map(({ label, href, Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#5c4c40] transition hover:bg-[#9F6324] hover:text-white"
+                >
+                  <Icon size={17} />
+                </a>
+              ))}
               <a
                 href={`mailto:${SITE.email}`}
                 aria-label="Email"

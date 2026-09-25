@@ -66,22 +66,23 @@ const Navbar = () => {
     ];
 
     return (
-        <nav className="sticky top-0 z-50 w-full border-b border-[#9F6324]/10 bg-[#f7f2ec]/90 text-[#1a120c] shadow-[0_8px_30px_rgba(26,18,12,0.04)] backdrop-blur-xl">
-            <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between gap-2 px-3 sm:h-[86px] sm:px-6 lg:px-10">
+        <>
+        <nav className="fixed inset-x-0 top-0 z-50 w-full border-b border-[#9F6324]/10 bg-[#f7f2ec]/95 text-[#1a120c] shadow-[0_8px_30px_rgba(26,18,12,0.04)] backdrop-blur-xl">
+            <div className="mx-auto flex h-14 max-w-[1400px] items-center justify-between gap-2 px-3 sm:h-16 sm:px-5 md:h-20 md:px-6 lg:h-[86px] lg:px-10">
                 <NavLink to="/" className="group shrink-0" onClick={() => setMobileMenuOpen(false)} aria-label="Zeccora home">
                     <BrandLogo size="nav" />
                 </NavLink>
 
-                <div className="hidden items-center gap-1 lg:flex">
+                <div className="hidden items-center gap-0.5 md:flex lg:gap-1">
                     {navLinks.map((link) => (
                         <NavLink
                             key={link.name}
                             to={link.href}
-                            className={({ isActive }) => `relative px-4 py-2 text-[11px] font-medium uppercase tracking-[0.2em] transition hover:text-[#9F6324] ${isActive ? "text-[#9F6324]" : "text-[#5c4c40]"}`}
+                            className={({ isActive }) => `relative px-2.5 py-2 text-[10px] font-medium uppercase tracking-[0.16em] transition hover:text-[#9F6324] lg:px-4 lg:text-[11px] lg:tracking-[0.2em] ${isActive ? "text-[#9F6324]" : "text-[#5c4c40]"}`}
                         >
                             {link.name}
                             {link.badge && (
-                                <span className="absolute -right-4 -top-1.5 rounded-full bg-[#9F6324] px-1.5 py-0.5 text-[8px] font-semibold uppercase leading-none tracking-normal text-white">
+                                <span className="absolute -right-1 -top-1.5 rounded-full bg-[#9F6324] px-1.5 py-0.5 text-[8px] font-semibold uppercase leading-none tracking-normal text-white lg:-right-3">
                                     {link.badge}
                                 </span>
                             )}
@@ -89,18 +90,18 @@ const Navbar = () => {
                     ))}
                 </div>
 
-                <div className="hidden items-center gap-3 lg:flex">
+                <div className="hidden items-center gap-3 md:flex">
                     <button
                         type="button"
                         onClick={() => setCartOpen(true)}
-                        className="inline-flex items-center gap-2 rounded-full bg-[#9F6324] px-5 py-2.5 text-[11px] font-medium uppercase tracking-[0.16em] text-white shadow-[0_8px_20px_rgba(159,99,36,0.25)] transition hover:bg-[#8a541c]"
+                        className="inline-flex items-center gap-2 rounded-full bg-[#9F6324] px-4 py-2.5 text-[10px] font-medium uppercase tracking-[0.14em] text-white shadow-[0_8px_20px_rgba(159,99,36,0.25)] transition hover:bg-[#8a541c] lg:px-5 lg:text-[11px] lg:tracking-[0.16em]"
                     >
                         <ShoppingBag size={15} />
                         Cart {cartCount > 0 && `(${cartCount})`}
                     </button>
                 </div>
 
-                <div className="flex shrink-0 items-center gap-2 lg:hidden">
+                <div className="flex shrink-0 items-center gap-2 md:hidden">
                     <button
                         type="button"
                         onClick={() => setCartOpen(true)}
@@ -127,14 +128,14 @@ const Navbar = () => {
             </div>
 
             {mobileMenuOpen && (
-                <div className="border-t border-black/5 bg-[#f7f2ec] px-6 py-6 lg:hidden">
-                    <div className="flex flex-col gap-3">
+                <div className="max-h-[min(70dvh,28rem)] overflow-y-auto border-t border-black/5 bg-[#f7f2ec] px-4 py-4 sm:px-6 sm:py-6 md:hidden">
+                    <div className="flex flex-col gap-1">
                         {navLinks.map((link) => (
                             <NavLink
                                 key={link.name}
                                 to={link.href}
                                 onClick={() => setMobileMenuOpen(false)}
-                                className="flex min-h-11 items-center justify-between py-2 text-sm tracking-wide text-[#5c4c40] hover:text-[#9F6324]"
+                                className="flex min-h-11 items-center justify-between rounded-xl px-2 py-2 text-sm tracking-wide text-[#5c4c40] hover:bg-white hover:text-[#9F6324]"
                             >
                                 {link.name}
                                 {link.badge && (
@@ -208,6 +209,8 @@ const Navbar = () => {
                 </>
             )}
         </nav>
+        <div className="h-14 shrink-0 sm:h-16 md:h-20 lg:h-[86px]" aria-hidden="true" />
+        </>
     );
 };
 

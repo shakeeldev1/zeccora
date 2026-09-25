@@ -51,14 +51,13 @@ const WhyChooseUs = () => {
   ];
 
   return (
-    <section className="relative overflow-hidden bg-[#f7f2ec] py-10 text-[#1a120c] sm:py-10">
+    <section className="relative overflow-hidden bg-[#f7f2ec] py-12 text-[#1a120c] sm:py-16 lg:py-20">
       <div className="relative mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto mb-16 max-w-3xl text-center">
+        <div className="mx-auto mb-10 max-w-3xl text-center sm:mb-14 lg:mb-16">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2">
-            {/* <Sparkles size={14} className="text-[#9F6324]" /> */}
             <span className="text-xs font-semibold uppercase tracking-widest text-[#9F6324]">Why Choose Us</span>
           </div>
-          <h2 className="display-font text-3xl leading-tight sm:text-5xl lg:text-6xl">
+          <h2 className="display-font text-3xl leading-tight sm:text-4xl md:text-5xl lg:text-6xl">
             Why Choose <span className="italic text-[#9F6324]">Zeccora</span>
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-[#6b5b4e] sm:text-base">
@@ -83,10 +82,10 @@ const WhyChooseUs = () => {
           {features.map((feature) => {
             const Icon = feature.icon;
             return (
-              <div key={feature.title} className="group flex flex-col rounded-[28px] bg-white p-8 shadow-[0_10px_30px_rgba(26,18,12,0.04)] transition duration-500 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(26,18,12,0.1)]">
-                <div className="mb-8 flex items-center justify-between">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#efe6dc] text-[#9F6324]">
-                    <Icon size={26} />
+              <div key={feature.title} className="group flex flex-col rounded-2xl bg-white p-5 shadow-[0_10px_30px_rgba(26,18,12,0.04)] transition duration-500 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(26,18,12,0.1)] sm:rounded-[28px] sm:p-7 md:p-8">
+                <div className="mb-5 flex items-center justify-between sm:mb-8">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#efe6dc] text-[#9F6324] sm:h-14 sm:w-14">
+                    <Icon size={24} />
                   </div>
                   <span className="font-mono text-2xl font-bold tracking-widest text-[#d7c9bb]">{feature.number}</span>
                 </div>

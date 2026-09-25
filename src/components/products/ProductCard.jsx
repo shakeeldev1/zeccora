@@ -96,10 +96,10 @@ const ProductCard = ({
                     ) : null}
                 </div>
                 <div className="mt-3 text-center sm:mt-4">
-                    <h3 className="display-font mt-1 line-clamp-2 text-base font-medium tracking-wide text-[#1a120c] transition group-hover:text-[#9F6324] sm:text-xl">
+                    <h3 className="display-font mt-1 line-clamp-2 text-[15px] font-medium leading-snug tracking-wide text-[#1a120c] transition group-hover:text-[#9F6324] sm:text-xl">
                         {product.name}
                     </h3>
-                    <div className="mt-2 flex items-center justify-center gap-2 text-sm">
+                    <div className="mt-2 flex flex-wrap items-center justify-center gap-x-2 gap-y-0.5 text-xs sm:text-sm">
                         <span className="font-semibold text-[#9F6324]">{product.price}</span>
                         {product.oldPrice ? <span className="text-[#8a7b70] line-through">{product.oldPrice}</span> : null}
                     </div>
@@ -117,7 +117,7 @@ const ProductCard = ({
                     <button
                         type="button"
                         onClick={() => onAddToCart(product)}
-                        className={`inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] ${added ? "text-emerald-700" : "text-[#1a120c] hover:text-[#9F6324]"
+                        className={`inline-flex min-h-10 items-center justify-center gap-1.5 rounded-full px-3 text-[10px] font-semibold uppercase tracking-[0.12em] sm:gap-2 sm:text-[11px] sm:tracking-[0.16em] ${added ? "text-emerald-700" : "text-[#1a120c] hover:text-[#9F6324]"
                             }`}
                     >
                         {added ? <Check size={14} /> : <ShoppingBag size={14} />}

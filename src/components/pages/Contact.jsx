@@ -43,10 +43,10 @@ const Contact = () => {
     <>
       <Contacthero />
 
-      <section className="bg-[#f7f2ec] px-4 py-10 text-[#1a120c] sm:px-6 lg:px-8">
-        <div className="mx-auto grid max-w-[1400px] gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-          <div className="rounded-[24px] bg-white p-5 sm:rounded-[28px] sm:p-8 lg:p-10">
-            <h2 className="display-font text-3xl sm:text-5xl">Get in Touch</h2>
+      <section className="bg-[#f7f2ec] px-4 py-8 text-[#1a120c] sm:px-6 sm:py-12 lg:px-8">
+        <div className="mx-auto grid max-w-[1400px] gap-6 md:gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+          <div className="rounded-2xl bg-white p-5 sm:rounded-[28px] sm:p-7 md:p-8 lg:p-10">
+            <h2 className="display-font text-3xl sm:text-4xl md:text-5xl">Get in Touch</h2>
             <div className="mt-8 space-y-6 sm:mt-10 sm:space-y-7">
               <div className="flex items-start gap-4">
                 <div className="mt-1 text-[#9F6324]"><Phone size={22} /></div>
@@ -80,7 +80,7 @@ const Contact = () => {
           </div>
 
           <div className="rounded-[24px] bg-white p-5 sm:rounded-[28px] sm:p-8 lg:p-10">
-            <h2 className="display-font text-3xl sm:text-5xl">Send a Message</h2>
+            <h2 className="display-font text-3xl sm:text-4xl md:text-5xl">Send a Message</h2>
             <p className="mt-3 text-sm text-[#6b5b4e]">This opens WhatsApp with your message so we can reply the same day.</p>
             <form onSubmit={handleSubmit} className="mt-8">
               <div className="grid gap-6 sm:grid-cols-2">

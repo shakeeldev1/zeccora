@@ -37,19 +37,19 @@ const SpecialOffers = () => {
     };
 
     return (
-        <section id="special-deals" className="bg-[#f7f2ec] py-16 text-[#1a120c] sm:py-20">
+        <section id="special-deals" className="bg-[#f7f2ec] py-12 text-[#1a120c] sm:py-16 lg:py-20">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <div className="mb-10 text-center">
+                <div className="mb-8 text-center sm:mb-10">
                     <p className="section-kicker">Special deals</p>
-                    <h2 className="display-font mt-3 text-4xl sm:text-5xl">A little more luxury, for less</h2>
+                    <h2 className="display-font mt-3 text-3xl sm:text-4xl md:text-5xl">A little more luxury, for less</h2>
                     <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-[#6b5b4e]">
                         Click any offer to shop that discount. Sale prices are already applied on the product page and in your cart.
                     </p>
                 </div>
 
-                <div className="grid gap-4 sm:grid-cols-3">
+                <div className="grid gap-3 sm:grid-cols-3 sm:gap-4">
                     {perks.map(({ icon: Icon, label }) => (
-                        <div key={label} className="flex items-center gap-3 rounded-[28px] bg-white px-4 py-3 text-sm text-[#5c4c40] shadow-[0_10px_30px_rgba(26,18,12,0.04)]">
+                        <div key={label} className="flex items-center gap-3 rounded-2xl bg-white px-4 py-3 text-sm text-[#5c4c40] shadow-[0_10px_30px_rgba(26,18,12,0.04)] sm:rounded-[28px]">
                             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#efe6dc] text-[#9F6324]">
                                 <Icon size={18} />
                             </div>

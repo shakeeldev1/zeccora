@@ -56,10 +56,10 @@ const ProductDetail = () => {
                     <span>/</span>
                     <Link to="/products" className="transition hover:text-[#9F6324]">Collection</Link>
                     <span>/</span>
-                    <span className="text-[#1a120c]">{product.name}</span>
+                    <span className="max-w-[12rem] truncate text-[#1a120c] sm:max-w-none">{product.name}</span>
                 </nav>
 
-                <div className="mt-8 grid gap-10 lg:grid-cols-2 lg:gap-16">
+                <div className="mt-8 grid gap-8 md:gap-10 lg:grid-cols-2 lg:gap-16">
                     <div>
                         <button
                             type="button"
@@ -75,7 +75,7 @@ const ProductDetail = () => {
                     </div>
                     <div className="flex flex-col justify-center">
                         <p className="text-sm uppercase tracking-[0.14em] text-[#8a7b70]">{product.sku}</p>
-                        <h1 className="display-font mt-2 text-3xl sm:mt-3 sm:text-6xl">{product.name}</h1>
+                        <h1 className="display-font mt-2 text-3xl sm:mt-3 sm:text-4xl md:text-5xl lg:text-6xl">{product.name}</h1>
                         <div className="mt-5 flex flex-wrap items-center gap-3">
                             <span className="text-2xl font-semibold text-[#9F6324]">{product.price}</span>
                             <span className="text-sm text-[#8a7b70] line-through">{product.oldPrice}</span>
@@ -120,21 +120,23 @@ const ProductDetail = () => {
                             </div>
                         </dl>
 
-                        <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:flex-wrap sm:items-center">
-                            <div className="flex items-center justify-between rounded-full bg-white sm:justify-start">
-                                <button type="button" aria-label="Decrease quantity" onClick={() => setQuantity(Math.max(1, quantity - 1))} className="px-5 py-3">-</button>
-                                <span className="w-8 text-center">{quantity}</span>
-                                <button type="button" aria-label="Increase quantity" onClick={() => setQuantity(quantity + 1)} className="px-5 py-3">+</button>
+                        <div className="mt-6 flex w-full flex-col gap-3 sm:mt-8">
+                            <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+                                <div className="flex items-center justify-between rounded-full bg-white sm:justify-start">
+                                    <button type="button" aria-label="Decrease quantity" onClick={() => setQuantity(Math.max(1, quantity - 1))} className="px-5 py-3">-</button>
+                                    <span className="w-8 text-center">{quantity}</span>
+                                    <button type="button" aria-label="Increase quantity" onClick={() => setQuantity(quantity + 1)} className="px-5 py-3">+</button>
+                                </div>
+                                <div className="flex min-w-0 flex-1 gap-3">
+                                    <button type="button" onClick={() => addToCart()} className="flex min-w-0 flex-1 items-center justify-center gap-2 rounded-full bg-[#9F6324] px-4 py-3 text-sm font-semibold text-white sm:px-5">
+                                        <ShoppingBag size={17} /> Add to cart
+                                    </button>
+                                    <button type="button" onClick={() => toggle(product.id)} className={`shrink-0 rounded-full border px-4 py-3 ${saved ? "border-[#9F6324] text-[#9F6324]" : "border-black/10 text-[#5c4c40]"}`} aria-label="Save for later">
+                                        <Heart size={17} fill={saved ? "#9F6324" : "none"} />
+                                    </button>
+                                </div>
                             </div>
-                            <div className="flex gap-3">
-                                <button type="button" onClick={() => addToCart()} className="flex min-w-0 flex-1 items-center justify-center gap-2 rounded-full bg-[#9F6324] px-5 py-3 font-semibold text-white">
-                                    <ShoppingBag size={17} /> Add to cart
-                                </button>
-                                <button type="button" onClick={() => toggle(product.id)} className={`shrink-0 rounded-full border px-4 py-3 ${saved ? "border-[#9F6324] text-[#9F6324]" : "border-black/10 text-[#5c4c40]"}`} aria-label="Save for later">
-                                    <Heart size={17} fill={saved ? "#9F6324" : "none"} />
-                                </button>
-                            </div>
-                            <button type="button" onClick={() => addToCart(true)} className="w-full rounded-full border border-[#9F6324] px-5 py-3 font-semibold text-[#9F6324] sm:w-auto">
+                            <button type="button" onClick={() => addToCart(true)} className="w-full rounded-full border border-[#9F6324] px-5 py-3 font-semibold text-[#9F6324]">
                                 Buy now
                             </button>
                         </div>
@@ -169,8 +171,8 @@ const ProductDetail = () => {
 
                 {suggestedProducts.length > 0 ? (
                     <div className="mt-20">
-                        <h2 className="display-font text-center text-3xl sm:text-5xl">You may also like</h2>
-                        <div className="mt-10 grid grid-cols-2 gap-x-3 gap-y-8 sm:mt-20 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-4">
+                        <h2 className="display-font text-center text-3xl sm:text-4xl md:text-5xl">You may also like</h2>
+                        <div className="mt-8 grid grid-cols-2 gap-x-3 gap-y-8 sm:mt-12 sm:gap-x-5 md:grid-cols-3 lg:grid-cols-4 lg:gap-x-8">
                             {suggestedProducts.map((suggestedProduct) => (
                                 <ProductCard key={suggestedProduct.id} product={suggestedProduct} />
                             ))}

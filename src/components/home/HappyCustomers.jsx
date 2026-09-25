@@ -30,18 +30,18 @@ const reviews = [
 
 const HappyCustomers = () => {
     return (
-        <section className="bg-[#f7f2ec] py-16 text-[#1a120c] sm:py-10 lg:py-1">
+        <section className="bg-[#f7f2ec] py-12 text-[#1a120c] sm:py-16 lg:py-20">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
                 {/* Section Heading */}
-                <div className="mb-12 text-center">
+                <div className="mb-8 text-center sm:mb-12">
                     <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#9F6324]/20 bg-[#9F6324]/10 px-4 py-2">
                         <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#9F6324]">
                             Happy Customers
                         </span>
                     </div>
 
-                    <h2 className="display-font text-3xl sm:text-5xl lg:text-6xl">
+                    <h2 className="display-font text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
                         What our{" "}
                         <span className="italic text-[#9F6324]">
                             customers
@@ -56,11 +56,11 @@ const HappyCustomers = () => {
                 </div>
 
                 {/* Reviews */}
-                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
                     {reviews.map((review) => (
                         <article
                             key={review.name}
-                            className="flex h-full min-h-[330px] flex-col rounded-[28px] bg-white p-6 text-[#1a120c] shadow-[0_10px_30px_rgba(26,18,12,0.05)] transition duration-500 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(26,18,12,0.1)]"
+                            className="flex h-full min-h-0 flex-col rounded-2xl bg-white p-5 text-[#1a120c] shadow-[0_10px_30px_rgba(26,18,12,0.05)] transition duration-500 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(26,18,12,0.1)] sm:min-h-[300px] sm:rounded-[28px] sm:p-6"
                         >
                             {/* Top */}
                             <div className="flex items-center justify-between">

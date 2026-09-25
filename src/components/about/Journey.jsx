@@ -21,8 +21,8 @@ const stats = [
 
 const Journey = () => {
   return (
-    <section className="w-full bg-[#f7f2ec] py-16 text-[#1a120c] sm:py-10 lg:py-14">
-      <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
+    <section className="w-full overflow-x-hidden bg-[#f7f2ec] py-12 text-[#1a120c] sm:py-10 lg:py-14">
+      <div className="mx-auto max-w-7xl px-4 sm:px-8 lg:px-10">
         
         {/* Main Content */}
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
@@ -31,13 +31,13 @@ const Journey = () => {
           <div className="relative overflow-hidden">
             
             {/* Golden Border */}
-            <div className="absolute -left-3 -top-3 h-full w-full border border-[#A46A2A]/40" />
+            <div className="pointer-events-none absolute -left-2 -top-2 hidden h-full w-full border border-[#A46A2A]/40 sm:block" />
 
             <div className="relative overflow-hidden">
               <img
                 src="/hero/hero3.png"
                 alt="Zeccora Journey"
-                className="h-[300px] w-full object-cover object-center transition-transform duration-700 hover:scale-105 sm:h-[550px]"
+                className="h-[240px] w-full object-cover object-center transition-transform duration-700 hover:scale-105 sm:h-[380px] md:h-[460px] lg:h-[550px]"
               />
 
               {/* Image Overlay */}

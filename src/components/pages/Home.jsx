@@ -7,7 +7,7 @@ import HappyCustomers from '../home/HappyCustomers'
 import Quality from '../home/Quality'
 
 const tickerItems = [
-  '15% Off comming soon',
+  '15% Off coming soon',
   '30% Off also available',
   'Johar Town, Lahore',
   'Cash on delivery across Pakistan',

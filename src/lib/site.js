@@ -9,6 +9,11 @@ export const SITE = {
   deliveryFee: 300,
   deliveryWindow: "2–5 working days",
   returnDays: 7,
+  social: {
+    instagram: "https://www.instagram.com/zeccora_",
+    tiktok: "https://www.tiktok.com/@zeccora_",
+    facebook: "https://www.facebook.com/share/1K33TmtN5M/",
+  },
 };
 
 export const whatsappUrl = (text) =>

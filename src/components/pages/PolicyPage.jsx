@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 
 const PolicyPage = ({ eyebrow, title, intro, sections }) => {
     return (
-        <section className="min-h-[70vh] bg-[#f7f2ec] px-4 py-16 text-[#1a120c] sm:px-6 lg:px-8">
+        <section className="min-h-[70vh] bg-[#f7f2ec] px-4 py-10 text-[#1a120c] sm:px-6 sm:py-16 lg:px-8">
             <div className="mx-auto max-w-4xl">
                 <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#9F6324]">{eyebrow}</p>
-                <h1 className="mt-3 display-font text-4xl sm:text-6xl">{title}</h1>
+                <h1 className="mt-3 display-font text-3xl sm:text-5xl md:text-6xl">{title}</h1>
                 <p className="mt-5 max-w-2xl text-sm leading-7 text-[#6b5b4e] sm:text-base">{intro}</p>
 
                 <div className="mt-10 space-y-6">

@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { Autoplay } from "swiper/modules";
+import { Autoplay, EffectFade } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
+import "swiper/css/effect-fade";
 
-const heroSlides = [
+const HERO_SLIDES = [
   {
     src: "/hero/hero1.png",
-    mobileSrc: "/hero/hero1-mobile.png",
     alt: "Luxury ladies bag collection",
     subtitle: "The Zeccora Collection",
     heading: "Timeless",
@@ -18,7 +18,6 @@ const heroSlides = [
   },
   {
     src: "/hero/hero2.png",
-    mobileSrc: "/hero/hero2-mobile.png",
     alt: "Featured Zeccora handbag",
     subtitle: "New season edit",
     heading: "Your style.",
@@ -27,7 +26,6 @@ const heroSlides = [
   },
   {
     src: "/hero/hero3.png",
-    mobileSrc: "/hero/hero3-mobile.png",
     alt: "Elegant handbag styling",
     subtitle: "Made for everyday",
     heading: "Effortless",
@@ -36,7 +34,6 @@ const heroSlides = [
   },
   {
     src: "/hero/hero4.png",
-    mobileSrc: "/hero/hero4-mobile.png",
     alt: "Zeccora signature bag",
     subtitle: "Your next essential",
     heading: "Carry",
@@ -45,137 +42,151 @@ const heroSlides = [
   },
 ];
 
-const offerLinks = [
-  // { label: "50% Off", href: "/products?offer=50" },
+const OFFER_LINKS = [
   { label: "30% Off", href: "/products?offer=30" },
-  // { label: "20% Off", href: "/products?offer=20" },
   { label: "15% Off", href: "/coming-soon", soon: true },
 ];
 
 const Herohome = () => {
+  const swiperRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section className="relative h-[calc(100svh-6rem)] min-h-[32rem] w-full overflow-hidden bg-[#1a120c] sm:h-[calc(100svh-122px)] sm:min-h-[640px]">
+    <section className="relative h-[min(58svh,32rem)] min-h-[22rem] w-full overflow-hidden bg-[#1a120c] sm:h-[min(64svh,38rem)] sm:min-h-[28rem] md:h-[min(100svh,54rem)] md:min-h-[36rem] lg:h-[calc(100svh-7.5rem)] lg:min-h-[42rem]">
       <Swiper
-        modules={[Autoplay]}
-        speed={900}
-        autoplay={{ delay: 5200, disableOnInteraction: false }}
+        modules={[Autoplay, EffectFade]}
+        effect="fade"
+        fadeEffect={{ crossFade: true }}
+        speed={1000}
+        autoplay={{ delay: 5500, disableOnInteraction: false }}
         loop
+        onSwiper={(swiper) => (swiperRef.current = swiper)}
         onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
-        className="h-full w-full"
+        className="hero-swiper h-full w-full"
       >
-        {heroSlides.map((slide, index) => {
-          const isActive = activeIndex === index;
-          return (
-            <SwiperSlide key={slide.src} className="relative h-full w-full">
-              <div className="absolute inset-0 overflow-hidden">
-                <picture>
-                  <source media="(max-width: 639px)" srcSet={slide.mobileSrc} />
-                  <img
-                    src={slide.src}
-                    alt={slide.alt}
-                    loading={index === 0 ? "eager" : "lazy"}
-                    fetchPriority={index === 0 ? "high" : "auto"}
-                    decoding="async"
-                    className="hero-image h-full w-full object-contain object-center sm:object-cover sm:object-center"
-                  />
-                </picture>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-black/15 sm:bg-gradient-to-r sm:from-black/70 sm:via-black/25 sm:to-transparent" />
-              </div>
+        {HERO_SLIDES.map((slide, index) => (
+          <SwiperSlide key={slide.src} className="relative !h-full w-full overflow-hidden">
+            <img
+              src={slide.src}
+              alt={slide.alt}
+              loading={index === 0 ? "eager" : "lazy"}
+              decoding="async"
+              className="hero-image absolute inset-0 h-full w-full object-cover object-[72%_35%] sm:object-[70%_40%] md:object-[60%_center] lg:object-center"
+            />
 
-              <div className="relative z-20 flex h-full items-end pb-24 sm:items-center sm:pb-0">
-                <div className="mx-auto w-full max-w-7xl px-5 sm:px-10 lg:px-16">
-                  <div
-                    key={isActive ? `active-${index}` : `inactive-${index}`}
-                    className={`max-w-xl sm:rounded-[28px] sm:bg-black/45 sm:p-8 sm:backdrop-blur-md lg:p-9 ${isActive ? "animate-heroTextIn" : "opacity-0"}`}
-                  >
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#E8C27A] sm:text-[11px] sm:tracking-[0.32em]">
-                      {slide.subtitle}
-                    </p>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/25 md:bg-gradient-to-r md:from-black/80 md:via-black/35 md:to-transparent" />
 
-                    <h1 className="display-font mt-3 text-[2.75rem] leading-[0.9] text-white drop-shadow-[0_10px_28px_rgba(0,0,0,0.45)] sm:mt-4 sm:text-7xl">
-                      {slide.heading}
-                      <span className="mt-1 block italic text-[#E8C27A]">{slide.highlight}</span>
-                    </h1>
+            <div className="relative z-20 flex h-full items-end pb-5 sm:pb-8 md:items-center md:pb-0">
+              <div className="mx-auto w-full max-w-7xl px-4 sm:px-8 md:px-10 lg:px-16">
+                <div className="mx-auto max-w-xl text-center md:mx-0 md:rounded-[28px] md:bg-black/40 md:p-7 md:text-left md:backdrop-blur-md lg:p-9">
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#E8C27A] md:text-[11px] md:tracking-[0.32em]">
+                    {slide.subtitle}
+                  </p>
 
-                    <p className="mt-4 max-w-md text-sm leading-6 text-white/88 sm:mt-6 sm:text-base sm:leading-7">
-                      {slide.text}
-                    </p>
+                  <h1 className="display-font mt-2 text-[2rem] leading-[0.95] text-white drop-shadow-[0_8px_20px_rgba(0,0,0,0.6)] sm:mt-3 sm:text-4xl md:mt-4 md:text-6xl lg:text-7xl">
+                    {slide.heading}
+                    <span className="mt-1 block italic text-[#E8C27A]">{slide.highlight}</span>
+                  </h1>
 
-                    <div className="mt-6 flex gap-2.5 sm:mt-8 sm:gap-3">
+                  <p className="mx-auto mt-3 hidden max-w-md text-sm leading-6 text-white/90 sm:block md:mx-0 md:mt-5 md:text-base md:leading-7">
+                    {slide.text}
+                  </p>
+
+                  <div className="mx-auto mt-5 flex max-w-[19.5rem] justify-center gap-2 sm:mt-6 sm:max-w-none sm:gap-2.5 md:mx-0 md:mt-8 md:justify-start">
+                    <Link
+                      to="/products"
+                      className="hero-shine group inline-flex min-w-0 flex-1 items-center justify-center gap-1.5 overflow-hidden rounded-full bg-[#9F6324] px-3 py-3 text-[10px] font-semibold uppercase tracking-[0.12em] text-white shadow-[0_12px_28px_rgba(159,99,36,0.4)] transition duration-300 hover:bg-[#8a541c] sm:flex-none sm:gap-2 sm:px-6 sm:py-3.5 sm:text-[11px] sm:tracking-[0.14em] md:px-8"
+                    >
+                      Shop Now
+                      <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
+                    </Link>
+                    <Link
+                      to="/products?offer=30"
+                      className="inline-flex min-w-0 flex-1 items-center justify-center rounded-full bg-white px-3 py-3 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#1a120c] transition duration-300 hover:bg-[#E8C27A] sm:flex-none sm:px-6 sm:py-3.5 sm:text-[11px] sm:tracking-[0.14em] md:px-7"
+                    >
+                      30% Off
+                    </Link>
+                  </div>
+
+                  <div className="mt-4 flex justify-center gap-1.5 md:hidden">
+                    {HERO_SLIDES.map((_, dotIndex) => (
+                      <button
+                        key={dotIndex}
+                        type="button"
+                        onClick={() => swiperRef.current?.slideToLoop(dotIndex)}
+                        aria-label={`Go to slide ${dotIndex + 1}`}
+                        className={`h-1.5 rounded-full transition-all duration-500 ${
+                          activeIndex === dotIndex ? "w-6 bg-[#E8C27A]" : "w-1.5 bg-white/55"
+                        }`}
+                      />
+                    ))}
+                  </div>
+
+                  <div className="mt-5 hidden flex-wrap gap-2 md:mt-6 md:flex">
+                    {OFFER_LINKS.map((offer) => (
                       <Link
-                        to="/products"
-                        className="hero-shine group inline-flex flex-1 items-center justify-center gap-2 overflow-hidden rounded-full bg-[#9F6324] px-4 py-3.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-white shadow-[0_16px_36px_rgba(159,99,36,0.45)] transition hover:bg-[#8a541c] sm:flex-none sm:px-8 sm:text-[11px] sm:tracking-[0.2em]"
-                      >
-                        Shop collection
-                        <ArrowRight size={15} className="transition-transform duration-300 group-hover:translate-x-1" />
-                      </Link>
-                    </div>
-
-                    <div className="mt-6 hidden flex-wrap gap-2 sm:flex">
-                      {offerLinks.map((offer) => (
-                        <Link
-                          key={offer.label}
-                          to={offer.href}
-                          className={`rounded-full border px-3.5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] backdrop-blur-sm transition ${offer.soon
+                        key={offer.label}
+                        to={offer.href}
+                        className={`rounded-full border px-3.5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] backdrop-blur-sm transition duration-300 ${
+                          offer.soon
                             ? "border-white/30 bg-white/10 text-white/80 hover:text-white"
                             : "border-white/40 bg-white/15 text-white hover:bg-white hover:text-[#1a120c]"
-                            }`}
-                        >
-                          {offer.soon ? `${offer.label} · Soon` : offer.label}
-                        </Link>
-                      ))}
-                    </div>
+                        }`}
+                      >
+                        {offer.soon ? `${offer.label} · Soon` : offer.label}
+                      </Link>
+                    ))}
                   </div>
                 </div>
               </div>
-            </SwiperSlide>
-          );
-        })}
+            </div>
+          </SwiperSlide>
+        ))}
       </Swiper>
 
-      <div className="pointer-events-none absolute bottom-6 left-5 z-30 flex gap-2 sm:bottom-8 sm:left-10 lg:left-16">
-        {heroSlides.map((slide, index) => (
-          <span
-            key={slide.src}
-            className={`h-1.5 rounded-full transition-all duration-500 ${activeIndex === index ? "w-8 bg-[#E8C27A]" : "w-1.5 bg-white/55"
-              }`}
+      {/* Interactive Desktop Pagination Dots */}
+      <div className="absolute bottom-8 left-10 z-30 hidden gap-2.5 md:flex lg:left-16">
+        {HERO_SLIDES.map((_, index) => (
+          <button
+            key={index}
+            type="button"
+            onClick={() => swiperRef.current?.slideToLoop(index)}
+            aria-label={`Go to slide ${index + 1}`}
+            className={`h-2 rounded-full transition-all duration-500 ${
+              activeIndex === index ? "w-8 bg-[#E8C27A]" : "w-2 bg-white/40 hover:bg-white/70"
+            }`}
           />
         ))}
       </div>
 
+      {/* Embedded Styles */}
       <style>{`
+        .hero-swiper,
+        .hero-swiper .swiper-wrapper,
+        .hero-swiper .swiper-slide {
+          height: 100% !important;
+        }
         .hero-image {
-          transform: scale(1);
-          filter: saturate(1.1) contrast(1.05);
+          transform: scale(1.08);
+          filter: saturate(1.05) contrast(1.02);
           transition: transform 9s cubic-bezier(0.2, 0.6, 0.2, 1);
         }
         .swiper-slide-active .hero-image {
           transform: scale(1);
         }
-        @media (min-width: 640px) {
-          .hero-image { transform: scale(1.1); }
-          .swiper-slide-active .hero-image { transform: scale(1); }
+        .hero-shine {
+          position: relative;
         }
-        .animate-heroTextIn {
-          animation: heroTextIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-        @keyframes heroTextIn {
-          from { opacity: 0; transform: translateY(24px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        .hero-shine { position: relative; }
         .hero-shine::after {
           content: "";
           position: absolute;
           inset: 0;
-          background: linear-gradient(110deg, transparent 20%, rgba(255,255,255,0.38) 45%, transparent 70%);
+          background: linear-gradient(110deg, transparent 20%, rgba(255,255,255,0.35) 45%, transparent 70%);
           transform: translateX(-120%);
-          animation: heroShine 3.2s ease-in-out infinite;
+          animation: heroShine 3.5s ease-in-out infinite;
         }
         @keyframes heroShine {
-          0%, 55% { transform: translateX(-120%); }
+          0%, 60% { transform: translateX(-120%); }
           100% { transform: translateX(120%); }
         }
       `}</style>

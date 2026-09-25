@@ -55,12 +55,12 @@ const Quality = () => {
             Zeccora
           </p>
 
-          <h1 className="mx-auto max-w-4xl display-font text-3xl leading-tight text-white sm:text-5xl lg:text-6xl">
+          <h1 className="mx-auto max-w-4xl display-font text-3xl leading-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
             Shop Quality Products at{" "}
             <span className="italic text-[#E8C27A]">Zeccora</span>
           </h1>
 
-          <h2 className="mt-3 text-xl font-medium text-gray-200 sm:text-2xl lg:text-3xl">
+          <h2 className="mt-3 text-lg font-medium text-gray-200 sm:text-xl md:text-2xl lg:text-3xl">
             Experience True Arabian Luxury
           </h2>
 

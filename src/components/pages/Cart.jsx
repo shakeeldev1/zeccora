@@ -99,7 +99,7 @@ const Cart = () => {
                         <Link to="/products" className="mt-6 inline-block text-sm font-semibold text-[#9F6324]">Browse the collection</Link>
                     </div>
                 ) : (
-                    <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_340px]">
+                    <div className="mt-8 grid gap-6 md:mt-10 md:grid-cols-[1fr_280px] md:gap-8 lg:grid-cols-[1fr_340px]">
                         <div className="space-y-3">
                             {cart.map((item) => (
                                 <div key={cartLineKey(item)} className="flex gap-3 rounded-2xl bg-white p-3 sm:gap-4 sm:rounded-[28px] sm:p-4">
@@ -124,7 +124,7 @@ const Cart = () => {
                                 </div>
                             ))}
                         </div>
-                        <aside className="h-fit rounded-[28px] bg-white p-6">
+                        <aside className="h-fit rounded-2xl bg-white p-5 sm:rounded-[28px] sm:p-6 md:sticky md:top-24">
                             <h2 className="text-2xl font-semibold">Order summary</h2>
                             <div className="mt-6 flex justify-between border-b border-black/5 pb-4 text-sm text-[#6b5b4e]"><span>Subtotal</span><span>{subtotal.toLocaleString()} PKR</span></div>
                             <div className="mt-4 flex justify-between border-b border-black/5 pb-4 text-sm text-[#6b5b4e]"><span>Delivery</span><span>{delivery.toLocaleString()} PKR</span></div>

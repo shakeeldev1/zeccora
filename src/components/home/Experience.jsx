@@ -5,8 +5,8 @@ import {
   ShieldCheck,
   Headphones,
   ArrowRight,
-  Sparkles,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 import experienceImage from "/hero/zecorabout.png";
 
@@ -30,7 +30,7 @@ const Experience = () => {
   ];
 
   return (
-    <section className="relative overflow-hidden bg-[#f7f2ec] py-10 text-[#1a120c] sm:py-10 lg:py-10">
+    <section className="relative overflow-hidden bg-[#f7f2ec] py-12 text-[#1a120c] sm:py-16 lg:py-20">
       {/* Soft Ambient Gold Glows */}
       <div className="pointer-events-none absolute -left-32 top-1/2 h-80 w-80 -translate-y-1/2 rounded-full bg-[#A46A2A]/10 blur-[120px]" />
       <div className="pointer-events-none absolute -right-32 top-1/2 h-80 w-80 -translate-y-1/2 rounded-full bg-[#A46A2A]/10 blur-[120px]" />
@@ -48,7 +48,7 @@ const Experience = () => {
             </div>
 
             {/* Heading */}
-            <h2 className="display-font max-w-xl text-3xl leading-tight text-[#1a120c] sm:text-5xl">
+            <h2 className="display-font max-w-xl text-3xl leading-tight text-[#1a120c] sm:text-4xl md:text-5xl">
               Experience True{" "}
               <span className="block italic text-[#9F6324]">Luxury & Quality</span>
             </h2>
@@ -89,8 +89,8 @@ const Experience = () => {
 
             {/* CTA Buttons */}
             <div className="mt-9 flex w-full flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
-              <a
-                href="/products"
+              <Link
+                to="/products"
                 className="group inline-flex items-center justify-center gap-2 rounded-xl bg-[#A46A2A] px-7 py-3.5 text-sm font-bold text-white shadow-lg shadow-[#A46A2A]/25 transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-900"
               >
                 Shop Now
@@ -98,14 +98,14 @@ const Experience = () => {
                   size={17}
                   className="transition-transform duration-300 group-hover:translate-x-1"
                 />
-              </a>
+              </Link>
 
-              <a
-                href="/contact"
+              <Link
+                to="/contact"
                 className="inline-flex items-center justify-center rounded-xl border border-gray-300 bg-white px-7 py-3.5 text-sm font-bold text-gray-800 shadow-sm transition-all duration-300 hover:border-[#A46A2A] hover:bg-[#A46A2A]/5 hover:text-[#A46A2A]"
               >
                 Contact Us
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -119,7 +119,7 @@ const Experience = () => {
               <img
                 src={experienceImage}
                 alt="Premium Collection"
-                className="h-[280px] w-full rounded-[22px] object-cover transition-transform duration-700 hover:scale-105 sm:h-[450px] lg:h-[480px]"
+                className="h-[220px] w-full rounded-[22px] object-cover transition-transform duration-700 hover:scale-105 sm:h-[340px] md:h-[400px] lg:h-[480px]"
               />
             </div>
 

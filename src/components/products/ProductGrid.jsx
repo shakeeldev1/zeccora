@@ -67,7 +67,7 @@ const ProductGrid = ({ products, onAddToCart }) => {
             <div className="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8">
                 <div className="mb-8 text-center sm:mb-10">
                     <p className="section-kicker">{activeOffer ? "Limited offer" : "Zeccora Collection"}</p>
-                    <h2 className="display-font mt-3 text-3xl sm:text-5xl">
+                    <h2 className="display-font mt-3 text-3xl sm:text-4xl md:text-5xl">
                         {activeOffer ? `${activeOffer.value} collection` : "Shop the collection"}
                     </h2>
                     <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-[#6b5b4e]">
@@ -94,9 +94,9 @@ const ProductGrid = ({ products, onAddToCart }) => {
                     ))}
                 </div>
 
-                <div className="mb-8 flex flex-col gap-3 sm:mb-10 sm:items-center sm:gap-4 lg:flex-row lg:justify-end">
-                    <div className="flex w-full flex-col gap-3 sm:max-w-xl sm:flex-row">
-                        <div className="relative flex-1">
+                <div className="mb-8 flex flex-col gap-3 sm:mb-10 sm:items-center sm:gap-4 lg:flex-row lg:justify-between">
+                    <div className="flex w-full flex-col gap-3 sm:max-w-2xl sm:flex-row lg:max-w-none">
+                        <div className="relative min-w-0 flex-1">
                             <Search size={17} className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[#9F6324]" />
                             <input
                                 type="search"
@@ -113,7 +113,17 @@ const ProductGrid = ({ products, onAddToCart }) => {
                             ) : null}
                         </div>
                         <label className="sr-only" htmlFor="sort-products">Sort products</label>
-                      
+                        <select
+                            id="sort-products"
+                            value={sortBy}
+                            onChange={(event) => setSortBy(event.target.value)}
+                            className="w-full rounded-full border-0 bg-white px-4 py-3 text-base text-[#1a120c] outline-none sm:w-auto sm:min-w-[11rem] sm:text-sm"
+                        >
+                            <option value="featured">Featured</option>
+                            <option value="price-asc">Price: low to high</option>
+                            <option value="price-desc">Price: high to low</option>
+                            <option value="discount">Best discount</option>
+                        </select>
                     </div>
                 </div>
 
@@ -131,7 +141,7 @@ const ProductGrid = ({ products, onAddToCart }) => {
                         </button>
                     </div>
                 ) : (
-                    <div className="grid grid-cols-2 gap-x-3 gap-y-8 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-4 lg:gap-x-8">
+                    <div className="grid grid-cols-2 gap-x-3 gap-y-8 sm:gap-x-5 sm:gap-y-10 md:grid-cols-3 lg:grid-cols-4 lg:gap-x-8">
                         {filteredProducts.map((product) => (
                             <ProductCard
                                 key={product.id}

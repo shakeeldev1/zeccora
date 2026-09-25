@@ -5,10 +5,10 @@ const BrandLogo = ({ size = "nav" }) => {
 
     return (
         <span className={`inline-flex flex-col items-center text-[#1a120c] ${isFooter ? "gap-1.5" : "gap-0.5"}`}>
-            <span className={`brand-word ${isFooter ? "text-[44px] sm:text-[64px]" : "text-[32px] sm:text-[46px]"}`}>
+            <span className={`brand-word ${isFooter ? "text-[36px] sm:text-[52px] lg:text-[64px]" : "text-[26px] sm:text-[34px] md:text-[42px] lg:text-[46px]"}`}>
                 Zeccora
             </span>
-            <span className={`brand-tag ${isFooter ? "text-[11px] sm:text-[13px]" : "text-[8px] sm:text-[10px]"}`}>
+            <span className={`brand-tag ${isFooter ? "text-[10px] sm:text-[12px] lg:text-[13px]" : "text-[7px] sm:text-[9px] md:text-[10px]"}`}>
                 Carry your elegance.
             </span>
         </span>
